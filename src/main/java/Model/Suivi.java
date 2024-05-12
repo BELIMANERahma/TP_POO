@@ -4,7 +4,7 @@ public class Suivi extends Rendez_vous {
     private int numero_dossier;
     private Deroulement_seance type;
     private Objectif[] objectif_seance;
-    private String duree;
+    private final String duree;
 
     public Suivi(String date, String heure, Type_rendez_vous type, String observation, int numero_dossier, Deroulement_seance type1, Objectif[] objectif_seance, String duree) {
         super(date, heure, type, observation);
