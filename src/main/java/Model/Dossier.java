@@ -5,10 +5,10 @@ public class Dossier {
     private int numero;
     private Rendez_vous rendez_vous[];
     private BO Bilans_orth[];
-    private Fiche_Suivi fiches_suiv[];
+    private String fiches_suiv[];
 
 
-    public Dossier(int numero, Rendez_vous[] rendez_vous, BO[] bilans_orth, Fiche_Suivi[] fiches_suiv) {
+    public Dossier(int numero, Rendez_vous[] rendez_vous, BO[] bilans_orth, String[] fiches_suiv) {
         this.numero = numero;
         this.rendez_vous = rendez_vous;
         Bilans_orth = bilans_orth;
@@ -39,11 +39,11 @@ public class Dossier {
         Bilans_orth = bilans_orth;
     }
 
-    public Fiche_Suivi[] getFiches_suiv() {
+    public String[] getFiches_suiv() {
         return fiches_suiv;
     }
 
-    public void setFiches_suiv(Fiche_Suivi[] fiches_suiv) {
+    public void setFiches_suiv(String[] fiches_suiv) {
         this.fiches_suiv = fiches_suiv;
     }
 }

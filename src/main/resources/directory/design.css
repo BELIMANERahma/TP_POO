@@ -1,0 +1,67 @@
+.white-background
+{
+-fx-background-color: white;
+}
+.btn1{
+
+   -fx-background-color : #ee494b;
+   -fx-text-fill : white;
+   -fx-background-radius : 10;
+
+}
+.btn{
+
+   -fx-background-color : #036;
+   -fx-text-fill : white;
+   -fx-background-radius : 10;
+
+}
+.btn:hover{
+
+   -fx-background-color :linear-gradient(to bottom right, #ee494b, #036) ;
+   -fx-text-fill : white;
+   -fx-background-radius : 10;
+
+}
+.textfield
+{
+   -fx-border-color: #fff;
+   -fx-border-width: .5px;
+   -fx-background-radius: 25;
+
+
+
+}
+.textfield:focused
+{
+   -fx-border-width: .8px;
+   -fx-border-radius: 10;
+   -fx-border-color: #036 ;
+
+
+}
+
+.anchorpane
+{
+   -fx-background-color: #036 ;
+
+
+}
+.check-box .box {
+
+   -fx-background-color: white;
+   -fx-border-color:transparent;
+   -fx-border-radius:3px;
+
+}
+
+.check-box:selected .mark {
+
+   -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+
+   -fx-background-color: #ee494b;
+}
