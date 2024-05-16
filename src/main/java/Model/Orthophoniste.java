@@ -7,10 +7,9 @@ public class Orthophoniste {
     private Agenda agnenda;
     private Patient[] Mes_patients;
 
-    public Orthophoniste(Compte compte, Agenda agnenda, Patient[] mes_patients) {
+    public Orthophoniste(Compte compte ) {
         this.compte = compte;
-        this.agnenda = agnenda;
-        Mes_patients = mes_patients;
+
     }
 
     public Compte getCompte() {
