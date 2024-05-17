@@ -1,9 +1,10 @@
 package Model;
 
-public class Compte {
+import java.io.Serializable;
+
+public class Compte implements Serializable {
 
     private String nom;
-    private String nom_utilisateur;
     private String prenom;
     private int num_tlf;
     private String email;
@@ -11,9 +12,8 @@ public class Compte {
     private String adresse;
 
 
-    public Compte(String nom, String nom_utilisateur, String prenom, int num_tlf, String email, String mot_pass, String adresse) {
+    public Compte(String nom, String prenom, int num_tlf, String email, String mot_pass, String adresse) {
         this.nom = nom;
-        this.nom_utilisateur = nom_utilisateur;
         this.prenom = prenom;
         this.num_tlf = num_tlf;
         this.email = email;
@@ -29,13 +29,7 @@ public class Compte {
         this.nom = nom;
     }
 
-    public String getNom_utilisateur() {
-        return nom_utilisateur;
-    }
 
-    public void setNom_utilisateur(String nom_utilisateur) {
-        this.nom_utilisateur = nom_utilisateur;
-    }
 
     public String getPrenom() {
         return prenom;

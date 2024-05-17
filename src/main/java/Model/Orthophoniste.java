@@ -1,14 +1,25 @@
 package Model;
 
-public class Orthophoniste {
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
+
+public class Orthophoniste  implements Serializable {
+    private static final long serialVersionUID = 6529685098267757690L;
 
     private Compte compte;
-    private Agenda agnenda;
-    private Patient[] Mes_patients;
+    private Agenda agenda;
+    private Map<Patient, Integer> Mes_patients;
+
 
     public Orthophoniste(Compte compte ) {
         this.compte = compte;
+        this.Mes_patients = new HashMap<Patient, Integer>();
+        String email = this.compte.getEmail().toLowerCase().replace(" ", "");
+        serializeProfile("./src/main/Userinformation/" + email + ".ser");
+
+
 
     }
 
@@ -21,18 +32,41 @@ public class Orthophoniste {
     }
 
     public Agenda getAgnenda() {
-        return agnenda;
+        return agenda;
     }
 
     public void setAgnenda(Agenda agnenda) {
-        this.agnenda = agnenda;
+        this.agenda = agnenda;
     }
 
-    public Patient[] getMes_patients() {
+    public Map<Patient, Integer> getMes_patients() {
         return Mes_patients;
     }
 
-    public void setMes_patients(Patient[] mes_patients) {
+    public void setMes_patients(Map<Patient, Integer> mes_patients) {
         Mes_patients = mes_patients;
     }
+
+
+    private void serializeProfile(String filepath) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filepath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            out.close();
+            fileOut.close();
+            System.out.println("Serialized profile object created for " + this.compte.getEmail() + ".");
+        }
+
+        catch
+        (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 }
