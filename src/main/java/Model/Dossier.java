@@ -8,7 +8,11 @@ public class Dossier {
     private  Fiche_suivi fiches_suivi[];
 
 
-    public Dossier(int numero, Rendez_vous[] rendez_vous, BO[] bilans_orth,  Fiche_suivi [] fiches_suivi) {
+    public Dossier()
+    {
+    }
+
+    public Dossier(int numero, Rendez_vous[] rendez_vous, BO[] bilans_orth, Fiche_suivi [] fiches_suivi) {
         this.numero = numero;
         this.rendez_vous = rendez_vous;
         Bilans_orth = bilans_orth;

@@ -101,3 +101,14 @@
   -fx-cursor: hand;
 }
 
+.selected-border {
+   -fx-border-color: #fff;
+   -fx-border-width: 0 3 0 0;
+}
+
+.selected:hover {
+   -fx-background-color: #3c3d58;
+   -fx-cursor: hand;
+}
+
+

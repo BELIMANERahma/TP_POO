@@ -8,13 +8,27 @@ public class Patient {
     private String date_naissance;
     private String lieu_naissance;
     private String Adresse;
+    private Dossier dossier;
 
     public Patient(String nom, String prenom, String date_naissance, String lieu_naissance, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.date_naissance = date_naissance;
         this.lieu_naissance = lieu_naissance;
-        Adresse = adresse;
+        this.Adresse = adresse;
+        dossier= new Dossier();
+    }
+
+    public Patient() {
+
+    }
+
+    public Dossier getDossier() {
+        return dossier;
+    }
+
+    public void setDossier(Dossier dossier) {
+        this.dossier = dossier;
     }
 
     public String getNom() {
