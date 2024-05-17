@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.Homecontroller">
    <left>
       <VBox prefHeight="600.0" prefWidth="235.0" styleClass="anchorpane" stylesheets="@../../../directory/design.css" BorderPane.alignment="CENTER">
          <children>
@@ -74,7 +74,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label onMouseClicked="#handleRouting" text="Patients" textFill="#f4f4f4">
+                        <Label text="Patients" textFill="#f4f4f4">
                            <font>
                               <Font size="14.0" />
                            </font>

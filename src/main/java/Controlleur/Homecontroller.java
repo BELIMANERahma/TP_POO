@@ -5,6 +5,7 @@ package Controlleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 public class Homecontroller {
@@ -17,12 +18,24 @@ public class Homecontroller {
 
     @FXML
     void handleRouting(MouseEvent event) {
+        String PageRouter;
+        boolean newPage;
+        label53:
+        {
+            Label label = (Label) event.getSource();
+            newPage = false;
+
+            PageRouter = "Profile/Profile.fxml";
+        }
 
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
 
     }
+
+
 
 }
