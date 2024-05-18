@@ -73,7 +73,7 @@ public class Homecontroller {
                 PageRouter = "/com/example/tp_poo/DefaultPage.fxml";
                 break;
         }
-        PageRouter = "/com/example/tp_poo/Login.fxml";
+      //  PageRouter = "/com/example/tp_poo/Login.fxml";
 
         if (newPage) {
             try {
@@ -82,7 +82,7 @@ public class Homecontroller {
                 // You need to set the new page in the current scene or open a new window
                 // Example for setting the new page in the current scene:
               Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-              Scene scene = new Scene(nextPage, 1000, 600);
+              Scene scene = new Scene(nextPage, 1000, 670);
              Scene.setScene(scene);
 
             } catch (IOException e) {

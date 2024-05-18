@@ -109,7 +109,7 @@ public class LoginController {
         {
 
             //meriem hna beh tbdli l profile lezem nbe3tou des infos pour le mzomznt rahi byda bdliha kima 7biti
-            Parent next = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/Patients.fxml"));
+            Parent next = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/home.fxml"));
 
             // Get the current scene
             Scene currentScene = create_account_btn.getScene();
