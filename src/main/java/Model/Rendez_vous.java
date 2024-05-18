@@ -17,6 +17,10 @@ public abstract class Rendez_vous  {
         Observation = observation;
     }
 
+    public Rendez_vous() {
+
+    }
+
     public String getDate() {
         return date;
     }

@@ -88,7 +88,7 @@ public class LoginController {
             // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             // Create a new scene with the signup root
-            Scene scene = new Scene(signupRoot, 1000, 600);
+            Scene scene = new Scene(signupRoot, 1000, 670);
 
             // Set the scene on the stage
             stage.setScene(scene);
@@ -109,7 +109,7 @@ public class LoginController {
         {
 
             //meriem hna beh tbdli l profile lezem nbe3tou des infos pour le mzomznt rahi byda bdliha kima 7biti
-            Parent next = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/home.fxml"));
+            Parent next = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/Patients.fxml"));
 
             // Get the current scene
             Scene currentScene = create_account_btn.getScene();
@@ -171,6 +171,10 @@ public class LoginController {
         }
         return null;
     }
+
+
+
+
 
 
 }

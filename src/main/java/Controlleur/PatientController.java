@@ -1,11 +1,15 @@
 package Controlleur;
 
-import Model.Patient;
+import Model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -23,8 +27,10 @@ public class PatientController implements Initializable {
 
 
     @FXML
-    void handleRouting(MouseEvent event)
+    private void handleRouting(MouseEvent event)
     {
+
+
 
     }
 
@@ -56,53 +62,53 @@ public class PatientController implements Initializable {
         patient.setNom("dddddds") ;
         patient.setPrenom("ddd") ;
         patient.setDate_naissance("20041324") ;
-        patient.setDossier(null);
+        Rendez_vous[] rendez_vous = new Consultation[]{new Consultation()};
+        Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
+        BO[] bos=new BO[]{new BO()};
+        Dossier dossier = new Dossier(1,rendez_vous,bos,ficheSuivis);
+        patient.setDossier(dossier);
+
         ls.add(patient);
 
-        patient = new Patient();
+        Patient patient1 = new Patient();
 
-        patient.setNom("ddddddn") ;
-        patient.setPrenom("ddd") ;
-        patient.setDate_naissance("20041324") ;
-        patient.setDossier(null);
-        ls.add(patient);
 
-         patient = new Patient();
+        patient1.setNom("dddddds") ;
+        patient1.setPrenom("ddd") ;
+        patient1.setDate_naissance("20041324") ;
 
-        patient.setNom("dddddds") ;
-        patient.setPrenom("ddd") ;
-        patient.setDate_naissance("20041324") ;
-        patient.setDossier(null);
-        ls.add(patient);
+        Dossier dossier2 = new Dossier(2,rendez_vous,bos,ficheSuivis);
+        patient1.setDossier(dossier2);
 
-        patient = new Patient();
+        ls.add(patient1);
 
-        patient.setNom("ddddddq") ;
-        patient.setPrenom("ddd") ;
-        patient.setDate_naissance("20041324") ;
-        patient.setDossier(null);
-        ls.add(patient);
-        patient = new Patient();
+         patient1 = new Patient();
 
-        patient.setNom("ddddddq") ;
-        patient.setPrenom("ddd") ;
-        patient.setDate_naissance("20041324") ;
-        patient.setDossier(null);
-        ls.add(patient);
-        patient = new Patient();
 
-        patient.setNom("ddddddq") ;
-        patient.setPrenom("ddd") ;
-        patient.setDate_naissance("20041324") ;
-        patient.setDossier(null);
-        ls.add(patient);
-        patient = new Patient();
+        patient1.setNom("dddddds") ;
+        patient1.setPrenom("ddd") ;
+        patient1.setDate_naissance("20041324") ;
 
-        patient.setNom("ddddddq") ;
-        patient.setPrenom("ddd") ;
-        patient.setDate_naissance("20041324") ;
-        patient.setDossier(null);
-        ls.add(patient);
+        dossier2 = new Dossier(3,rendez_vous,bos,ficheSuivis);
+        patient1.setDossier(dossier2);
+
+        ls.add(patient1);
+
+
+        patient1 = new Patient();
+
+
+        patient1.setNom("dddddds") ;
+        patient1.setPrenom("ddd") ;
+        patient1.setDate_naissance("20041324") ;
+
+        dossier2 = new Dossier(4,rendez_vous,bos,ficheSuivis);
+        patient1.setDossier(dossier2);
+
+        ls.add(patient1);
+
+
+
 
 
 

@@ -47,6 +47,17 @@
 
 
 }
+.anchorpane1
+{
+   -fx-background-color: transparent ;
+-fx-background-radius: 20;
+   -fx-border-color: #ee494b;
+   -fx-border-radius: 20;
+
+
+;
+
+}
 .check-box .box {
 
    -fx-background-color: white;

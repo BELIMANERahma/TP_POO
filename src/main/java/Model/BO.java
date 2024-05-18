@@ -5,6 +5,9 @@ public class BO {
     private Diagnostique diagnostique;
     private Projet_therapeu projet;
 
+    public BO()
+    {
+    }
 
     public BO(Epreuve_clinique[] epreuves_cliniques, Diagnostique diagnostique, Projet_therapeu projet) {
         this.epreuves_cliniques = epreuves_cliniques;

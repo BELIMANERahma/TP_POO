@@ -14,6 +14,10 @@ public class Consultation extends Rendez_vous{
         this.duree = duree;
     }
 
+    public Consultation() {
+        super();
+    }
+
     public String getNom() {
         return nom;
     }

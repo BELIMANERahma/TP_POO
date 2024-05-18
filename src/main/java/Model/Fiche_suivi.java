@@ -3,6 +3,10 @@ package Model;
 public class Fiche_suivi {
     private Objectif[] objectifs;
 
+    public Fiche_suivi()
+    {
+    }
+
     public Fiche_suivi(Objectif[] objectifs) {
         this.objectifs = objectifs;
     }
