@@ -8,12 +8,14 @@ public class Epreuve_clinique  implements Serializable {
     private String[] Observations_cliniques;
     private Test[] tests;
 
-    public Epreuve_clinique(String[] observations_cliniques, Test[] tests) {
+    public Epreuve_clinique(String[] observations_cliniques, Test[] tests)
+    {
         Observations_cliniques = observations_cliniques;
         this.tests = tests;
     }
 
-    public String[] getObservations_cliniques() {
+    public String[] getObservations_cliniques()
+    {
         return Observations_cliniques;
     }
 

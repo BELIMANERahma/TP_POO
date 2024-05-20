@@ -3,14 +3,25 @@ package Model;
 import java.io.Serializable;
 
 public class Fiche_suivi implements Serializable {
+    static int num ;
     private Objectif[] objectifs;
+
+    public  int getNum() {
+        return num;
+    }
+
+    public  void setNum(int num) {
+        Fiche_suivi.num = num;
+    }
 
     public Fiche_suivi()
     {
     }
 
-    public Fiche_suivi(Objectif[] objectifs) {
+    public Fiche_suivi(Objectif[] objectifs,int num) {
         this.objectifs = objectifs;
+        this.num=num;
+
     }
 
     public void setObjectifs(Objectif[] objectifs) {

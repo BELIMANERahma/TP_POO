@@ -11,6 +11,10 @@ public class Enfant  extends  Patient
         this.numeroparent = numeroparent;
     }
 
+    public Enfant() {
+
+    }
+
     public String getClass_etude() {
         return class_etude;
     }

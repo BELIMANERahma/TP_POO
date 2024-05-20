@@ -2,10 +2,9 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.DossierController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.FicheController">
    <left>
       <VBox prefHeight="600.0" prefWidth="235.0" styleClass="anchorpane" stylesheets="@../../../directory/design.css" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +27,7 @@
                         <Image url="@../../../images/or.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="utilisateur1" textFill="#f4f4f4">
+                  <Label fx:id="username1" textFill="#f4f4f4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -67,9 +66,6 @@
                            </font>
                         </Label>
                      </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0">
                      <children>
@@ -81,7 +77,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label onMouseClicked="#handleRouting" text="Patients" textFill="#f4f4f4">
+                        <Label text="Patients" textFill="#f4f4f4">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -94,9 +90,6 @@
                         <String fx:value="selected" />
                         <String fx:value="selected-border" />
                      </styleClass>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" styleClass="selected">
                      <children>
@@ -137,9 +130,6 @@
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" styleClass="selected">
                      <VBox.margin>
@@ -220,7 +210,7 @@
          <children>
             <AnchorPane>
                <children>
-                  <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="446.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Dossier médicale de  :" textFill="#f76e72e5">
+                  <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="226.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Fiches De Suivi  :" textFill="#f76e72e5">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -231,119 +221,58 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <AnchorPane layoutX="587.0" layoutY="24.0" prefHeight="33.0" prefWidth="170.0" style="-fx-background-radius: 20;" styleClass="anchorpane1" stylesheets="@../../../directory/design.css">
-                     <children>
-                        <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/Patient/loupe.png" />
-                           </image>
-                        </ImageView>
-                        <TextField layoutX="33.0" prefHeight="31.0" prefWidth="131.0" promptText="Rechercher" style="-fx-background-color: transparent; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: transparent;">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets left="30.0" />
-                           </opaqueInsets>
-                        </TextField>
-                     </children>
-                  </AnchorPane>
-                  <Label fx:id="dossierusername" layoutX="223.0" layoutY="22.0" textFill="#f76e72">
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="123.0" prefWidth="765.0">
+               <children>
+                  <Label layoutX="433.0" layoutY="14.0" text="Nombre des objectifs est :" textFill="#c11313">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="87.0" layoutY="14.0" text="Nombre fiche de suivi  " textFill="#c11313">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numfiche" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="34.0" prefHeight="82.0" prefWidth="139.0" style="-fx-background-color: #036;" styleClass="textfield" stylesheets="@../../../directory/design.css" textAlignment="JUSTIFY" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numobject" alignment="CENTER" contentDisplay="CENTER" layoutX="461.0" layoutY="34.0" prefHeight="82.0" prefWidth="139.0" style="-fx-background-color: #036;" styleClass="textfield" stylesheets="@../../../directory/design.css" textAlignment="JUSTIFY" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="602.0" prefWidth="765.0">
+            <AnchorPane prefHeight="451.0" prefWidth="765.0">
                <children>
-                  <AnchorPane fx:id="Infopersonnelle" layoutX="101.0" layoutY="49.0" prefHeight="218.0" prefWidth="250.0" style="-fx-background-color: #d2e8fe; -fx-background-radius: 30; -fx-border-radius: 30;" stylesheets="@../../../directory/design.css">
+                  <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="330.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Consulter Les Fiche de suivi  :" textFill="#00002c">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" right="50.0" top="20.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <VBox layoutX="1.0" layoutY="81.0">
                      <children>
-                        <ImageView fitHeight="82.0" fitWidth="78.0" layoutX="86.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/Dossier/utilisateur.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="-7.0" layoutY="149.0" lineSpacing="10.0" text="     Appuyer pour Acceder  Au Informations">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Label>
-                        <Label layoutX="67.0" layoutY="167.0" lineSpacing="10.0" text=" de votre Patient">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
+                        <HBox prefHeight="391.0" prefWidth="764.0">
+                           <children>
+                              <ScrollPane prefHeight="345.0" prefWidth="764.0" style="-fx-background-color: transparent; -fx-text-fill: red;">
+                                 <content>
+                                    <VBox fx:id="patientslay" />
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </HBox>
                      </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </AnchorPane>
-                  <AnchorPane fx:id="patientrendezvous" layoutX="435.0" layoutY="49.0" prefHeight="218.0" prefWidth="250.0" style="-fx-background-color: #d2e8fe; -fx-background-radius: 30; -fx-border-radius: 30;" stylesheets="@../../../directory/design.css">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <children>
-                        <Label layoutX="-10.0" layoutY="149.0" lineSpacing="10.0" text="     Appuyer pour Acceder  Au Rendez-vous">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="64.0" layoutY="167.0" lineSpacing="10.0" text=" de votre Patient">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="81.0" fitWidth="90.0" layoutX="85.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/Dossier/rendez-vous.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="patientfiche" layoutX="101.0" layoutY="323.0" prefHeight="218.0" prefWidth="250.0" style="-fx-background-color: #d2e8fe; -fx-background-radius: 30; -fx-border-radius: 30;" stylesheets="@../../../directory/design.css">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <children>
-                        <Label layoutX="2.0" layoutY="135.0" lineSpacing="10.0" prefHeight="34.0" prefWidth="246.0" text="     Appuyer pour Acceder  Au Fiches de ">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="47.0" layoutY="161.0" lineSpacing="10.0" prefHeight="34.0" prefWidth="155.0" text="Suivi de votre Patient">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="97.0" fitWidth="114.0" layoutX="74.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/Dossier/suivi.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="patientbo" layoutX="435.0" layoutY="323.0" prefHeight="218.0" prefWidth="250.0" style="-fx-background-color: #d2e8fe; -fx-background-radius: 30; -fx-border-radius: 30;" stylesheets="@../../../directory/design.css">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <children>
-                        <Label layoutX="7.0" layoutY="135.0" lineSpacing="10.0" prefHeight="35.0" prefWidth="230.0" text="     Appuyer pour Acceder  Au Bilans">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="40.0" layoutY="159.0" lineSpacing="10.0" prefHeight="34.0" prefWidth="170.0" text="Orthophonic de votre Patient">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="83.0" fitWidth="74.0" layoutX="85.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/Dossier/dossier.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>

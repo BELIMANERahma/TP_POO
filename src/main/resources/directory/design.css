@@ -123,9 +123,9 @@
 }
 
 .profile-input {
-    -fx-background-color: #fff;
+    -fx-background-color: transparent;
     -fx-border-width: 0 0 1 0;
-    -fx-border-color: #242551;
+    -fx-border-color:#ee494b;
     -fx-text-fill: #000;
 }
 

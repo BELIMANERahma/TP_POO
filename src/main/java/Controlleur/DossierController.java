@@ -141,11 +141,12 @@ public class DossierController implements Initializable {
 
         Orthophoniste user = LoginController.getcurrentuser();
         Dossier dossier = user.rechercher_patient(num_dossier);
-
         if (dossier != null)
         {
 
             Patient patient = dossier.getPatient();
+            dossierusername.setText(patient.getNom()+" "+patient.getPrenom());
+
 
 
                 Infopersonnelle.setOnMouseClicked(event ->
@@ -155,8 +156,8 @@ public class DossierController implements Initializable {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/Infopersonnelle.fxml"));
                         Parent root = loader.load();
 
-                     //   InfopersonnelleController InfoController = loader.getController();
-                        //InfoController.setInfoData(patient.getNum_dossier());
+                       InfopersonnelleController InfoController = loader.getController();
+                        InfoController.setInfoData(patient);
 
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root, 1000, 670);
@@ -168,6 +169,24 @@ public class DossierController implements Initializable {
                     }
                 });
 
+                patientfiche.setOnMouseClicked(event ->
+                {
+                    try
+                    {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/Fiche.fxml"));
+                        Parent root = loader.load();
+                        FicheController fiche = loader.getController();
+                        fiche.setficheData(dossier);
+
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root, 1000, 670);
+                        stage.setScene(scene);
+
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                });
         }
     }
 
