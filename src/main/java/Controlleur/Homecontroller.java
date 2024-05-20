@@ -103,9 +103,9 @@ public class Homecontroller implements Initializable {
                 Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
                 // You need to set the new page in the current scene or open a new window
                 // Example for setting the new page in the current scene:
-              Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-              Scene scene = new Scene(nextPage, 1000, 670);
-             Scene.setScene(scene);
+                  Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                  Scene scene = new Scene(nextPage, 1000, 670);
+                 Scene.setScene(scene);
 
             } catch (IOException e) {
                 e.printStackTrace();

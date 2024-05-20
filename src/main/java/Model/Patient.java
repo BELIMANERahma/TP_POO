@@ -12,18 +12,15 @@ public    class  Patient implements Serializable {
     private String Adresse;
     private int num_dossier;//numero dossier
 
-    public int getNum_dossier()
-    {
+    public int getNum_dossier() {
         return num_dossier;
     }
 
-    public void setNum_dossier(int num_dossier)
-    {
+    public void setNum_dossier(int num_dossier) {
         this.num_dossier = num_dossier;
     }
 
-    public Patient(String nom, String prenom, String date_naissance, String lieu_naissance, String adresse)
-    {
+    public Patient(String nom, String prenom, String date_naissance, String lieu_naissance, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.date_naissance = date_naissance;

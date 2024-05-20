@@ -10,6 +10,10 @@ public class Enfant  extends  Patient
         this.class_etude = class_etude;
         this.numeroparent = numeroparent;
     }
+    public Enfant(String nom, String prenom) {
+        super(nom, prenom);
+
+    }
 
     public Enfant() {
 
