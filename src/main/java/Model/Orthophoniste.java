@@ -1,8 +1,11 @@
 package Model;
 
+import com.sun.source.tree.Tree;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class Orthophoniste  implements Serializable {
@@ -10,12 +13,12 @@ public class Orthophoniste  implements Serializable {
 
     private Compte compte;
     private Agenda agenda;
-    private Map<Patient, Integer> Mes_patients;
+    private TreeMap<Integer,Dossier> Mes_dossiers;
 
 
     public Orthophoniste(Compte compte ) {
         this.compte = compte;
-        this.Mes_patients = new HashMap<Patient, Integer>();
+        this.Mes_dossiers = new TreeMap<Integer,Dossier >();
         String email = this.compte.getEmail().toLowerCase().replace(" ", "");
         serializeProfile("./src/main/Userinformation/" + email + ".ser");
 
@@ -31,31 +34,37 @@ public class Orthophoniste  implements Serializable {
         this.compte = compte;
     }
 
-    public Agenda getAgnenda() {
+    public Agenda getAgenda() {
         return agenda;
     }
 
-    public void setAgnenda(Agenda agnenda) {
+    public void setAgenda(Agenda agnenda) {
         this.agenda = agnenda;
     }
 
-    public Map<Patient, Integer> getMes_patients() {
-        return Mes_patients;
+    public TreeMap< Integer,Dossier > getMes_patients()
+    {
+        return Mes_dossiers;
     }
 
-    public void setMes_patients(Map<Patient, Integer> mes_patients) {
-        Mes_patients = mes_patients;
+    public void setMes_patients(TreeMap< Integer,Dossier > mes_patients)
+
+    {
+        Mes_dossiers = mes_patients;
     }
 
 
-    private void serializeProfile(String filepath) {
-        try {
+    private void serializeProfile(String filepath)
+    {
+        try
+        {
             FileOutputStream fileOut = new FileOutputStream(filepath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();
             fileOut.close();
             System.out.println("Serialized profile object created for " + this.compte.getEmail() + ".");
+
         }
 
         catch
@@ -68,5 +77,22 @@ public class Orthophoniste  implements Serializable {
             e.printStackTrace();
         }
     }
+
+      public Dossier rechercher_patient(int n)
+    {
+
+        if (Mes_dossiers!=null)
+        {
+        if(Mes_dossiers.containsKey(n))
+        {
+        return Mes_dossiers.get(n);}
+         else
+         {
+            return null;
+        }
+        }
+        return null;
+    }
+
 
 }

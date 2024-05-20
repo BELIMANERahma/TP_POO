@@ -14,10 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 
 public class LoginController {
 
@@ -93,7 +90,8 @@ public class LoginController {
             // Set the scene on the stage
             stage.setScene(scene);
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
@@ -109,13 +107,16 @@ public class LoginController {
         {
 
             //meriem hna beh tbdli l profile lezem nbe3tou des infos pour le mzomznt rahi byda bdliha kima 7biti
-            Parent next = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/home.fxml"));
+            Parent root = loader.load();
+//            Homecontroller homeController = loader.getController();
+//            homeController.setusername(utilisateur);
 
             // Get the current scene
             Scene currentScene = create_account_btn.getScene();
 
             // Set the root of the current scene to the Step2 root
-            currentScene.setRoot(next);
+            currentScene.setRoot(root);
 
         } catch (IOException e)
         {
@@ -124,20 +125,24 @@ public class LoginController {
 
     }
     @FXML
-    public void SignIn()
-    {
+    public  void SignIn() throws IOException {
         String username = login_username.getText();
         String password = login_password.getText();
 
         // Perform login authentication and retrieve the Utilisateur object
         Orthophoniste user = authenticate(username, password);
 
+
         if (user != null)
         {
-
-            // Load the next page
+            String filename = "./src/main/Userinformation/current.ser";
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(user);
             loadNextPage(user);
         }
+
+
     }
     private Orthophoniste authenticate(String username, String password)
     {
@@ -170,6 +175,17 @@ public class LoginController {
             usernameErrorMessage.setText("Username does not exist");
         }
         return null;
+    }
+    public static Orthophoniste getcurrentuser() throws IOException, ClassNotFoundException
+    {
+        String filename = "./src/main/Userinformation/current.ser";
+        File file = new File(filename);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Orthophoniste  utilisateur = (Orthophoniste) objectInputStream.readObject();
+
+        return utilisateur ;
+
     }
 
 

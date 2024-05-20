@@ -2,9 +2,10 @@ package Model;
 
 import kotlin.text.UStringsKt;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Rendez_vous  {
+public abstract class Rendez_vous implements Serializable {
     private String date;
     private String heure;
     private Type_rendez_vous type;

@@ -1,6 +1,8 @@
 package Model;
 
-public enum Categorie_Question_Enfant {
+import java.io.Serializable;
+
+public enum Categorie_Question_Enfant implements Serializable {
 
     Strecturefamiliale,
     Antecedents_familiaux,

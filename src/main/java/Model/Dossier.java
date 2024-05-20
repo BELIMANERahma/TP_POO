@@ -1,22 +1,42 @@
 package Model;
 
-public class Dossier {
+import java.io.Serializable;
+
+public class Dossier implements Serializable {
 
     private int numero;
+    private Patient patient ;
     private Rendez_vous rendez_vous[];
     private BO Bilans_orth[];
     private  Fiche_suivi fiches_suivi[];
 
+    public Patient getPatient()
+    {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Fiche_suivi[] getFiches_suivi() {
+        return fiches_suivi;
+    }
+
+    public void setFiches_suivi(Fiche_suivi[] fiches_suivi) {
+        this.fiches_suivi = fiches_suivi;
+    }
 
     public Dossier()
     {
     }
 
-    public Dossier(int numero, Rendez_vous[] rendez_vous, BO[] bilans_orth, Fiche_suivi [] fiches_suivi) {
+    public Dossier(int numero, Rendez_vous[] rendez_vous, BO[] bilans_orth, Fiche_suivi [] fiches_suivi ,Patient patient    ) {
         this.numero = numero;
         this.rendez_vous = rendez_vous;
         Bilans_orth = bilans_orth;
         this.fiches_suivi = fiches_suivi;
+        this.patient = patient;
     }
 
     public int getNumero() {

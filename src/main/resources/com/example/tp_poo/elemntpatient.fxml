@@ -34,7 +34,7 @@
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/SideBar/patient-3.png" />
+                  <Image url="@../../../images/dossier.png" />
                </image>
             </ImageView>
          </graphic>

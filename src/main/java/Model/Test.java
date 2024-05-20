@@ -1,6 +1,8 @@
 package Model;
 
-public  abstract class Test {
+import java.io.Serializable;
+
+public  abstract class Test implements Serializable {
     private String nom;
     private int capacité;
     private String compte_rendu;

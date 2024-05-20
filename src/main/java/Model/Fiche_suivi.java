@@ -1,6 +1,8 @@
 package Model;
 
-public class Fiche_suivi {
+import java.io.Serializable;
+
+public class Fiche_suivi implements Serializable {
     private Objectif[] objectifs;
 
     public Fiche_suivi()

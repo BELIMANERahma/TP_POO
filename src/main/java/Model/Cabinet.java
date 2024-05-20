@@ -1,6 +1,8 @@
 package Model;
 
-public class Cabinet {
+import java.io.Serializable;
+
+public class Cabinet implements Serializable {
 
     private  Orthophoniste  orthophoniste;
 

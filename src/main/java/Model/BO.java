@@ -1,6 +1,8 @@
 package Model;
 
-public class BO {
+import java.io.Serializable;
+
+public class BO  implements Serializable {
     private Epreuve_clinique epreuves_cliniques[];
     private Diagnostique diagnostique;
     private Projet_therapeu projet;
