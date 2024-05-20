@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Rendez_vous implements Comparable<Rendez_vous>{
+public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializable {
     private LocalDateTime date;
     private String heure;
     private Type_rendez_vous type;

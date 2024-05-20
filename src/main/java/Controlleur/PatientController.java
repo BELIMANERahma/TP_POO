@@ -127,41 +127,68 @@ public class PatientController implements Initializable {
         }
 
         for(int i=0;i<patients.size();i++)
-          {
+        {
 
-              FXMLLoader fxmlLoader = new FXMLLoader();
-              fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/elemntpatient.fxml"));
-              try {
-                  HBox hBox=fxmlLoader.load();
-                  patientelementController cic = fxmlLoader.getController();
-                  cic.setData(patients.get(i));
-                  patientslay.getChildren().add(hBox);
-              } catch (IOException e) {
-                  throw new RuntimeException(e);
-              }
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/elemntpatient.fxml"));
+            try {
+                HBox hBox=fxmlLoader.load();
+                patientelementController cic = fxmlLoader.getController();
+                cic.setData(patients.get(i));
+                patientslay.getChildren().add(hBox);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
-          }
+        }
     }
     private List<Patient> patientt() throws IOException, ClassNotFoundException {
 
-        List<Patient> ls = new ArrayList<>();
-        Patient patient = new Patient();
-        patient.setNum_dossier(1);
+        Orthophoniste user =LoginController.getcurrentuser();
 
-        patient.setNom("dddddds") ;
-        patient.setPrenom("ddd") ;
-        patient.setDate_naissance("20041324") ;
+        List<Patient> ls = new ArrayList<>();
+        Enfant patient = new Enfant();
+        Adulte patient1=new Adulte();
+        patient.setNum_dossier(1);
+        patient.setNom("Belimane") ;
+        patient.setPrenom("Rahma") ;
+        patient.setDate_naissance("20042903") ;
+        patient.setAdresse("Constantine");
+        patient.setLieu_naissance("Constantine");
+        patient.setClass_etude("1 CP");
+
+
+
         Rendez_vous[] rendez_vous = new Consultation[]{new Consultation()};
         Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
         BO[] bos=new BO[]{new BO()};
         Dossier dossier = new Dossier(1,rendez_vous,bos,ficheSuivis,patient);
-        Orthophoniste user =LoginController.getcurrentuser();
-        String filename = "./src/main/Userinformation/current.ser";
+
         user.getMes_patients().put(1,dossier);
+        ls.add(patient);
+
+
+        patient1.setNum_dossier(2);
+        patient1.setNom("Belimane") ;
+        patient1.setPrenom("Rahma") ;
+        patient1.setDate_naissance("20042903") ;
+        patient1.setAdresse("Constantine");
+        patient1.setLieu_naissance("Constantine");
+        patient1.setDimplome("1 CP");
+        patient1.setProfession("NAWM");
+        patient1.setNumero_personnel(794157061);
+
+        Dossier dossier2 = new Dossier(2,rendez_vous,bos,ficheSuivis,patient1);
+        user.getMes_patients().put(2,dossier2);
+        ls.add(patient1);
+
+
+
+        String filename = "./src/main/Userinformation/current.ser";
+
         serialize(filename,user);
 
 
-        ls.add(patient);
         return ls;
     }
     private static void serialize(String filepath,Orthophoniste user)

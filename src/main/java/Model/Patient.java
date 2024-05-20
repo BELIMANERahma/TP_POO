@@ -12,6 +12,9 @@ public    class  Patient implements Serializable {
     private String Adresse;
     private int num_dossier;//numero dossier
 
+    public Patient(String nom, String prenom) {
+    }
+
     public int getNum_dossier() {
         return num_dossier;
     }
