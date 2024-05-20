@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -46,7 +47,7 @@ public class PatientController implements Initializable {
 
             case "Agenda":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/Agenda.fxml";
+                PageRouter = "/com/example/tp_poo/Rendez-vous.fxml";
                 break;
 
             case "BO":
@@ -121,11 +122,12 @@ public class PatientController implements Initializable {
     {
         List<Patient> ls = new ArrayList<>();
         Patient patient = new Patient();
+        LocalDateTime date1 = LocalDateTime.of(2024, 5, 19, 10, 0);
 
         patient.setNom("dddddds") ;
         patient.setPrenom("ddd") ;
         patient.setDate_naissance("20041324") ;
-        Rendez_vous[] rendez_vous = new Consultation[]{new Consultation()};
+        Rendez_vous[] rendez_vous = new Consultation[]{new Consultation(date1)};
         Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
         BO[] bos=new BO[]{new BO()};
         Dossier dossier = new Dossier(1,rendez_vous,bos,ficheSuivis);

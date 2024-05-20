@@ -1,22 +1,24 @@
 package Model;
 
+import java.time.LocalDateTime;
+
 public class Consultation extends Rendez_vous{
     private String nom;
     private String prenom;
     private int Age;
     private String duree;
 
-    public Consultation(String date, String heure, Type_rendez_vous type, String observation, String nom, String prenom, int age, String duree) {
+    public Consultation(LocalDateTime date, String heure, Type_rendez_vous type, String observation, String nom, String prenom, int age, String duree) {
         super(date, heure, type, observation);
         this.nom = nom;
         this.prenom = prenom;
         Age = age;
         this.duree = duree;
     }
-
-    public Consultation() {
-        super();
+    public Consultation(LocalDateTime date){
+        super(date);
     }
+
 
     public String getNom() {
         return nom;

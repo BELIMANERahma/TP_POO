@@ -1,43 +1,45 @@
 package Model;
 
-import kotlin.text.UStringsKt;
+import java.time.LocalDateTime;
 
-import java.util.Date;
-
-public abstract class Rendez_vous  {
-    private String date;
+public abstract class Rendez_vous implements Comparable<Rendez_vous> {
+    private LocalDateTime date;
     private String heure;
     private Type_rendez_vous type;
     private String Observation;
 
-    public Rendez_vous(String date, String heure, Type_rendez_vous type, String observation) {
+    public Rendez_vous(LocalDateTime date, String heure, Type_rendez_vous type, String observation) {
         this.date = date;
         this.heure = heure;
         this.type = type;
         Observation = observation;
     }
 
-    public Rendez_vous() {
-
+    public Rendez_vous(LocalDateTime date) {
+        this.date = date;
     }
 
-    public String getDate() {
+
+    public LocalDateTime getDate() {
         return date;
+    }
+    public int compareTo(Rendez_vous other) {
+        return this.date.compareTo(other.date);
     }
 
     public String getHeure() {
         return heure;
     }
 
-    public Type_rendez_vous getType() {
-        return type;
+    public String getType() {
+        return String.valueOf(this.type);
     }
 
     public String getObservation() {
         return Observation;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

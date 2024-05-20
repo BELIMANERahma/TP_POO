@@ -10,13 +10,21 @@ public class Patient {
     private String Adresse;
     private Dossier dossier;
 
+
+
     public Patient(String nom, String prenom, String date_naissance, String lieu_naissance, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.date_naissance = date_naissance;
         this.lieu_naissance = lieu_naissance;
         this.Adresse = adresse;
-        dossier= new Dossier();
+        dossier = new Dossier();
+
+    }
+    public Patient(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+
     }
 
     public Patient() {

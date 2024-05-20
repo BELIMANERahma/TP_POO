@@ -13,6 +13,11 @@ public class Adulte extends Patient
         this.profession = profession;
         this.numero_personnel = numero_personnel;
     }
+    public Adulte(String nom, String prenom) {
+        super(nom, prenom);
+
+    }
+
 
     public String getDimplome() {
         return Dimplome;

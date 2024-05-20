@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="37.0" prefWidth="762.0" style="-fx-border-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.AgendaligneController">
+   <children>
+      <Label fx:id="type" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 15; -fx-background-radius: 15;" text="Type" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="jour" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 15; -fx-background-radius: 15;" text="Jour" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="heure" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="138.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 15; -fx-background-radius: 15;" text="Heure" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="duree" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="124.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 15; -fx-background-radius: 15;" text="Durée" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="patient" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="154.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 15; -fx-background-radius: 15;" text="Patient" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="num_dossier" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="154.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 15; -fx-background-radius: 15;" text="Numéro Dossier" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>
