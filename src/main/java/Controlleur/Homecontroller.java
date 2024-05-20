@@ -5,8 +5,11 @@ package Controlleur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Model.Orthophoniste;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,7 +18,23 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class Homecontroller {
+public class Homecontroller implements Initializable {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        try
+        {
+            Orthophoniste user = LoginController.getcurrentuser();
+            utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -23,7 +42,10 @@ public class Homecontroller {
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
     @FXML
-    private void handleRouting(MouseEvent event) {
+    private Label utilisateur1;
+    @FXML
+    private void handleRouting(MouseEvent event)
+    {
 
         Label label = (Label) event.getSource();
         String labelText = label.getText();
@@ -81,24 +103,23 @@ public class Homecontroller {
                 Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
                 // You need to set the new page in the current scene or open a new window
                 // Example for setting the new page in the current scene:
-              Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-              Scene scene = new Scene(nextPage, 1000, 670);
-             Scene.setScene(scene);
+                  Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                  Scene scene = new Scene(nextPage, 1000, 670);
+                 Scene.setScene(scene);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-
-    @FXML
-        // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-
+    public void setusername(Orthophoniste utilisateur)
+    {
+        utilisateur1.setText(utilisateur.getCompte().getNom() + " " + utilisateur.getCompte().getPrenom());
 
 
     }
+
+
 
 
 

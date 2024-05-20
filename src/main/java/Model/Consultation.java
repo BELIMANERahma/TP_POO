@@ -19,6 +19,11 @@ public class Consultation extends Rendez_vous{
         super(date);
     }
 
+    public Consultation()
+    {
+
+    }
+
 
     public String getNom() {
         return nom;

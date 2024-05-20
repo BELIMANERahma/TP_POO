@@ -57,7 +57,7 @@ public class AgendaligneController {
     {
         duree.setText("20:00");
         heure.setText("fygghg");
-        type.setText(rd.getType());
+        type.setText("DFDF");
         patient.setText("frfrf");
         jour.setText("12/30/44");
 

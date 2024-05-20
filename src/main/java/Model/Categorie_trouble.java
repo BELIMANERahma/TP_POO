@@ -1,6 +1,8 @@
 package Model;
 
-public enum Categorie_trouble {
+import java.io.Serializable;
+
+public enum Categorie_trouble implements Serializable {
 
     Deglutition,
     Neuro_developpementaux,

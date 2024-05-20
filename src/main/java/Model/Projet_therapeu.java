@@ -1,6 +1,8 @@
 package Model;
 
-public class Projet_therapeu
+import java.io.Serializable;
+
+public class Projet_therapeu implements Serializable
 {
 
     private String description;

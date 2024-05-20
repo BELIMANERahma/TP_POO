@@ -49,8 +49,8 @@ public class patientelementController implements Initializable {
 
     public void setData(Patient patient)
     {
-      // String tryit= String.valueOf(patient.getDossier().getNumero());
-        num_dossier.setText("1");
+
+        num_dossier.setText(String.valueOf(patient.getNum_dossier()));
         nom.setText(patient.getNom());
         prenom.setText(patient.getPrenom());
         date.setText(patient.getDate_naissance());
@@ -61,7 +61,7 @@ public class patientelementController implements Initializable {
                 Parent root = loader.load();
 
                 DossierController dossierController = loader.getController();
-                dossierController.setDossierData(patient.getDossier());
+                dossierController.setDossierData(patient.getNum_dossier());
 
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -76,7 +76,7 @@ public class patientelementController implements Initializable {
                 // Close the current stage if needed
                 // ((Stage)dossier.getScene().getWindow()).close();
 
-            } catch (IOException e)
+            } catch (IOException | ClassNotFoundException e)
             {
                 e.printStackTrace();
             }

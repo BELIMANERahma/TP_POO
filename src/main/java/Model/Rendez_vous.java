@@ -2,7 +2,7 @@ package Model;
 
 import java.time.LocalDateTime;
 
-public abstract class Rendez_vous implements Comparable<Rendez_vous> {
+public abstract class Rendez_vous implements Comparable<Rendez_vous>{
     private LocalDateTime date;
     private String heure;
     private Type_rendez_vous type;
@@ -19,20 +19,19 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous> {
         this.date = date;
     }
 
+    protected Rendez_vous() {
+    }
 
     public LocalDateTime getDate() {
         return date;
-    }
-    public int compareTo(Rendez_vous other) {
-        return this.date.compareTo(other.date);
     }
 
     public String getHeure() {
         return heure;
     }
 
-    public String getType() {
-        return String.valueOf(this.type);
+    public Type_rendez_vous getType() {
+        return type;
     }
 
     public String getObservation() {
@@ -54,4 +53,9 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous> {
     public void setObservation(String observation) {
         Observation = observation;
     }
+    @Override
+    public int compareTo(Rendez_vous other) {
+        return this.date.compareTo(other.date);
+    }
+
 }

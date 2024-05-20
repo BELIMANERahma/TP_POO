@@ -9,13 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class PatientController implements Initializable {
 
     @FXML
     private VBox patientslay;
+    @FXML
+    private Label username1;
 
 
     @FXML
@@ -47,7 +50,7 @@ public class PatientController implements Initializable {
 
             case "Agenda":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/Rendez-vous.fxml";
+                PageRouter = "/com/example/tp_poo/Agenda.fxml";
                 break;
 
             case "BO":
@@ -102,9 +105,31 @@ public class PatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        List<Patient> patients = new ArrayList<>(patientt());
-          for(int i=0;i<patients.size();i++)
+
+        try {
+            Orthophoniste user = LoginController.getcurrentuser();
+            username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+
+        List<Patient> patients = null;
+        try {
+            patients = new ArrayList<>(patientt());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        for(int i=0;i<patients.size();i++)
           {
+
               FXMLLoader fxmlLoader = new FXMLLoader();
               fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/elemntpatient.fxml"));
               try {
@@ -118,67 +143,49 @@ public class PatientController implements Initializable {
 
           }
     }
-    private List<Patient> patientt()
-    {
+    private List<Patient> patientt() throws IOException, ClassNotFoundException {
+
         List<Patient> ls = new ArrayList<>();
         Patient patient = new Patient();
-        LocalDateTime date1 = LocalDateTime.of(2024, 5, 19, 10, 0);
 
         patient.setNom("dddddds") ;
         patient.setPrenom("ddd") ;
         patient.setDate_naissance("20041324") ;
-        Rendez_vous[] rendez_vous = new Consultation[]{new Consultation(date1)};
+        Rendez_vous[] rendez_vous = new Consultation[]{new Consultation()};
         Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
         BO[] bos=new BO[]{new BO()};
-        Dossier dossier = new Dossier(1,rendez_vous,bos,ficheSuivis);
-        patient.setDossier(dossier);
+        Dossier dossier = new Dossier(1,rendez_vous,bos,ficheSuivis,patient);
+        Orthophoniste user =LoginController.getcurrentuser();
+        String filename = "./src/main/Userinformation/current.ser";
+        user.getMes_patients().put(1,dossier);
+        serialize(filename,user);
+
 
         ls.add(patient);
-
-        Patient patient1 = new Patient();
-
-
-        patient1.setNom("dddddds") ;
-        patient1.setPrenom("ddd") ;
-        patient1.setDate_naissance("20041324") ;
-
-        Dossier dossier2 = new Dossier(2,rendez_vous,bos,ficheSuivis);
-        patient1.setDossier(dossier2);
-
-        ls.add(patient1);
-
-         patient1 = new Patient();
-
-
-        patient1.setNom("dddddds") ;
-        patient1.setPrenom("ddd") ;
-        patient1.setDate_naissance("20041324") ;
-
-        dossier2 = new Dossier(3,rendez_vous,bos,ficheSuivis);
-        patient1.setDossier(dossier2);
-
-        ls.add(patient1);
-
-
-        patient1 = new Patient();
-
-
-        patient1.setNom("dddddds") ;
-        patient1.setPrenom("ddd") ;
-        patient1.setDate_naissance("20041324") ;
-
-        dossier2 = new Dossier(4,rendez_vous,bos,ficheSuivis);
-        patient1.setDossier(dossier2);
-
-        ls.add(patient1);
-
-
-
-
-
-
         return ls;
     }
+    private static void serialize(String filepath,Orthophoniste user)
+    {
+        try {
+            if (user != null)
+            {
+                String filename = "./src/main/Userinformation/current.ser";
+                FileOutputStream fileOut = new FileOutputStream(filename);
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(user);
 
+            }
+        }
+
+        catch
+        (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 }

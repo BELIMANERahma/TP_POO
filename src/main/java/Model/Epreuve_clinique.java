@@ -1,6 +1,8 @@
 package Model;
 
-public class Epreuve_clinique {
+import java.io.Serializable;
+
+public class Epreuve_clinique  implements Serializable {
 
 
     private String[] Observations_cliniques;

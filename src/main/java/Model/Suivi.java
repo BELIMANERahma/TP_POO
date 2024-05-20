@@ -18,6 +18,9 @@ public class Suivi extends Rendez_vous {
     public Suivi(LocalDateTime date) {
         super(date) ;
     }
+    public Suivi() {
+
+    }
 
     public int getNumero_dossier() {
         return numero_dossier;

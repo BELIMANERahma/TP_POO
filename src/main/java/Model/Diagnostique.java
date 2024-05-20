@@ -1,6 +1,8 @@
 package Model;
 
-public class Diagnostique {
+import java.io.Serializable;
+
+public class Diagnostique implements Serializable {
 
     private Trouble[] trouble;
 

@@ -1,6 +1,8 @@
 package Model;
 
-public class Objectif {
+import java.io.Serializable;
+
+public class Objectif  implements Serializable {
     private String nom;
     private Type_objectif type;
 

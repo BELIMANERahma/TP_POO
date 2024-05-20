@@ -1,6 +1,8 @@
 package Model;
 
-public class Exercice {
+import java.io.Serializable;
+
+public class Exercice  implements Serializable {
     private String consign;
     private int nbr_repeter;
     private String[] materiel;

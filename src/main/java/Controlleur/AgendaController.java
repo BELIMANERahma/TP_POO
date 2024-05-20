@@ -94,10 +94,6 @@ public class AgendaController {
 
         }
 
-        assert agendaligne != null : "fx:id=\"agendaligne\" was not injected: check your FXML file 'Rendez-vous.fxml'.";
-        assert editprofile != null : "fx:id=\"editprofile\" was not injected: check your FXML file 'Rendez-vous.fxml'.";
-        assert utilisateur1 != null : "fx:id=\"utilisateur1\" was not injected: check your FXML file 'Rendez-vous.fxml'.";
-
     }
 
     private Set<Rendez_vous> rendezVous() {

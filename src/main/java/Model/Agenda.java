@@ -1,6 +1,8 @@
 package Model;
 
-public class Agenda {
+import java.io.Serializable;
+
+public class Agenda  implements Serializable {
     private Rendez_vous[] Rendez_vous;
     private int nbr_rdv =0;
 

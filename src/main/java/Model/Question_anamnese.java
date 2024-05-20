@@ -1,6 +1,8 @@
 package Model;
 
-public abstract class Question_anamnese {
+import java.io.Serializable;
+
+public abstract class Question_anamnese implements Serializable {
 private String enonce;
 
     public Question_anamnese(String enonce) {
