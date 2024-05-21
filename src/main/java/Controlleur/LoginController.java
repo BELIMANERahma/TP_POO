@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.Orthophoniste;
+import Model.OrthophonisteSessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -140,6 +141,7 @@ public class LoginController {
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(user);
             loadNextPage(user);
+            OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
         }
 
 

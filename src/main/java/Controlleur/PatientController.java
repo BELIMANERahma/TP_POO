@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TreeSet;
 
 
 public class PatientController implements Initializable {
@@ -84,7 +85,7 @@ public class PatientController implements Initializable {
         }
         //  PageRouter = "/com/example/tp_poo/Login.fxml";
 
-        if (newPage) {
+
             try {
                 // Load the desired page
                 Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
@@ -97,7 +98,7 @@ public class PatientController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 
 
@@ -161,12 +162,12 @@ public class PatientController implements Initializable {
 
 
 
-        Rendez_vous[] rendez_vous = new Consultation[]{new Consultation()};
+        TreeSet<Rendez_vous> rendez_vous = new TreeSet<>();
         Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
         BO[] bos=new BO[]{new BO()};
-        Dossier dossier = new Dossier(1,rendez_vous,bos,ficheSuivis,patient);
+        Dossier dossier = new Dossier(rendez_vous,bos,ficheSuivis,patient);
 
-        user.getMes_patients().put(1,dossier);
+        user.add_patient(dossier);
         ls.add(patient);
 
 
@@ -180,8 +181,8 @@ public class PatientController implements Initializable {
         patient1.setProfession("NAWM");
         patient1.setNumero_personnel(794157061);
 
-        Dossier dossier2 = new Dossier(2,rendez_vous,bos,ficheSuivis,patient1);
-        user.getMes_patients().put(2,dossier2);
+        Dossier dossier2 = new Dossier(rendez_vous,bos,ficheSuivis,patient1);
+        user.add_patient(dossier2);
         ls.add(patient1);
 
 

@@ -82,7 +82,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label text="Patients" textFill="#f4f4f4">
+                        <Label onMouseClicked="#handleRouting" text="Patients" textFill="#f4f4f4">
                            <font>
                               <Font size="14.0" />
                            </font>
