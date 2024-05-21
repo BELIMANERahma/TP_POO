@@ -9,61 +9,45 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
-public class InfopersonnelleController implements Initializable {
+public class RendezvousPatientController implements Initializable {
+
+
+    @FXML
+    private Label numfiche1;
+
+    @FXML
+    private Label numfiche11;
+
+    @FXML
+    private VBox patientslay;
+
+    @FXML
+    private Label username1;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+
+        username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
+
+    }
+
+
 
 
     @FXML
-    private Label adressepatient;
 
-    @FXML
-    private Label classd;
-
-    @FXML
-    private Label datenpatient;
-
-    @FXML
-    private Label diplome;
-
-    @FXML
-    private Label info1;
-
-    @FXML
-    private Label info2;
-
-    @FXML
-    private Label info3;
-
-    @FXML
-    private Label lieunpatient;
-
-    @FXML
-    private Label nompatient;
-
-    @FXML
-    private Label numadulte;
-
-    @FXML
-    private Label nummere;
-
-    @FXML
-    private Label numpere;
-
-    @FXML
-    private Label prenompatient;
-
-    @FXML
-    private Label profession;
-
-    @FXML
-    private Label utilisateur1;
-
-    @FXML
     private void handleRouting(MouseEvent event) {
 
         Label label = (Label) event.getSource();
@@ -130,50 +114,48 @@ public class InfopersonnelleController implements Initializable {
             }
         }
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
+    public void setficheData(Dossier dossier)
     {
+        dossier.getRendez_vous();
+        TreeSet<Rendez_vous> rendez_vous = new TreeSet<>();
 
-            Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
-            utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
+        LocalDate now = LocalDate.now();
+        String heure= "9:00";
+        String observation ="ya pas d observation ";
+        Objectif[] objectifs = new Objectif[3];
+
+        // Initialize the array with Objectif objects
+        objectifs[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
+        objectifs[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
+        objectifs[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
+        LocalDate now1 = LocalDate.from(LocalDate.of(2023, 5, 21).atStartOfDay());
+
+
+        Rendez_vous r1 =new Consultation(now,heure,Type_rendez_vous.CONSULTATION,observation,"1h");
+        Rendez_vous r2 =new Suivi(now1,heure,Type_rendez_vous.SUIVI,observation,1,Deroulement_seance.EN_PRESENTIEL,objectifs,"1h");
+        rendez_vous.add(r1);
+        rendez_vous.add(r2);
+
+            for (Rendez_vous  rend : rendez_vous) {
+
+
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/rendez-vouselement.fxml"));
+                try {
+                    BorderPane hBox = fxmlLoader.load();
+                     RendezvousligneController cic = fxmlLoader.getController();
+                    cic.setData(rend);
+                    patientslay.getChildren().add(hBox);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+
 
     }
 
-    public void setInfoData(Patient patient)
-    {
-
-        if( patient instanceof Enfant)
-        {
-            nompatient.setText(((Enfant)patient).getNom());
-            prenompatient.setText(((Enfant)patient).getPrenom());
-            datenpatient.setText(((Enfant)patient).getDate_naissance());
-            lieunpatient.setText(((Enfant)patient).getLieu_naissance());
-            adressepatient.setText(((Enfant)patient).getAdresse());
-            info1.setText(((Enfant)patient).getClass_etude());
-            int numparent[]=((Enfant)patient).getNumeroparent();
-            //info2.setText(String.valueOf(numparent[0]));
-           // info3.setText(String.valueOf(numparent[1]));
-            profession.setVisible(false);
-            diplome.setVisible(false);
-            numadulte.setVisible(false);
-
-        }
-        if( patient instanceof Adulte)
-        {
-            nompatient.setText(((Adulte)patient).getNom());
-            prenompatient.setText(((Adulte)patient).getPrenom());
-            datenpatient.setText(((Adulte)patient).getDate_naissance());
-            lieunpatient.setText(((Adulte)patient).getLieu_naissance());
-            adressepatient.setText(((Adulte)patient).getAdresse());
-            info1.setText(((Adulte)patient).getProfession());
-            info2.setText(((Adulte)patient).getDimplome());
-            info3.setText(String.valueOf(((Adulte)patient).getNumero_personnel()));
-            classd.setVisible(false);
-            nummere.setVisible(false);
-            numpere.setVisible(false);
-        }
-
-    }
 
 }

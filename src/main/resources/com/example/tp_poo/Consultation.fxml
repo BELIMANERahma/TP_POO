@@ -29,7 +29,7 @@
                         <Image url="@../../../images/or.png" />
                      </image>
                   </ImageView>
-                  <Label text="Benyammi Aymen" textFill="#f4f4f4">
+                  <Label fx:id="utilisateur1" textFill="#f4f4f4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

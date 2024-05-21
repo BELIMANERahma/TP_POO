@@ -24,6 +24,9 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
     protected Rendez_vous() {
     }
 
+    public Rendez_vous(LocalDate date, String heure, Type_rendez_vous type, String observation) {
+    }
+
     public LocalDate getDate() {
         return date;
     }

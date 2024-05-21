@@ -2,9 +2,10 @@ package Model;
 
 import javafx.scene.control.TextField;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Consultation extends Rendez_vous {
+public class Consultation extends Rendez_vous implements Serializable {
     private String nom;
     private String prenom;
     private int Age;
@@ -16,6 +17,9 @@ public class Consultation extends Rendez_vous {
         this.prenom = prenom;
         Age = age;
         this.duree = duree;
+    }
+
+    public Consultation(LocalDate now, String heure, Type_rendez_vous typeRendezVous, String observation, String prenom) {
     }
 
     public String getNom() {

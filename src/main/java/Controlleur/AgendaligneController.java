@@ -21,7 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class AgendaligneController {
+public class AgendaligneController
+{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;

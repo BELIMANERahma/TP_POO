@@ -9,9 +9,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-
-
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 import Model.*;
@@ -29,7 +27,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.ComboBox;
 
-public class SuiviController {
+public class SuiviController  {
+
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -279,6 +278,11 @@ public class SuiviController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+        String nom1 =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        System.out.println(nom1);
+        String prenom1 =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
+
+        utilisateur.setText(nom1 + " " + prenom1);
 
         ObservableList<String> options = FXCollections.observableArrayList(
                 "en ligne",

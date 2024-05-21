@@ -110,16 +110,8 @@ public class PatientController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
-        try {
-            Orthophoniste user = LoginController.getcurrentuser();
-            username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
-
+        Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
+        username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
         List<Patient> patients = null;
         try {
@@ -149,7 +141,10 @@ public class PatientController implements Initializable {
     }
     private List<Patient> patientt() throws IOException, ClassNotFoundException {
 
-        Orthophoniste user =LoginController.getcurrentuser();
+        Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
+        username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
+
+
 
         List<Patient> ls = new ArrayList<>();
         Enfant patient = new Enfant();
@@ -163,8 +158,8 @@ public class PatientController implements Initializable {
         patient.setClass_etude("1 CP");
 
 
-
         TreeSet<Rendez_vous> rendez_vous = new TreeSet<>();
+
         Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
         BO[] bos=new BO[]{new BO()};
         Dossier dossier = new Dossier(rendez_vous,bos,ficheSuivis,patient);
@@ -186,12 +181,8 @@ public class PatientController implements Initializable {
         Dossier dossier2 = new Dossier(rendez_vous,bos,ficheSuivis,patient1);
         user.add_patient(dossier2);
         ls.add(patient1);
-
-
-
-        String filename = "./src/main/Userinformation/current.ser";
-
-        serialize(filename,user);
+        //   String email = user.getCompte().getEmail().toLowerCase().replace(" ", "");
+        //  serialize("./src/main/Userinformation/" + email + ".ser",user);
 
 
         return ls;
@@ -201,8 +192,7 @@ public class PatientController implements Initializable {
         try {
             if (user != null)
             {
-                String filename = "./src/main/Userinformation/current.ser";
-                FileOutputStream fileOut = new FileOutputStream(filename);
+                FileOutputStream fileOut = new FileOutputStream(filepath);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(user);
 

@@ -77,7 +77,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label text="Patients" textFill="#f4f4f4">
+                        <Label onMouseClicked="#handleRouting" text="Patients" textFill="#f4f4f4">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -225,7 +225,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="123.0" prefWidth="765.0">
                <children>
-                  <Label layoutX="433.0" layoutY="14.0" text="Nombre des objectifs est :" textFill="#c11313">
+                  <Label layoutX="447.0" layoutY="14.0" text="Nombre des objectifs est :" textFill="#c11313">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
@@ -249,7 +249,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="451.0" prefWidth="765.0">
                <children>
-                  <Label contentDisplay="CENTER" prefHeight="54.0" prefWidth="330.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Consulter Les Fiche de suivi  :" textFill="#00002c">
+                  <Label contentDisplay="CENTER" prefHeight="70.0" prefWidth="339.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Consulter Les Fiches de suivi  :" textFill="#00002c">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

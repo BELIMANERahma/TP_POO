@@ -23,6 +23,9 @@ public class Suivi extends Rendez_vous {
 
     }
 
+    public Suivi(LocalDate now1, String heure, Type_rendez_vous typeRendezVous, String observation, int i, Deroulement_seance deroulementSeance, Objectif[] objectifs, String s) {
+    }
+
     public int getNumero_dossier() {
         return numero_dossier;
     }

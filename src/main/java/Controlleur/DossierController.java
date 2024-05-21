@@ -44,17 +44,9 @@ public class DossierController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        try
-        {
-            Orthophoniste user = LoginController.getcurrentuser();
-            utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
-        } catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+        Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+
+        utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
     }
 
@@ -139,8 +131,7 @@ public class DossierController implements Initializable {
 
     public void setDossierData(int num_dossier) throws IOException, ClassNotFoundException
     {
-
-        Orthophoniste user = LoginController.getcurrentuser();
+        Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         Dossier dossier = user.rechercher_patient(num_dossier);
         if (dossier != null)
         {
@@ -178,6 +169,25 @@ public class DossierController implements Initializable {
                         Parent root = loader.load();
                         FicheController fiche = loader.getController();
                         fiche.setficheData(dossier);
+
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root, 1000, 670);
+                        stage.setScene(scene);
+
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                });
+
+                patientrendezvous.setOnMouseClicked(event ->
+                {
+                    try
+                    {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/RendezvousPatient.fxml"));
+                        Parent root = loader.load();
+                        RendezvousPatientController rend = loader.getController();
+                        rend.setficheData(dossier);
 
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root, 1000, 670);

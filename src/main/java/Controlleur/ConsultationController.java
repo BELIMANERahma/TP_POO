@@ -16,6 +16,7 @@ import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,11 +32,15 @@ import javafx.scene.control.Alert;
 
 public class ConsultationController {
 
+
     @FXML
     private TextField Age;
 
     @FXML
     private Label ageerror;
+
+    @FXML
+    private Label utilisateur1;
 
     @FXML
     private TextField duree;
@@ -303,6 +308,12 @@ public class ConsultationController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+        String nom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        System.out.println(nom);
+        String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
+
+        utilisateur1.setText(nom + " " + prenom);
+
         assert Age != null : "fx:id=\"Age\" was not injected: check your FXML file 'Consultation.fxml'.";
         assert duree != null : "fx:id=\"duree\" was not injected: check your FXML file 'Consultation.fxml'.";
         assert enregistrer != null : "fx:id=\"enregistrer\" was not injected: check your FXML file 'Consultation.fxml'.";

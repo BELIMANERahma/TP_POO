@@ -23,17 +23,11 @@ public class Homecontroller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        try
-        {
-            Orthophoniste user = LoginController.getcurrentuser();
-            utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
-        } catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+        String nom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        System.out.println(nom);
+        String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
+
+        utilisateur1.setText(nom + " " + prenom);
 
     }
 
@@ -120,7 +114,6 @@ public class Homecontroller implements Initializable {
     public void setusername(Orthophoniste utilisateur)
     {
         utilisateur1.setText(utilisateur.getCompte().getNom() + " " + utilisateur.getCompte().getPrenom());
-
 
     }
 

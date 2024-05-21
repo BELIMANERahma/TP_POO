@@ -13,6 +13,7 @@ import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 public class AgendaController  {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -160,11 +160,8 @@ public class AgendaController  {
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException {
-        //String nom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
-        //String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
-
-       //utilisateur1.setText(nom + " " + prenom);
-
+        Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
+        utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
         Set<Rendez_vous> rd = new TreeSet<> (rendezVous());
 
