@@ -1,13 +1,15 @@
 package Model;
 
-public class OrthophonisteSessionManager {
+public class OrthophonisteSessionManager
+{
     private  static Orthophoniste currentOrthophoniste;
 
     private OrthophonisteSessionManager() {}
 
 
 
-    public  static Orthophoniste getCurrentOrthophonisteName() {
+    public  static Orthophoniste getCurrentOrthophonisteName()
+    {
         return currentOrthophoniste;
     }
 

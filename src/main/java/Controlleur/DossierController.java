@@ -1,9 +1,6 @@
 package Controlleur;
 
-import Model.Dossier;
-import Model.Enfant;
-import Model.Orthophoniste;
-import Model.Patient;
+import Model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,17 +44,9 @@ public class DossierController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        try
-        {
-            Orthophoniste user = LoginController.getcurrentuser();
-            utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
-        } catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+        Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+
+        utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
     }
 
@@ -138,8 +127,7 @@ public class DossierController implements Initializable {
 
     public void setDossierData(int num_dossier) throws IOException, ClassNotFoundException
     {
-
-        Orthophoniste user = LoginController.getcurrentuser();
+        Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         Dossier dossier = user.rechercher_patient(num_dossier);
         if (dossier != null)
         {

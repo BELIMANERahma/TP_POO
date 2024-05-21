@@ -81,21 +81,10 @@ public class SignupController {
 
         Compte compte=  new Compte(nom, prenom,telephone,  emailfield, password, adress) ;
 
-
-
-
         // SERIALIZED AUTOMATICALLY IN THE CLASS UTILISATEUR
         Orthophoniste orthophoniste=new Orthophoniste(compte);
-        OrthophonisteSessionManager.setCurrentOrthophonisteName(orthophoniste);
+        //OrthophonisteSessionManager.setCurrentOrthophonisteName(orthophoniste);
         this.Loginform();
-
-
-
-
-
-
-
-
 
 
 

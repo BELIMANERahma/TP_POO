@@ -113,15 +113,10 @@ public class FicheController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            Orthophoniste user = LoginController.getcurrentuser();
+
+            Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
             username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+
 
 
 

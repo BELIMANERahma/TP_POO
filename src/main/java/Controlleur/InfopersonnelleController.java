@@ -1,9 +1,6 @@
 package Controlleur;
 
-import Model.Adulte;
-import Model.Enfant;
-import Model.Orthophoniste;
-import Model.Patient;
+import Model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -136,17 +133,11 @@ public class InfopersonnelleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        try
-        {
-            Orthophoniste user = LoginController.getcurrentuser();
+
+            Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+
             utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
-        } catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public void setInfoData(Patient patient)

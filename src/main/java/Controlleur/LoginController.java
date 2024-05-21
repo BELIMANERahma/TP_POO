@@ -136,10 +136,10 @@ public class LoginController {
 
         if (user != null)
         {
-            String filename = "./src/main/Userinformation/current.ser";
-            FileOutputStream fileOut = new FileOutputStream(filename);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(user);
+            //String filename = "./src/main/Userinformation/current.ser";
+            //FileOutputStream fileOut = new FileOutputStream(filename);
+            //ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            //out.writeObject(user);
             loadNextPage(user);
             OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
         }
