@@ -1,14 +1,18 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Dossier implements Serializable {
+    private static int counter = 0;
 
     private int numero;
     private Patient patient ;
-    private Rendez_vous rendez_vous[];
+    private TreeSet<Rendez_vous>  rendez_vous;
     private BO Bilans_orth[];
     private  Fiche_suivi fiches_suivi[];
+
 
     public Patient getPatient()
     {
@@ -27,13 +31,23 @@ public class Dossier implements Serializable {
         this.fiches_suivi = fiches_suivi;
     }
 
+    public Dossier(Patient patient)
+    {
+        this.patient= patient;
+        numero = counter+1;
+        counter++;
+    }
     public Dossier()
     {
+        numero = counter+1;
+        counter++;
     }
 
-    public Dossier(int numero, Rendez_vous[] rendez_vous, BO[] bilans_orth, Fiche_suivi [] fiches_suivi ,Patient patient    ) {
-        this.numero = numero;
-        this.rendez_vous = rendez_vous;
+
+    public Dossier(TreeSet<Rendez_vous> rendezVous,BO[] bilans_orth, Fiche_suivi [] fiches_suivi ,Patient patient    ) {
+        this.numero = counter+1;
+        counter++;
+        this.rendez_vous = new TreeSet<Rendez_vous>(rendezVous);
         Bilans_orth = bilans_orth;
         this.fiches_suivi = fiches_suivi;
         this.patient = patient;
@@ -47,11 +61,11 @@ public class Dossier implements Serializable {
         this.numero = numero;
     }
 
-    public Rendez_vous[] getRendez_vous() {
+    public TreeSet<Rendez_vous> getRendez_vous() {
         return rendez_vous;
     }
 
-    public void setRendez_vous(Rendez_vous[] rendez_vous) {
+    public void setRendez_vous(TreeSet<Rendez_vous> rendez_vous) {
         this.rendez_vous = rendez_vous;
     }
 

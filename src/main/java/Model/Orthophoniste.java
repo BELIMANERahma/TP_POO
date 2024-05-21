@@ -22,8 +22,6 @@ public class Orthophoniste  implements Serializable {
         String email = this.compte.getEmail().toLowerCase().replace(" ", "");
         serializeProfile("./src/main/Userinformation/" + email + ".ser");
 
-
-
     }
 
     public Compte getCompte() {
@@ -44,6 +42,11 @@ public class Orthophoniste  implements Serializable {
 
     public TreeMap< Integer,Dossier > getMes_patients()
     {
+        return Mes_dossiers;
+    }
+    public TreeMap< Integer,Dossier > add_patient(Dossier dossier)
+    {
+        Mes_dossiers.put(dossier.getNumero(),dossier);
         return Mes_dossiers;
     }
 
@@ -93,6 +96,42 @@ public class Orthophoniste  implements Serializable {
         }
         return null;
     }
+    public static Orthophoniste getcurrentuser() throws IOException, ClassNotFoundException
+    {
+        String filename = "./src/main/Userinformation/current.ser";
+        File file = new File(filename);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Orthophoniste  utilisateur = (Orthophoniste) objectInputStream.readObject();
 
+        return utilisateur ;
+
+    }
+    private static void serialize(String filepath,Orthophoniste user)
+    {
+        try {
+            if (user != null)
+            {
+                String filename = "./src/main/Userinformation/current.ser";
+                FileOutputStream fileOut = new FileOutputStream(filename);
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(user);
+
+            }
+        }
+
+        catch
+        (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 }
+
+
+

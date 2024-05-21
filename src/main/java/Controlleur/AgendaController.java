@@ -11,6 +11,7 @@ import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AgendaController {
+public class AgendaController  {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -39,10 +40,72 @@ public class AgendaController {
     private Label utilisateur1; // Value injected by FXMLLoader
 
     @FXML
-    void handleRouting(MouseEvent event) {
+    private void handleRouting(MouseEvent event) {
+
+        Label label = (Label) event.getSource();
+        String labelText = label.getText();
 
 
+        String PageRouter = "/com/example/tp_poo/DefaultPage.fxml"; // Chemin par défaut
+        boolean newPage = false;
+
+        switch (labelText) {
+            case "Patients":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/Patients.fxml";
+                break;
+
+            case "Agenda":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/Agenda.fxml";
+                break;
+
+            case "BO":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/BO.fxml";
+                break;
+
+            case "Fiche de suivi":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/FicheDeSuivi.fxml";
+                break;
+
+            case "Testes":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/Testes.fxml";
+                break;
+
+            case "Votre profile":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/Profile.fxml"; // Chemin vers la page de profil
+                break;
+
+            case "Se déconnecter":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/Logout.fxml";
+                break;
+
+            default:
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/DefaultPage.fxml";
+                break;
+        }
+        //  PageRouter = "/com/example/tp_poo/Login.fxml";
+
+        if (newPage) {
+            try {
+                // Load the desired page
+                Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+                Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
+                Scene.setScene(scene);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
     @FXML
     void page_atelier(ActionEvent event) {
 
@@ -76,7 +139,7 @@ public class AgendaController {
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
 
         Set<Rendez_vous> rd = new TreeSet<> (rendezVous());
 
@@ -96,30 +159,27 @@ public class AgendaController {
 
     }
 
-    private Set<Rendez_vous> rendezVous() {
-        Set<Rendez_vous> ls = new TreeSet<>();
+    private Set<Rendez_vous> rendezVous() throws IOException, ClassNotFoundException {
+       Orthophoniste utilisateur = Orthophoniste.getcurrentuser();
 
-        // Create some dates for example purposes
-        LocalDateTime date1 = LocalDateTime.of(2024, 5, 19, 10, 0);
-        LocalDateTime date2 = LocalDateTime.of(2024, 6, 19, 14, 0);
-        LocalDateTime date3 = LocalDateTime.of(2024, 7, 19, 9, 0);
+        TreeMap<Integer, Dossier> dossiers = utilisateur.getMes_patients();
 
+        TreeSet<Rendez_vous> futureRendezVous = new TreeSet<>();
 
-        Rendez_vous R = new Consultation(date1);
-        Rendez_vous R2 = new Consultation(date2);
-        Rendez_vous R3 = new Consultation(date3);
+        LocalDateTime now = LocalDateTime.now();
 
-        Rendez_vous R4 = new Suivi(date1);
-        Rendez_vous R5 = new Suivi(date2);
-        Rendez_vous R6 = new Suivi(date3);
+        for (Dossier dossier : dossiers.values()) {
+            TreeSet<Rendez_vous> rendezVousDossier = dossier.getRendez_vous();
+            futureRendezVous.addAll(rendezVousDossier.tailSet(new Rendez_vousStub(now)));
+        }
 
-        ls.add(R);
-        ls.add(R2);
-        ls.add(R3);
-        ls.add(R4);
-        ls.add(R5);
-        ls.add(R6);
+        return futureRendezVous;
+    }
 
-        return ls;
+    // Stub pour comparer les rendez-vous par date uniquement
+    private static class Rendez_vousStub extends Rendez_vous {
+        public Rendez_vousStub(LocalDateTime dateTime) {
+            super(dateTime);
+        }
     }
 }
