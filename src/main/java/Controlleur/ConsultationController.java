@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
@@ -73,8 +74,29 @@ public class ConsultationController {
     @FXML
     private Button retour;
     @FXML
-    public void enregistrer(ActionEvent event) {
-        // Réinitialiser les messages d'erreur
+
+    void calcule_durée(KeyEvent event)
+    {
+
+        ageerror.setText("");
+
+        String age = Age.getText();
+            try {
+                int a  = Integer.parseInt(age);
+                if(a>=18){
+                    duree.setText("1:30");
+
+                }else {
+                    duree.setText("2:30");
+                }
+
+            } catch (NumberFormatException e) {
+                ageerror.setText("L'âge doit être un nombre valide.");
+            }
+    }
+    @FXML
+    public void enregistrer(ActionEvent event)
+    {
         resetErrorMessages();
 
         // Récupérer les valeurs des champs
@@ -84,6 +106,8 @@ public class ConsultationController {
         String heureText = heure_consult.getText();
         LocalDate date = jour_consult.getValue();
         String dureeText = duree.getText();
+        System.out.println("Date sélectionnée : " + date);
+
 
         // Variable pour vérifier si toutes les vérifications passent
         boolean allFieldsValid = true;
@@ -105,8 +129,10 @@ public class ConsultationController {
         if (ageText.isEmpty()) {
             ageerror.setText("Le champ âge ne doit pas être vide.");
             allFieldsValid = false;
-        } else {
-            try {
+        } else
+        {
+            try
+            {
                 age = Integer.parseInt(ageText);
             } catch (NumberFormatException e) {
                 ageerror.setText("L'âge doit être un nombre valide.");
@@ -138,38 +164,27 @@ public class ConsultationController {
             } else {
                 patient = new Enfant(Nom, Prenom);
             }
+
+            Consultation consultation =new Consultation(date,heureText,Type_rendez_vous.CONSULTATION,Nom,Prenom,age,dureeText);
             Dossier dossier = new Dossier(patient);
+            dossier.add_rendez_vous(consultation);
+            afficherMessageSucces("La consultation est ajouter avec succés");
 
+            OrthophonisteSessionManager.getCurrentOrthophonisteName().add_patient(dossier);
+
+            String PageRouter ="/com/example/tp_poo/Agenda.fxml";
             try {
-                Orthophoniste user = Orthophoniste.getcurrentuser();
-                user.add_patient(dossier);
-                System.err.println(
+                // Load the desired page
+                Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
 
-                );
-                afficherMessageSucces("Dossier créé avec succès.");
+                // You need to set the new page in the current scene or open a new window
+                // Example for setting the new page in the current scene:
+                Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(nextPage, 1000, 670);
+                Scene.setScene(scene);
 
-
-                String PageRouter ="/com/example/tp_poo/Agenda.fxml";
-                try {
-                    // Load the desired page
-                    Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-                    // You need to set the new page in the current scene or open a new window
-                    // Example for setting the new page in the current scene:
-                    Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(nextPage, 1000, 670);
-                    Scene.setScene(scene);
-                    Orthophoniste users =OrthophonisteSessionManager.getCurrentOrthophonisteName();
-                    String username = users.getCompte().getEmail();
-                    String filename = "./src/main/Userinformation/" +username + ".ser";
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
-                afficherMessageErreur("Une erreur s'est produite lors de la création du dossier.");
             }
         }
     }
@@ -239,8 +254,12 @@ public class ConsultationController {
                 break;
 
             case "Se déconnecter":
+                Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+                String username =user.getCompte().getEmail();
+                String filepath="./src/main/Userinformation/" + username + ".ser";
+                Orthophoniste.serialize(filepath,user);
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/Logout.fxml";
+                PageRouter = "/com/example/tp_poo/Login.fxml";
                 break;
 
             default:
@@ -248,9 +267,9 @@ public class ConsultationController {
                 PageRouter = "/com/example/tp_poo/DefaultPage.fxml";
                 break;
         }
-        //  PageRouter = "/com/example/tp_poo/Login.fxml";
 
-        if (newPage) {
+        if (newPage)
+        {
             try {
                 // Load the desired page
                 Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
@@ -267,7 +286,8 @@ public class ConsultationController {
     }
 
     @FXML
-    void retour(ActionEvent event) {
+    void retour(ActionEvent event)
+    {
         try {
            String PageRouter = "/com/example/tp_poo/Agenda.fxml";
             // Load the desired page

@@ -6,10 +6,13 @@ package Controlleur;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import Model.Patient;
 import Model.Rendez_vous;
+import Model.Type_rendez_vous;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -55,11 +58,12 @@ public class AgendaligneController {
     }
     public void remplir_tableau(Rendez_vous rd)
     {
-        duree.setText("20:00");
-        heure.setText("fygghg");
-        type.setText("DFDF");
-        patient.setText("frfrf");
-        jour.setText("12/30/44");
+        duree.setText(rd.getDuree());
+        heure.setText(rd.getHeure());
+        type.setText(rd.getType().toString());
+        patient.setText(rd.getPatientName());
+        LocalDate date = rd.getDate();
+        jour.setText(date.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))); // Format as needed
 
     }
 

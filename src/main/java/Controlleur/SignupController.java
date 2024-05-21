@@ -83,10 +83,9 @@ public class SignupController {
 
 
 
-
         // SERIALIZED AUTOMATICALLY IN THE CLASS UTILISATEUR
         Orthophoniste orthophoniste=new Orthophoniste(compte);
-        OrthophonisteSessionManager.setCurrentOrthophonisteName(orthophoniste);
+        // ROUTING TO THE PAGE SIGNIN
         this.Loginform();
 
 

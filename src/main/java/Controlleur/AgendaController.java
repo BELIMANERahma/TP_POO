@@ -4,14 +4,15 @@
 package Controlleur;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -81,8 +82,13 @@ public class AgendaController  {
                 break;
 
             case "Se déconnecter":
+                Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+                String username =user.getCompte().getEmail();
+                String filepath="./src/main/Userinformation/" + username + ".ser";
+                Orthophoniste.serialize(filepath,user);
+
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/Logout.fxml";
+                PageRouter = "/com/example/tp_poo/Login.fxml";
                 break;
 
             default:
@@ -134,12 +140,31 @@ public class AgendaController  {
 
     @FXML
     void page_suivi(ActionEvent event) {
+        try {
+            // Load the FXML file for the signup page
+            Parent signupRoot = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/Suivi.fxml"));
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Create a new scene with the signup root
+            Scene scene = new Scene(signupRoot, 1000, 670);
+
+            // Set the scene on the stage
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException {
+        //String nom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        //String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
+
+       //utilisateur1.setText(nom + " " + prenom);
+
 
         Set<Rendez_vous> rd = new TreeSet<> (rendezVous());
 
@@ -160,26 +185,27 @@ public class AgendaController  {
     }
 
     private Set<Rendez_vous> rendezVous() throws IOException, ClassNotFoundException {
-       Orthophoniste utilisateur = Orthophoniste.getcurrentuser();
+        Orthophoniste users =OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
-        TreeMap<Integer, Dossier> dossiers = utilisateur.getMes_patients();
+        TreeMap<Integer, Dossier> dossiers = users.getMes_patients();
 
-        TreeSet<Rendez_vous> futureRendezVous = new TreeSet<>();
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDate now = LocalDate.now();
 
-        for (Dossier dossier : dossiers.values()) {
-            TreeSet<Rendez_vous> rendezVousDossier = dossier.getRendez_vous();
-            futureRendezVous.addAll(rendezVousDossier.tailSet(new Rendez_vousStub(now)));
-        }
+        Set<Rendez_vous> futureRendezVous = new RendezVousManager().getFutureRendezVous(dossiers, now);
+
 
         return futureRendezVous;
     }
 
     // Stub pour comparer les rendez-vous par date uniquement
-    private static class Rendez_vousStub extends Rendez_vous {
-        public Rendez_vousStub(LocalDateTime dateTime) {
-            super(dateTime);
+    public class RendezVousManager {
+
+        public Set<Rendez_vous> getFutureRendezVous(TreeMap<Integer, Dossier> dossiers, LocalDate now) {
+            return dossiers.values().stream()
+                    .flatMap(dossier -> dossier.getRendez_vous().stream())
+                    .filter(rv -> !rv.getDate().isBefore(now))
+                    .collect(Collectors.toCollection(TreeSet::new));
         }
     }
 }

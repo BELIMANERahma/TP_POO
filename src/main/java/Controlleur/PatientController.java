@@ -74,8 +74,12 @@ public class PatientController implements Initializable {
                 break;
 
             case "Se déconnecter":
+                Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+                String username =user.getCompte().getEmail();
+                String filepath="./src/main/Userinformation/" + username + ".ser";
+                Orthophoniste.serialize(filepath,user);
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/Logout.fxml";
+                PageRouter = "/com/example/tp_poo/Login.fxml";
                 break;
 
             default:

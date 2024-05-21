@@ -1,21 +1,22 @@
 package Model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Suivi extends Rendez_vous {
     private int numero_dossier;
     private Deroulement_seance type;
     private Objectif[] objectif_seance;
-    private final String duree ="2:30";
+    private final String duree = "1:00";
 
 
-    public Suivi(LocalDateTime date, String heure, Type_rendez_vous type, String observation, int numero_dossier, Deroulement_seance type1, Objectif[] objectif_seance, String duree) {
-        super(date, heure, type, observation);
+    public Suivi(LocalDate date, String heure, Type_rendez_vous type, int numero_dossier, Deroulement_seance type1,  String duree) {
+        super(date, heure, type);
         this.numero_dossier = numero_dossier;
         this.type = type1;
         this.objectif_seance = objectif_seance;
     }
-    public Suivi(LocalDateTime date) {
+    public Suivi(LocalDate date) {
         super(date) ;
     }
     public Suivi() {
@@ -36,6 +37,10 @@ public class Suivi extends Rendez_vous {
 
     public String getDuree() {
         return duree;
+    }
+
+    public  String getPatientName(){
+       return "nom";
     }
 
 }

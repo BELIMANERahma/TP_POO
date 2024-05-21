@@ -1,29 +1,30 @@
 package Model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializable {
-    private LocalDateTime date;
+    private LocalDate date;
     private String heure;
     private Type_rendez_vous type;
     private String Observation;
 
-    public Rendez_vous(LocalDateTime date, String heure, Type_rendez_vous type, String observation) {
+    public Rendez_vous(LocalDate date, String heure, Type_rendez_vous type) {
         this.date = date;
         this.heure = heure;
         this.type = type;
-        Observation = observation;
+
     }
 
-    public Rendez_vous(LocalDateTime date) {
+    public Rendez_vous(LocalDate date) {
         this.date = date;
     }
 
     protected Rendez_vous() {
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -31,7 +32,7 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
         return heure;
     }
 
-    public Type_rendez_vous getType() {
+    public Enum<Type_rendez_vous> getType() {
         return type;
     }
 
@@ -39,7 +40,7 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
         return Observation;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -56,7 +57,17 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
     }
     @Override
     public int compareTo(Rendez_vous other) {
-        return this.date.compareTo(other.date);
+        return this.date.compareTo(other.getDate());
     }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rendez_vous that = (Rendez_vous) o;
+        return Objects.equals(date, that.date);
+    }
+    public abstract String getDuree();
+
+    public abstract String getPatientName();
+
 
 }

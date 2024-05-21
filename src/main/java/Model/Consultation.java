@@ -1,29 +1,22 @@
 package Model;
 
-import java.time.LocalDateTime;
+import javafx.scene.control.TextField;
 
-public class Consultation extends Rendez_vous{
+import java.time.LocalDate;
+
+public class Consultation extends Rendez_vous {
     private String nom;
     private String prenom;
     private int Age;
     private String duree;
 
-    public Consultation(LocalDateTime date, String heure, Type_rendez_vous type, String observation, String nom, String prenom, int age, String duree) {
-        super(date, heure, type, observation);
+    public Consultation(LocalDate date, String heure, Type_rendez_vous type, String nom, String prenom, int age, String duree) {
+        super(date, heure, type);
         this.nom = nom;
         this.prenom = prenom;
         Age = age;
         this.duree = duree;
     }
-    public Consultation(LocalDateTime date){
-        super(date);
-    }
-
-    public Consultation()
-    {
-
-    }
-
 
     public String getNom() {
         return nom;
@@ -56,4 +49,9 @@ public class Consultation extends Rendez_vous{
     public void setDuree(String duree) {
         this.duree = duree;
     }
+
+    public String getPatientName() {
+        return this.nom +" "+ this.prenom;
+    }
+
 }

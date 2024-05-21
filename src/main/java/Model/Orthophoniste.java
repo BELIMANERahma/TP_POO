@@ -92,7 +92,7 @@ public class Orthophoniste  implements Serializable {
          else
          {
             return null;
-        }
+         }
         }
         return null;
     }
@@ -107,7 +107,7 @@ public class Orthophoniste  implements Serializable {
         return utilisateur ;
 
     }
-    private static void serialize(String filepath,Orthophoniste user)
+    public static void serialize(String filepath, Orthophoniste user)
     {
         try {
             if (user != null)

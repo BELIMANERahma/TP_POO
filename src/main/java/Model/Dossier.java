@@ -36,11 +36,15 @@ public class Dossier implements Serializable {
         this.patient= patient;
         numero = counter+1;
         counter++;
+        this.rendez_vous = new TreeSet<Rendez_vous>();
+
     }
     public Dossier()
     {
         numero = counter+1;
         counter++;
+        this.rendez_vous = new TreeSet<Rendez_vous>();
+
     }
 
 
@@ -83,5 +87,8 @@ public class Dossier implements Serializable {
 
     public void setFiches_suiv( Fiche_suivi [] fiches_suivi) {
         this.fiches_suivi = fiches_suivi;
+    }
+    public void add_rendez_vous(Rendez_vous rd){
+        rendez_vous.add(rd);
     }
 }
