@@ -175,6 +175,25 @@ public class DossierController implements Initializable {
                         e.printStackTrace();
                     }
                 });
+
+                patientrendezvous.setOnMouseClicked(event ->
+                {
+                    try
+                    {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/RendezvousPatient.fxml"));
+                        Parent root = loader.load();
+                        RendezvousPatientController rend = loader.getController();
+                        rend.setficheData(dossier);
+
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root, 1000, 670);
+                        stage.setScene(scene);
+
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                });
         }
     }
 

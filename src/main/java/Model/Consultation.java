@@ -8,13 +8,24 @@ public class Consultation extends Rendez_vous{
     private int Age;
     private String duree;
 
-    public Consultation(LocalDateTime date, String heure, Type_rendez_vous type, String observation, String nom, String prenom, int age, String duree) {
+    public Consultation(LocalDateTime date, String heure, Type_rendez_vous type, String observation, String nom, String prenom, int age, String duree)
+    {
         super(date, heure, type, observation);
         this.nom = nom;
         this.prenom = prenom;
         Age = age;
         this.duree = duree;
+
     }
+    public Consultation(LocalDateTime date, String heure, Type_rendez_vous type, String observation, String duree)
+    {
+        super(date, heure, type, observation);
+        this.nom = nom;
+        this.prenom = prenom;
+        this.duree = duree;
+
+    }
+
     public Consultation(LocalDateTime date){
         super(date);
     }

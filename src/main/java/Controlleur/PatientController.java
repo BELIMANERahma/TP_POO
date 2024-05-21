@@ -154,8 +154,8 @@ public class PatientController implements Initializable {
         patient.setClass_etude("1 CP");
 
 
-
         TreeSet<Rendez_vous> rendez_vous = new TreeSet<>();
+
         Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
         BO[] bos=new BO[]{new BO()};
         Dossier dossier = new Dossier(rendez_vous,bos,ficheSuivis,patient);

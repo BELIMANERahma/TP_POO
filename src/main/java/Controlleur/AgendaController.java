@@ -177,7 +177,8 @@ public class AgendaController  {
     }
 
     // Stub pour comparer les rendez-vous par date uniquement
-    private static class Rendez_vousStub extends Rendez_vous {
+    private static class Rendez_vousStub extends Rendez_vous
+    {
         public Rendez_vousStub(LocalDateTime dateTime) {
             super(dateTime);
         }
