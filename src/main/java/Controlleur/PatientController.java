@@ -145,6 +145,8 @@ public class PatientController implements Initializable {
     private List<Patient> patientt() throws IOException, ClassNotFoundException {
 
         Orthophoniste user =LoginController.getcurrentuser();
+        String email = user.getCompte().getEmail().toLowerCase().replace(" ", "");
+
 
         List<Patient> ls = new ArrayList<>();
         Enfant patient = new Enfant();
@@ -184,9 +186,8 @@ public class PatientController implements Initializable {
 
 
 
-        String filename = "./src/main/Userinformation/current.ser";
+        serialize("./src/main/Userinformation/" + email + ".ser",user);
 
-        serialize(filename,user);
 
 
         return ls;
@@ -196,8 +197,7 @@ public class PatientController implements Initializable {
         try {
             if (user != null)
             {
-                String filename = "./src/main/Userinformation/current.ser";
-                FileOutputStream fileOut = new FileOutputStream(filename);
+                FileOutputStream fileOut = new FileOutputStream(filepath);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(user);
 

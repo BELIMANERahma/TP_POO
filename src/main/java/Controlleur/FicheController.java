@@ -154,7 +154,7 @@ public class FicheController implements Initializable
                 try {
                     BorderPane hBox = fxmlLoader.load();
                     FicheelementController cic = fxmlLoader.getController();
-                    cic.setData(ficheSuivis.get(i));
+                    cic.setData(ficheSuivis.get(i),objectif);
                     patientslay.getChildren().add(hBox);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
