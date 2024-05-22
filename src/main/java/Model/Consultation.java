@@ -19,7 +19,11 @@ public class Consultation extends Rendez_vous implements Serializable {
         this.duree = duree;
     }
 
-    public Consultation(LocalDate now, String heure, Type_rendez_vous typeRendezVous, String observation, String prenom) {
+    public Consultation(LocalDate now, String heure, Type_rendez_vous typeRendezVous, String observation, String duree)
+    {
+        super(now, heure, typeRendezVous, observation);
+        this.duree=duree;
+
     }
 
     public String getNom() {

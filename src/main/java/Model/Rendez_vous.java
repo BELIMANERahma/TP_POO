@@ -25,6 +25,12 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
     }
 
     public Rendez_vous(LocalDate date, String heure, Type_rendez_vous type, String observation) {
+        this.date = date;
+        this.heure = heure;
+        this.type = type;
+        this.Observation = observation;
+
+
     }
 
     public LocalDate getDate() {

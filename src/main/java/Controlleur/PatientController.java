@@ -122,6 +122,8 @@ public class PatientController implements Initializable {
         {
             throw new RuntimeException(e);
         }
+      //  List<Patient> patients = null;
+       // patients = new ArrayList<>(   user.getPatientsList());
 
         for(int i=0;i<patients.size();i++)
         {
@@ -159,11 +161,16 @@ public class PatientController implements Initializable {
 
 
         TreeSet<Rendez_vous> rendez_vous = new TreeSet<>();
+        List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
+        List<BO> bos=new ArrayList<BO>();
+        Projet_therapeu po =new Projet_therapeu("description du projet dorthophoniste ");
 
-        Fiche_suivi[] ficheSuivis= new Fiche_suivi[]{new Fiche_suivi()};
-        BO[] bos=new BO[]{new BO()};
-        Dossier dossier = new Dossier(rendez_vous,bos,ficheSuivis,patient);
+        BO b =new BO(po);
+        bos.add(b);
+        bos.add(b);
 
+
+        Dossier dossier = new Dossier(rendez_vous,bos, (ArrayList<Fiche_suivi>) ficheSuivis,patient);
         user.add_patient(dossier);
         ls.add(patient);
 
@@ -178,7 +185,7 @@ public class PatientController implements Initializable {
         patient1.setProfession("NAWM");
         patient1.setNumero_personnel(794157061);
 
-        Dossier dossier2 = new Dossier(rendez_vous,bos,ficheSuivis,patient1);
+        Dossier dossier2 =  new Dossier(rendez_vous,bos, (ArrayList<Fiche_suivi>) ficheSuivis,patient1);
         user.add_patient(dossier2);
         ls.add(patient1);
         //   String email = user.getCompte().getEmail().toLowerCase().replace(" ", "");

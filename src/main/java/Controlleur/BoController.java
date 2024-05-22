@@ -15,18 +15,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class RendezvousPatientController implements Initializable {
-
+public class BoController implements Initializable {
 
     @FXML
-    private Label numfiche1;
+    private Label numfiche;
 
     @FXML
-    private Label numfiche11;
+    private Label numobject;
 
     @FXML
     private VBox patientslay;
@@ -89,8 +87,12 @@ public class RendezvousPatientController implements Initializable {
                 break;
 
             case "Se déconnecter":
+                Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+                String username =user.getCompte().getEmail();
+                String filepath="./src/main/Userinformation/" + username + ".ser";
+                Orthophoniste.serialize(filepath,user);
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/Logout.fxml";
+                PageRouter = "/com/example/tp_poo/Login.fxml";
                 break;
 
             default:
@@ -114,47 +116,35 @@ public class RendezvousPatientController implements Initializable {
             }
         }
     }
-    public void setficheData(Dossier dossier)
-    {
-        dossier.getRendez_vous();
-        TreeSet<Rendez_vous> rendez_vous = new TreeSet<>(dossier.getRendez_vous());
+   public void  setficheData(Dossier dossier)
+
+   {
+
+       List<BO> bos= dossier.getBilans_orth();
+       for (BO bo :bos)
+       {
+
+           FXMLLoader fxmlLoader = new FXMLLoader();
+           fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/boelement.fxml"));
+           try
+           {
+               BorderPane hBox = fxmlLoader.load();
+               BoelementController cic = fxmlLoader.getController();
+               cic.setData(bo);
+               patientslay.getChildren().add(hBox);
+           } catch (IOException e) {
+               throw new RuntimeException(e);
+           }
+
+       }
 
 
-//        LocalDate now = LocalDate.now();
-//        String heure= "9:00";
-//        String observation ="ya pas d observation ";
-//        Objectif[] objectifs = new Objectif[3];
-//
-//        // Initialize the array with Objectif objects
-//        objectifs[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
-//        objectifs[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
-//        objectifs[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
-//
-//
-//
-//        Rendez_vous r1 =new Consultation(now,heure,Type_rendez_vous.CONSULTATION,observation,"1h");
-//       // Rendez_vous r2 =new Suivi(now1,heure,Type_rendez_vous.SUIVI,observation,1,Deroulement_seance.EN_PRESENTIEL,objectifs,"1h");
-//          rendez_vous.add(r1);
-//        //   rendez_vous.add(r2);
-        dossier.setRendez_vous(rendez_vous);
-
-            for (Rendez_vous  rend : rendez_vous) {
-                
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/rendez-vouselement.fxml"));
-                try {
-                    BorderPane hBox = fxmlLoader.load();
-                     RendezvousligneController cic = fxmlLoader.getController();
-                    cic.setData(rend);
-                    patientslay.getChildren().add(hBox);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-            }
 
 
-    }
+
+   }
+
+
 
 
 }

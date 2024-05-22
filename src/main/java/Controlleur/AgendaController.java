@@ -83,9 +83,15 @@ public class AgendaController  {
 
             case "Se déconnecter":
                 Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+                user.getMes_patients().get(1).getPatient();
+                user.getMes_patients().get(1).getRendez_vous();
+                user.getMes_patients().get(1).getFiches_suivi();
+
+
                 String username =user.getCompte().getEmail();
                 String filepath="./src/main/Userinformation/" + username + ".ser";
                 Orthophoniste.serialize(filepath,user);
+                Orthophoniste user1=OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
                 newPage = true;
                 PageRouter = "/com/example/tp_poo/Login.fxml";

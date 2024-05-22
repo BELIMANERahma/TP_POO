@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.RendezvousPatientController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.BoController">
    <left>
       <VBox prefHeight="600.0" prefWidth="235.0" styleClass="anchorpane" stylesheets="@../../../directory/design.css" BorderPane.alignment="CENTER">
          <children>
@@ -208,9 +208,9 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="60.0" prefWidth="766.0">
+            <AnchorPane>
                <children>
-                  <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="226.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Rendez-vous   :" textFill="#f76e72e5">
+                  <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="273.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Bilan Orthophonique  :" textFill="#f76e72e5">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -223,24 +223,24 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="84.0" prefWidth="766.0">
+            <AnchorPane prefHeight="123.0" prefWidth="765.0">
                <children>
-                  <Label fx:id="numfiche1" alignment="CENTER" contentDisplay="CENTER" layoutX="125.0" layoutY="25.0" prefHeight="58.0" prefWidth="116.0" style="-fx-background-color: #036;" styleClass="textfield" stylesheets="@../../../directory/design.css" textAlignment="JUSTIFY" textFill="WHITE">
+                  <Label layoutX="447.0" layoutY="14.0" text="Nombre Totale des epereuves" textFill="#c11313">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="61.0" layoutY="14.0" prefHeight="20.0" prefWidth="202.0" text="Nombre Bilan Orthophonique" textFill="#c11313">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numfiche" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="34.0" prefHeight="82.0" prefWidth="139.0" style="-fx-background-color: #036;" styleClass="textfield" stylesheets="@../../../directory/design.css" textAlignment="JUSTIFY" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label layoutX="102.0" layoutY="4.0" text="Nombre de seances de suivi " textFill="#c11313">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="415.0" layoutY="4.0" text="Nombre de seances avec des ateliers " textFill="#c11313">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="numfiche11" alignment="CENTER" contentDisplay="CENTER" layoutX="478.0" layoutY="25.0" prefHeight="58.0" prefWidth="116.0" style="-fx-background-color: #036;" styleClass="textfield" stylesheets="@../../../directory/design.css" textAlignment="JUSTIFY" textFill="WHITE">
+                  <Label fx:id="numobject" alignment="CENTER" contentDisplay="CENTER" layoutX="474.0" layoutY="34.0" prefHeight="82.0" prefWidth="139.0" style="-fx-background-color: #036;" styleClass="textfield" stylesheets="@../../../directory/design.css" textAlignment="JUSTIFY" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -249,22 +249,11 @@
             </AnchorPane>
             <AnchorPane prefHeight="451.0" prefWidth="765.0">
                <children>
-                  <Label contentDisplay="CENTER" prefHeight="52.0" prefWidth="498.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Consulter Les Rendez-vous de votre  patient :" textFill="#00002c">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="20.0" right="50.0" top="20.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <VBox layoutX="1.0" layoutY="81.0">
+                  <VBox layoutX="1.0" prefHeight="470.0" prefWidth="764.0">
                      <children>
-                        <HBox prefHeight="434.0" prefWidth="764.0">
+                        <HBox prefHeight="471.0" prefWidth="764.0">
                            <children>
-                              <ScrollPane prefHeight="421.0" prefWidth="764.0" style="-fx-background-color: transparent; -fx-text-fill: red;">
+                              <ScrollPane prefHeight="345.0" prefWidth="764.0" style="-fx-background-color: transparent; -fx-text-fill: red;">
                                  <content>
                                     <VBox fx:id="patientslay" />
                                  </content>
