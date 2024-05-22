@@ -15,22 +15,22 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0 1 0 0; -fx-border-color: #036;">
                      <children>
-                        <Label layoutX="6.0" layoutY="22.0" prefHeight="18.0" prefWidth="153.0" text="Rendez-vous  le :" textFill="#003366">
+                        <Label layoutX="6.0" layoutY="22.0" prefHeight="18.0" prefWidth="153.0" text="Rendez-vous  le :" textFill="#bc2525">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="20.0" layoutY="43.0" prefHeight="31.0" prefWidth="39.0" text="Date" textFill="#bc2525">
+                        <Label layoutX="20.0" layoutY="43.0" prefHeight="31.0" prefWidth="39.0" text="Date">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="20.0" layoutY="75.0" prefHeight="31.0" prefWidth="49.0" text="Heure" textFill="#bc2525">
+                        <Label layoutX="20.0" layoutY="75.0" prefHeight="31.0" prefWidth="49.0" text="Heure">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="20.0" layoutY="106.0" prefHeight="31.0" prefWidth="49.0" text="Duree" textFill="#bc2525">
+                        <Label layoutX="20.0" layoutY="106.0" prefHeight="31.0" prefWidth="49.0" text="Duree">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
@@ -56,12 +56,12 @@
             </VBox>
             <AnchorPane prefHeight="149.0" prefWidth="546.0">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" prefHeight="31.0" text="Type" textFill="#bc2525">
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="31.0" text="Type">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="thematiaue" layoutX="14.0" layoutY="109.0" prefHeight="30.0" prefWidth="97.0" text="Thematique" textFill="#bc2525">
+                  <Label fx:id="thematiaue" layoutX="14.0" layoutY="109.0" prefHeight="30.0" prefWidth="97.0" text="Thematique">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
@@ -76,17 +76,17 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="43.0" prefHeight="30.0" prefWidth="97.0" text="Observation " textFill="#bc2525">
+                  <Label layoutX="14.0" layoutY="43.0" prefHeight="30.0" prefWidth="97.0" text="Observation ">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="deroulement" layoutX="13.0" layoutY="110.0" prefHeight="30.0" prefWidth="150.0" text="Deroulement Seance" textFill="#bc2525">
+                  <Label fx:id="deroulement" layoutX="13.0" layoutY="110.0" prefHeight="30.0" prefWidth="150.0" text="Deroulement Seance">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="objecetifseance" layoutX="229.0" layoutY="110.0" prefHeight="30.0" prefWidth="150.0" text="Objectifs seances" textFill="#bc2525">
+                  <Label fx:id="objecetifseance" layoutX="229.0" layoutY="110.0" prefHeight="30.0" prefWidth="150.0" text="Objectifs seances">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>

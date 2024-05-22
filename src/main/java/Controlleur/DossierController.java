@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
@@ -126,7 +128,21 @@ public class DossierController implements Initializable {
         }
     }
 
-
+//    @FXML
+//    void retour(ActionEvent event)
+//    {
+//        try {
+//            String PageRouter = "/com/example/tp_poo/Patient.fxml";
+//            // Load the desired page
+//            Parent nextPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(PageRouter)));
+//            Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//            javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
+//            Scene.setScene(scene);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     public void setDossierData(int num_dossier) throws IOException, ClassNotFoundException
@@ -147,10 +163,8 @@ public class DossierController implements Initializable {
                     {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/Infopersonnelle.fxml"));
                         Parent root = loader.load();
-
-                       InfopersonnelleController InfoController = loader.getController();
+                        InfopersonnelleController InfoController = loader.getController();
                         InfoController.setInfoData(patient);
-
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root, 1000, 670);
                         stage.setScene(scene);
@@ -198,6 +212,28 @@ public class DossierController implements Initializable {
                         e.printStackTrace();
                     }
                 });
+            patientbo.setOnMouseClicked(event ->
+            {
+                try
+                {
+
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/BO.fxml"));
+                    Parent root = loader.load();
+                    BoController rend = loader.getController();
+                    rend.setficheData(dossier);
+//                    Stage stage = new Stage();
+//                    stage.setScene(new Scene(root, 1000, 670));
+//                    stage.show();
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root, 1000, 670);
+                    stage.setScene(scene);
+
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 

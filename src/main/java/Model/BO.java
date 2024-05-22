@@ -2,7 +2,8 @@ package Model;
 
 import java.io.Serializable;
 
-public class BO  implements Serializable {
+public class BO  implements Serializable
+{
     private Epreuve_clinique epreuves_cliniques[];
     private Diagnostique diagnostique;
     private Projet_therapeu projet;
@@ -15,6 +16,14 @@ public class BO  implements Serializable {
         this.epreuves_cliniques = epreuves_cliniques;
         this.diagnostique = diagnostique;
         this.projet = projet;
+    }
+
+    public BO(Projet_therapeu po) {
+
+        this.projet = po;
+
+
+
     }
 
     public Epreuve_clinique[] getEpreuves_cliniques() {

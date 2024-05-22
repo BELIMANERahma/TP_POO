@@ -1,7 +1,10 @@
 package Model;
 
+import jdk.jfr.Label;
+
 import java.io.Serializable;
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 
 public class Dossier implements Serializable {
@@ -10,8 +13,8 @@ public class Dossier implements Serializable {
     private int numero;
     private Patient patient ;
     private TreeSet<Rendez_vous>  rendez_vous;
-    private BO Bilans_orth[];
-    private  Fiche_suivi fiches_suivi[];
+    private List<BO> Bilans_orth;
+    private ArrayList<Fiche_suivi> fiches_suivi;
 
 
     public Patient getPatient()
@@ -23,11 +26,11 @@ public class Dossier implements Serializable {
         this.patient = patient;
     }
 
-    public Fiche_suivi[] getFiches_suivi() {
+    public ArrayList<Fiche_suivi> getFiches_suivi() {
         return fiches_suivi;
     }
 
-    public void setFiches_suivi(Fiche_suivi[] fiches_suivi) {
+    public void setFiches_suivi(ArrayList<Fiche_suivi> fiches_suivi) {
         this.fiches_suivi = fiches_suivi;
     }
 
@@ -47,8 +50,15 @@ public class Dossier implements Serializable {
 
     }
 
+    public List<BO> getBilans_orth() {
+        return Bilans_orth;
+    }
 
-    public Dossier(TreeSet<Rendez_vous> rendezVous,BO[] bilans_orth, Fiche_suivi [] fiches_suivi ,Patient patient    ) {
+    public void setBilans_orth(List<BO> bilans_orth) {
+        Bilans_orth = bilans_orth;
+    }
+
+    public Dossier(TreeSet<Rendez_vous> rendezVous, List<BO> bilans_orth, ArrayList< Fiche_suivi>  fiches_suivi , Patient patient    ) {
         this.numero = counter+1;
         counter++;
         this.rendez_vous = new TreeSet<Rendez_vous>(rendezVous);
@@ -73,21 +83,10 @@ public class Dossier implements Serializable {
         this.rendez_vous = rendez_vous;
     }
 
-    public BO[] getBilans_orth() {
-        return Bilans_orth;
-    }
 
-    public void setBilans_orth(BO[] bilans_orth) {
-        Bilans_orth = bilans_orth;
-    }
 
-    public  Fiche_suivi[]  getFiches_suiv() {
-        return fiches_suivi;
-    }
 
-    public void setFiches_suiv( Fiche_suivi [] fiches_suivi) {
-        this.fiches_suivi = fiches_suivi;
-    }
+
     public void add_rendez_vous(Rendez_vous rd){
         rendez_vous.add(rd);
     }

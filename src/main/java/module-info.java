@@ -11,6 +11,7 @@ module com.example.tp_poo {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires jdk.compiler;
+    requires jdk.jfr;
 
     opens com.example.tp_poo to javafx.fxml;
     exports com.example.tp_poo;

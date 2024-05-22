@@ -4,7 +4,8 @@ import Model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class RendezvousligneController {
+public class RendezvousligneController
+{
 
     @FXML
     private Label date;
@@ -49,8 +50,8 @@ public class RendezvousligneController {
             info1.setVisible(false);
             info2.setVisible(false);
 
-            //date.setText(String.valueOf(rend.getDate()));
-            date.setText("22/12/2024");
+            date.setText(String.valueOf(rend.getDate()));
+            //date.setText("22/12/2024");
             heure.setText(String.valueOf(rend.getHeure()));
 
             duree.setText(((Consultation)rend).getDuree());
@@ -66,8 +67,8 @@ public class RendezvousligneController {
             deroulement.setVisible(true);
             info1.setVisible(true);
             info2.setVisible(true);
-            //date.setText(String.valueOf(rend.getDate()));
-            date.setText("22/12/2024");
+            date.setText(String.valueOf(rend.getDate()));
+            //date.setText("22/12/2024");
 
             heure.setText(String.valueOf(rend.getHeure()));
             duree.setText(((Suivi)rend).getDuree());
@@ -87,8 +88,8 @@ public class RendezvousligneController {
             deroulement.setVisible(false);
             info1.setVisible(true);
             info2.setVisible(false);
-            //date.setText(String.valueOf(rend.getDate()));
-            date.setText("22/12/2024");
+            date.setText(String.valueOf(rend.getDate()));
+            //date.setText("22/12/2024");
             heure.setText(String.valueOf(rend.getHeure()));
             duree.setText(((Atelier)rend).getDuree());
             typerend.setText(String.valueOf(rend.getType()));

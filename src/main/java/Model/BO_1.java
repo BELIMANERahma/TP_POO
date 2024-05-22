@@ -1,6 +1,7 @@
 package Model;
 
-public class BO_1 extends BO{
+public class BO_1 extends BO
+{
 
     private Anamnese anamnese;
     private Boolean  prise_en_charge;

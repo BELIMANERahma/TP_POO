@@ -262,10 +262,13 @@
                   <DatePicker fx:id="jour_consult" layoutX="433.0" layoutY="231.0" prefHeight="30.0" prefWidth="241.0" promptText="JJ/MM/AAAA" styleClass="white-background" />
                   <Label layoutX="72.0" layoutY="281.0" text="Heure:" />
                   <Label layoutX="433.0" layoutY="280.0" text="Durée" />
-                  <TextField fx:id="duree" alignment="TOP_LEFT" disable="true" layoutX="433.0" layoutY="308.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="241.0" promptText="Durée" styleClass="white-background">
+                  <TextField fx:id="duree" alignment="TOP_LEFT" disable="true" layoutX="433.0" layoutY="308.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="241.0" promptText="Durée" style="-fx-text-fill: red; -fx-border-color: black;" styleClass="white-background">
                      <cursor>
                         <Cursor fx:constant="NE_RESIZE" />
                      </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </TextField>
                   <Button fx:id="enregistrer" layoutX="187.0" layoutY="484.0" mnemonicParsing="false" onAction="#enregistrer" prefHeight="33.0" prefWidth="78.0" styleClass="btn" text="Enregistrer" />
                   <Button fx:id="retour" layoutX="73.0" layoutY="484.0" mnemonicParsing="false" onAction="#retour" prefHeight="33.0" prefWidth="78.0" styleClass="btn1" text="retour" />

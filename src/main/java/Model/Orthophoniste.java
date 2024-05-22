@@ -3,9 +3,7 @@ package Model;
 import com.sun.source.tree.Tree;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 
 public class Orthophoniste  implements Serializable {
@@ -130,7 +128,14 @@ public class Orthophoniste  implements Serializable {
             e.printStackTrace();
         }
     }
+    public List<Patient> getPatientsList() {
 
+        List<Patient> patientsList = new ArrayList<>();
+        for (Dossier dossier : Mes_dossiers.values()) {
+            patientsList.add(dossier.getPatient());
+        }
+        return patientsList;
+    }
 }
 
 

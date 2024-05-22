@@ -126,19 +126,20 @@ public class FicheController implements Initializable
 
 
 
-        dossier.getFiches_suiv();
-        List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
-        Objectif[] objectifs = new Objectif[3];
-
-        // Initialize the array with Objectif objects
-        objectifs[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
-        objectifs[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
-        objectifs[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
-
-
-
-        Fiche_suivi f = new Fiche_suivi(objectifs,1)  ;
-        ficheSuivis.add(f);
+        List<Fiche_suivi> ficheSuivis = dossier.getFiches_suivi();
+//        List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
+//        Objectif[] objectifs = new Objectif[3];
+//
+//        // Initialize the array with Objectif objects
+//        objectifs[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
+//        objectifs[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
+//        objectifs[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
+//
+//
+//
+//        Fiche_suivi f = new Fiche_suivi(objectifs,1)  ;
+//        ficheSuivis.add(f);
+//        dossier.setFiches_suivi((ArrayList<Fiche_suivi>) ficheSuivis);
 
         for(int i=0;i<ficheSuivis.size();i++)
         {

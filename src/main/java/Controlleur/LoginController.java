@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
+import static Model.OrthophonisteSessionManager.getCurrentOrthophonisteName;
+
 public class LoginController {
 
     @FXML
@@ -100,18 +102,14 @@ public class LoginController {
     private void loadNextPage(Orthophoniste utilisateur) {
 
         String nextPage;
-
         nextPage = "home.fxml";
-
 
         try
         {
-
-            //meriem hna beh tbdli l profile lezem nbe3tou des infos pour le mzomznt rahi byda bdliha kima 7biti
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/home.fxml"));
             Parent root = loader.load();
-//            Homecontroller homeController = loader.getController();
-//            homeController.setusername(utilisateur);
+           // Homecontroller homeController = loader.getController();
+           // homeController.setusername(utilisateur);
 
             // Get the current scene
             Scene currentScene = create_account_btn.getScene();
@@ -140,7 +138,8 @@ public class LoginController {
             //FileOutputStream fileOut = new FileOutputStream(filename);
             //ObjectOutputStream out = new ObjectOutputStream(fileOut);
             //out.writeObject(user);
-            OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
+         OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
+            Orthophoniste user1=OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
             loadNextPage(user);
         }
@@ -185,8 +184,6 @@ public class LoginController {
         FileInputStream fileInputStream = new FileInputStream(file);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         Orthophoniste  utilisateur = (Orthophoniste) objectInputStream.readObject();
-        OrthophonisteSessionManager.setCurrentOrthophonisteName(utilisateur);
-
 
         return utilisateur ;
 

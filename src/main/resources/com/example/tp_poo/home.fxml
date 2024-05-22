@@ -24,7 +24,7 @@
                         <Image url="@../../../images/or.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="utilisateur1" prefHeight="15.0" prefWidth="133.0" textFill="#f4f4f4">
+                  <Label fx:id="utilisateur1" textFill="#f4f4f4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
