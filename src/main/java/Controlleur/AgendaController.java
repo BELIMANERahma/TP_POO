@@ -160,6 +160,7 @@ public class AgendaController  {
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException {
+
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 

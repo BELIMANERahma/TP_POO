@@ -176,6 +176,7 @@ public class ConsultationController {
             afficherMessageSucces("La consultation est ajouter avec succés");
 
             OrthophonisteSessionManager.getCurrentOrthophonisteName().add_patient(dossier);
+            Orthophoniste user =OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
             String PageRouter ="/com/example/tp_poo/Agenda.fxml";
             try {

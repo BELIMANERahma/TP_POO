@@ -140,8 +140,9 @@ public class LoginController {
             //FileOutputStream fileOut = new FileOutputStream(filename);
             //ObjectOutputStream out = new ObjectOutputStream(fileOut);
             //out.writeObject(user);
-            loadNextPage(user);
             OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
+
+            loadNextPage(user);
         }
 
 
@@ -184,6 +185,8 @@ public class LoginController {
         FileInputStream fileInputStream = new FileInputStream(file);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         Orthophoniste  utilisateur = (Orthophoniste) objectInputStream.readObject();
+        OrthophonisteSessionManager.setCurrentOrthophonisteName(utilisateur);
+
 
         return utilisateur ;
 

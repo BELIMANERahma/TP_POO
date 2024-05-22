@@ -44,11 +44,12 @@ public class Orthophoniste  implements Serializable {
     {
         return Mes_dossiers;
     }
-    public TreeMap< Integer,Dossier > add_patient(Dossier dossier)
+    public void add_patient(Dossier dossier)
     {
         Mes_dossiers.put(dossier.getNumero(),dossier);
-        return Mes_dossiers;
+
     }
+
 
     public void setMes_patients(TreeMap< Integer,Dossier > mes_patients)
 
@@ -112,8 +113,7 @@ public class Orthophoniste  implements Serializable {
         try {
             if (user != null)
             {
-                String filename = "./src/main/Userinformation/current.ser";
-                FileOutputStream fileOut = new FileOutputStream(filename);
+                FileOutputStream fileOut = new FileOutputStream(filepath);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(user);
 
