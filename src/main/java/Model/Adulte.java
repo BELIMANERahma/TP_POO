@@ -1,5 +1,7 @@
 package Model;
 
+import java.time.LocalDate;
+
 public class Adulte extends Patient
 {
 
@@ -7,14 +9,14 @@ public class Adulte extends Patient
     private String profession;
     private long numero_personnel;
 
-    public Adulte(String nom, String prenom, String date_naissance, String lieu_naissance, String adresse, String dimplome, String profession, int numero_personnel) {
+    public Adulte(String nom, String prenom, LocalDate date_naissance, String lieu_naissance, String adresse, String dimplome, String profession, int numero_personnel) {
         super(nom, prenom, date_naissance, lieu_naissance, adresse);
         Dimplome = dimplome;
         this.profession = profession;
         this.numero_personnel = numero_personnel;
     }
-    public Adulte(String nom, String prenom) {
-        super(nom, prenom);
+    public Adulte(String nom, String prenom,int num) {
+        super(nom, prenom,num);
 
     }
 

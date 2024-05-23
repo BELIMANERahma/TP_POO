@@ -1,18 +1,23 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public    class  Patient implements Serializable {
 
 
     private String nom;
     private String prenom;
-    private String date_naissance;
+    private LocalDate date_naissance;
     private String lieu_naissance;
     private String Adresse;
     private int num_dossier;//numero dossier
 
-    public Patient(String nom, String prenom) {
+    public Patient(String nom, String prenom , int num) {
+
+        this.nom = nom;
+        this.prenom =prenom;
+        this.num_dossier = num;
     }
 
     public int getNum_dossier() {
@@ -23,7 +28,7 @@ public    class  Patient implements Serializable {
         this.num_dossier = num_dossier;
     }
 
-    public Patient(String nom, String prenom, String date_naissance, String lieu_naissance, String adresse) {
+    public Patient(String nom, String prenom, LocalDate date_naissance, String lieu_naissance, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.date_naissance = date_naissance;
@@ -61,11 +66,11 @@ public    class  Patient implements Serializable {
         this.prenom = prenom;
     }
 
-    public String getDate_naissance() {
+    public LocalDate getDate_naissance() {
         return date_naissance;
     }
 
-    public void setDate_naissance(String date_naissance) {
+    public void setDate_naissance(LocalDate date_naissance) {
         this.date_naissance = date_naissance;
     }
 

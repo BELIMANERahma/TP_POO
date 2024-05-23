@@ -19,17 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class Homecontroller implements Initializable {
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-        String nom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
-        System.out.println(nom);
-        String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
+public class Homecontroller {
 
-        utilisateur1.setText(nom + " " + prenom);
-
-    }
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -117,7 +108,16 @@ public class Homecontroller implements Initializable {
 
     }
 
+    @FXML
+    public void initialize()
+    {
+        String nom = OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        System.out.println(nom);
+        String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
 
+        utilisateur1.setText(nom + " " + prenom);
+
+    }
 
 
 

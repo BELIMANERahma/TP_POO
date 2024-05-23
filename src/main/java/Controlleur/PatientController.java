@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -114,17 +115,17 @@ public class PatientController implements Initializable {
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-        //       List<Patient> patients = null;
-//        try {
-//            patients = new ArrayList<>(patientt());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } catch (ClassNotFoundException e)
-//        {
-//            throw new RuntimeException(e);
-//        }
-         List<Patient> patients = null;
-        patients = new ArrayList<>(   user.getPatientsList());
+        List<Patient> patients = null;
+        try {
+            patients = new ArrayList<>(patientt());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+      //  List<Patient> patients = null;
+       // patients = new ArrayList<>(   user.getPatientsList());
 
         for(int i=0;i<patients.size();i++)
         {
@@ -153,15 +154,16 @@ public class PatientController implements Initializable {
         patient.setNum_dossier(1);
         patient.setNom("Belimane") ;
         patient.setPrenom("Rahma") ;
-        patient.setDate_naissance("20042903") ;
+        LocalDate now = LocalDate.now();
+
+        patient.setDate_naissance(now) ;
         patient.setAdresse("Constantine");
         patient.setLieu_naissance("Constantine");
         patient.setClass_etude("1 CP");
 
 
         TreeSet<Rendez_vous> rendez_vous = new TreeSet<>();
-        LocalDate now = LocalDate.now();
-        String heure= "9:00";
+        LocalTime heure =LocalTime.now();
         String observation ="ya pas d observation ";
         Objectif[] objectifs = new Objectif[3];
 
@@ -175,8 +177,8 @@ public class PatientController implements Initializable {
         rendez_vous.add(r1);
 
 
-          List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
-          Objectif[] objectif = new Objectif[3];
+        List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
+        Objectif[] objectif = new Objectif[3];
 
         // Initialize the array with Objectif objects
         objectif[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
@@ -248,7 +250,7 @@ public class PatientController implements Initializable {
         patient1.setNum_dossier(2);
         patient1.setNom("Belimane") ;
         patient1.setPrenom("Rahma") ;
-        patient1.setDate_naissance("20042903") ;
+        patient1.setDate_naissance(now) ;
         patient1.setAdresse("Constantine");
         patient1.setLieu_naissance("Constantine");
         patient1.setDimplome("1 CP");

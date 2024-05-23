@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Atelier extends Rendez_vous implements Serializable
 {
@@ -10,8 +11,14 @@ public class Atelier extends Rendez_vous implements Serializable
     private Dossier[] liste_patients;
     private   String duree;
 
-    public Atelier(LocalDate date, String heure, Type_rendez_vous type, String observation, String thematique, Dossier[] liste_patients, String duree) {
+    public Atelier(LocalDate date, LocalTime heure, Type_rendez_vous type, String observation, String thematique, Dossier[] liste_patients, String duree) {
         super(date, heure, type, observation);
+        this.thematique = thematique;
+        this.liste_patients = liste_patients;
+        this.duree = duree;
+    }
+    public Atelier(LocalDate date, LocalTime heure, Type_rendez_vous type, String thematique, Dossier[] liste_patients, String duree) {
+        super(date, heure, type);
         this.thematique = thematique;
         this.liste_patients = liste_patients;
         this.duree = duree;
@@ -53,7 +60,12 @@ public class Atelier extends Rendez_vous implements Serializable
     public void setDuree(String duree) {
         this.duree = duree;
     }
-    public String getPatientName(){
-        return "nom";
+    public String getPatientName() {
+        StringBuilder patientNames = new StringBuilder();
+        for (Dossier dossier : liste_patients) {
+            // Assuming Dossier has a toString method that returns the desired representation
+            patientNames.append(dossier.getNumero()).append(".");
+        }
+        return patientNames.toString().trim(); // Remove trailing space
     }
 }

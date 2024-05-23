@@ -5,7 +5,6 @@ package Controlleur;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,7 +12,6 @@ import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -120,6 +118,20 @@ public class AgendaController  {
 
     @FXML
     void page_atelier(ActionEvent event) {
+        try {
+            // Load the FXML file for the signup page
+            Parent signupRoot = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/atelier.fxml"));
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Create a new scene with the signup root
+            Scene scene = new Scene(signupRoot, 1000, 670);
+
+            // Set the scene on the stage
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -166,28 +178,40 @@ public class AgendaController  {
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException, ClassNotFoundException {
-        Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
-        utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-        Set<Rendez_vous> rd = new TreeSet<> (rendezVous());
+        String nom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        System.out.println(nom);
+        String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
 
-        for (Rendez_vous rendezVous : rd) {
+        utilisateur1.setText(nom + " " + prenom);
+
+
+        TreeMap<Rendez_vous, Dossier> futureRendezVous = rendezVous();
+
+        for (Map.Entry<Rendez_vous, Dossier> entry : futureRendezVous.entrySet()) {
+            Rendez_vous rendezVous = entry.getKey();
+            Dossier dossier = entry.getValue();
+
+            // Charger l'interface FXML pour chaque rendez-vous
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/Agendaligne.fxml"));
             try {
                 HBox hBox = fxmlLoader.load();
+
+                // Remplir le tableau avec les informations du rendez-vous et du dossier
                 AgendaligneController cic = fxmlLoader.getController();
-                cic.remplir_tableau(rendezVous);
+                cic.remplir_tableau(rendezVous, dossier);
+
+                // Ajouter le HBox à l'interface principale
                 agendaligne.getChildren().add(hBox);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         }
-
     }
 
-    private Set<Rendez_vous> rendezVous() throws IOException, ClassNotFoundException {
+    private TreeMap<Rendez_vous, Dossier> rendezVous() throws IOException, ClassNotFoundException {
+
         Orthophoniste users =OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
         TreeMap<Integer, Dossier> dossiers = users.getMes_patients();
@@ -195,7 +219,7 @@ public class AgendaController  {
 
         LocalDate now = LocalDate.now();
 
-        Set<Rendez_vous> futureRendezVous = new RendezVousManager().getFutureRendezVous(dossiers, now);
+        TreeMap<Rendez_vous, Dossier> futureRendezVous = new RendezVousManager().getFutureRendezVous(dossiers, now);
 
 
         return futureRendezVous;
@@ -204,11 +228,17 @@ public class AgendaController  {
     // Stub pour comparer les rendez-vous par date uniquement
     public class RendezVousManager {
 
-        public Set<Rendez_vous> getFutureRendezVous(TreeMap<Integer, Dossier> dossiers, LocalDate now) {
-            return dossiers.values().stream()
-                    .flatMap(dossier -> dossier.getRendez_vous().stream())
-                    .filter(rv -> !rv.getDate().isBefore(now))
-                    .collect(Collectors.toCollection(TreeSet::new));
+        public static TreeMap<Rendez_vous, Dossier> getFutureRendezVous(TreeMap<Integer, Dossier> dossiers, LocalDate now) {
+            return dossiers.entrySet().stream()
+                    .flatMap(entry -> entry.getValue().getRendez_vous().stream()
+                            .filter(rv -> !rv.getDate().isBefore(now))
+                            .map(rv -> Map.entry(rv, entry.getValue())))
+                    .collect(Collectors.toMap(
+                            Map.Entry::getKey,
+                            Map.Entry::getValue,
+                            (e1, e2) -> e1,
+                            TreeMap::new));
         }
+
     }
 }

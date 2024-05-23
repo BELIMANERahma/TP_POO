@@ -1,17 +1,19 @@
 package Model;
 
+import java.time.LocalDate;
+
 public class Enfant  extends  Patient
 {
     private String class_etude;
     private int numeroparent [];
 
-    public Enfant(String nom, String prenom, String date_naissance, String lieu_naissance, String adresse, String class_etude, int[] numeroparent) {
+    public Enfant(String nom, String prenom, LocalDate date_naissance, String lieu_naissance, String adresse, String class_etude, int[] numeroparent) {
         super(nom, prenom, date_naissance, lieu_naissance, adresse);
         this.class_etude = class_etude;
         this.numeroparent = numeroparent;
     }
-    public Enfant(String nom, String prenom) {
-        super(nom, prenom);
+    public Enfant(String nom, String prenom,int num) {
+        super(nom, prenom,num);
 
     }
 

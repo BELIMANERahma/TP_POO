@@ -147,13 +147,14 @@ public class InfopersonnelleController implements Initializable {
         {
             nompatient.setText(((Enfant)patient).getNom());
             prenompatient.setText(((Enfant)patient).getPrenom());
-            datenpatient.setText(((Enfant)patient).getDate_naissance());
+            datenpatient.setText(String.valueOf(((Enfant)patient).getDate_naissance()));
             lieunpatient.setText(((Enfant)patient).getLieu_naissance());
             adressepatient.setText(((Enfant)patient).getAdresse());
             info1.setText(((Enfant)patient).getClass_etude());
             int numparent[]=((Enfant)patient).getNumeroparent();
             //info2.setText(String.valueOf(numparent[0]));
-           // info3.setText(String.valueOf(numparent[1]));
+            //info3.setText(String.valueOf(numparent[1]));
+
             profession.setVisible(false);
             diplome.setVisible(false);
             numadulte.setVisible(false);
@@ -163,7 +164,7 @@ public class InfopersonnelleController implements Initializable {
         {
             nompatient.setText(((Adulte)patient).getNom());
             prenompatient.setText(((Adulte)patient).getPrenom());
-            datenpatient.setText(((Adulte)patient).getDate_naissance());
+            datenpatient.setText(String.valueOf(((Adulte)patient).getDate_naissance()));
             lieunpatient.setText(((Adulte)patient).getLieu_naissance());
             adressepatient.setText(((Adulte)patient).getAdresse());
             info1.setText(((Adulte)patient).getProfession());
