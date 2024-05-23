@@ -127,6 +127,21 @@ public class DossierController implements Initializable {
             }
         }
     }
+    @FXML
+    void retour(ActionEvent event)
+    {
+        try {
+            String PageRouter = "/com/example/tp_poo/Patients.fxml";
+            // Load the desired page
+            Parent nextPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(PageRouter)));
+            Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 //    @FXML
 //    void retour(ActionEvent event)

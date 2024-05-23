@@ -26,6 +26,13 @@ public class BO  implements Serializable
 
     }
 
+    public BO(Projet_therapeu po, Epreuve_clinique[] s) {
+
+        this.epreuves_cliniques = s;
+        this.projet = po;
+
+    }
+
     public Epreuve_clinique[] getEpreuves_cliniques() {
         return epreuves_cliniques;
     }

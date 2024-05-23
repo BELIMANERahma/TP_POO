@@ -4,20 +4,20 @@ import java.io.Serializable;
 
 public  abstract class Test implements Serializable {
     private String nom;
-    private int capacité;
+    private int capacite;
     private String compte_rendu;
 
-    public Test(String nom, int capacité) {
+    public Test(String nom, int capacite) {
         this.nom = nom;
-        this.capacité = capacité;
+        this.capacite = capacite;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public int getCapacité() {
-        return capacité;
+    public int getCapacite() {
+        return capacite;
     }
 
     public String getCompte_rendu() {
@@ -28,8 +28,8 @@ public  abstract class Test implements Serializable {
         this.nom = nom;
     }
 
-    public void setCapacité(int capacité) {
-        this.capacité = capacité;
+    public void setCapacite(int capacite) {
+        this.capacite = capacite;
     }
 
     public void setCompte_rendu(String compte_rendu) {

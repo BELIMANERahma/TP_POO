@@ -9,11 +9,46 @@
    -fx-background-radius : 10;
 
 }
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #036;
+
+
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+
+}
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: white; /* Light gray color */
+    -fx-border-color: white;
+}
+
+
+
 .btn{
 
    -fx-background-color : #036;
    -fx-text-fill : white;
    -fx-background-radius : 10;
+
+}
+.btn2{
+
+    -fx-background-color : #d2e8fe;
+    -fx-text-fill : black;
+    -fx-background-radius : 10;
+
+}
+.btn2:hover{
+
+    -fx-background-color :linear-gradient(to bottom right,  #d2e8fe, #a2e3ff) ;
+    -fx-text-fill : black;
+    -fx-background-radius : 10;
 
 }
 .btn:hover{
@@ -70,6 +105,14 @@
 
    -fx-background-color: white;
 
+}
+
+.testelement{
+
+    -fx-background-color: lightpink;
+    -fx-border-color: black1;
+     -fx-border-radius:  10 10 0 0;
+    -fx-background-border:10 10 0 0 ;
 }
 
 .check-box:selected .box {

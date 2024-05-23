@@ -138,7 +138,7 @@ public class LoginController {
             //FileOutputStream fileOut = new FileOutputStream(filename);
             //ObjectOutputStream out = new ObjectOutputStream(fileOut);
             //out.writeObject(user);
-         OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
+            OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
             Orthophoniste user1=OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
             loadNextPage(user);

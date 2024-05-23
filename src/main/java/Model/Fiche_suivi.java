@@ -6,6 +6,8 @@ public class Fiche_suivi implements Serializable {
     static int num ;
     private Objectif[] objectifs;
 
+
+
     public  int getNum() {
         return num;
     }
@@ -18,9 +20,9 @@ public class Fiche_suivi implements Serializable {
     {
     }
 
-    public Fiche_suivi(Objectif[] objectifs,int num) {
+    public Fiche_suivi(Objectif[] objectifs) {
         this.objectifs = objectifs;
-        this.num=num;
+        this.num=num+1;
 
     }
 

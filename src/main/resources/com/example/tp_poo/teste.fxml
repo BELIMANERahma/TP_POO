@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.FicheController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.EpreuveController">
    <left>
       <VBox prefHeight="600.0" prefWidth="235.0" styleClass="anchorpane" stylesheets="@../../../directory/design.css" BorderPane.alignment="CENTER">
          <children>
@@ -210,7 +210,7 @@
          <children>
             <AnchorPane>
                <children>
-                  <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="273.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Bilan Orthophonique  :" textFill="#f76e72e5">
+                  <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="273.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text=" Epreuves ecrites  :" textFill="#f76e72e5">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -225,12 +225,12 @@
             </AnchorPane>
             <AnchorPane prefHeight="123.0" prefWidth="765.0">
                <children>
-                  <Label layoutX="447.0" layoutY="14.0" text="Nombre Totale des epereuves" textFill="#c11313">
+                  <Label layoutX="447.0" layoutY="14.0" text="Nombre Totale Observations " textFill="#c11313">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="61.0" layoutY="14.0" prefHeight="20.0" prefWidth="202.0" text="Nombre Bilan Orthophonique" textFill="#c11313">
+                  <Label layoutX="87.0" layoutY="14.0" prefHeight="20.0" prefWidth="202.0" text="Nombre Totale Testes" textFill="#c11313">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
@@ -253,10 +253,16 @@
                      <children>
                         <HBox prefHeight="471.0" prefWidth="764.0">
                            <children>
-                              <ScrollPane prefHeight="345.0" prefWidth="764.0" style="-fx-background-color: transparent; -fx-text-fill: red;">
+                              <ScrollPane hbarPolicy="NEVER" prefHeight="345.0" prefWidth="764.0" style="-fx-background-color: transparent;" stylesheets="@../../../directory/design.css" vbarPolicy="ALWAYS">
                                  <content>
                                     <VBox fx:id="patientslay" />
                                  </content>
+                                 <styleClass>
+                                    <String fx:value="thumb" />
+                                    <String fx:value="track" />
+                                    <String fx:value="decrement-button" />
+                                    <String fx:value="increment-button" />
+                                 </styleClass>
                               </ScrollPane>
                            </children>
                         </HBox>

@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -113,17 +114,17 @@ public class PatientController implements Initializable {
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-        List<Patient> patients = null;
-        try {
-            patients = new ArrayList<>(patientt());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
-      //  List<Patient> patients = null;
-       // patients = new ArrayList<>(   user.getPatientsList());
+        //       List<Patient> patients = null;
+//        try {
+//            patients = new ArrayList<>(patientt());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e)
+//        {
+//            throw new RuntimeException(e);
+//        }
+         List<Patient> patients = null;
+        patients = new ArrayList<>(   user.getPatientsList());
 
         for(int i=0;i<patients.size();i++)
         {
@@ -146,8 +147,6 @@ public class PatientController implements Initializable {
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-
-
         List<Patient> ls = new ArrayList<>();
         Enfant patient = new Enfant();
         Adulte patient1=new Adulte();
@@ -161,11 +160,82 @@ public class PatientController implements Initializable {
 
 
         TreeSet<Rendez_vous> rendez_vous = new TreeSet<>();
-        List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
-        List<BO> bos=new ArrayList<BO>();
-        Projet_therapeu po =new Projet_therapeu("description du projet dorthophoniste ");
+        LocalDate now = LocalDate.now();
+        String heure= "9:00";
+        String observation ="ya pas d observation ";
+        Objectif[] objectifs = new Objectif[3];
 
-        BO b =new BO(po);
+        // Initialize the array with Objectif objects
+        objectifs[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
+        objectifs[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
+        objectifs[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
+
+
+        Rendez_vous r1 =new Consultation(now,heure,Type_rendez_vous.CONSULTATION,observation,"1h");
+        rendez_vous.add(r1);
+
+
+          List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
+          Objectif[] objectif = new Objectif[3];
+
+        // Initialize the array with Objectif objects
+        objectif[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
+        objectif[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
+        objectif[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
+
+
+        Fiche_suivi f = new Fiche_suivi(objectifs)  ;
+        ficheSuivis.add(f);
+
+
+
+        Projet_therapeu po =new Projet_therapeu("description du projet dorthophoniste ");
+        String[] observations = {
+                "Patient is experiencing mild headaches.",
+                "No signs of fever.",
+                "Blood pressure is within normal range."
+        };
+
+        // Create some example questions for the written test
+        Question[] questions = new Question[]{
+                new Question("What is the capital of France?", "Paris"),
+                new Question("Explain the process of photosynthesis.", "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll."),
+                new Question("What is the chemical symbol for water?", "H2O")
+        };
+        Exercice[] exercices = new Exercice[]{
+                new Exercice("Do 10 push-ups.", new String[]{"Mat", "Water bottle"}),
+                new Exercice("Run for 5 minutes.", new String[]{"Running shoes"})
+        };
+        // Create a written test with these questions
+        Test_questions writtenTest = new Test_questions("General Knowledge Test", 100, questions);
+        exercices[0].setNbr_repeter(3);  // Repeat 3 times
+        exercices[1].setNbr_repeter(1);  // Repeat 1 time
+
+        // Create an exercise test with these exercises
+        Test_exercice exerciseTest = new Test_exercice("Physical Fitness Test", 50, exercices);
+
+        // Create an array of tests (in this case, just one written test)
+        Test[] tests = new Test[]{writtenTest,writtenTest,exerciseTest,writtenTest,writtenTest,writtenTest,writtenTest,writtenTest};
+
+        // Create the Epreuve_clinique instance with the observations and the test
+        Epreuve_clinique epreuve = new Epreuve_clinique(observations, tests);
+        Epreuve_clinique[] s = new Epreuve_clinique[]{epreuve,epreuve};
+
+
+        Trouble dysphagie = new Trouble("Dysphagie", Categorie_trouble.Deglutition);
+        Trouble troubleDuSpectreAutistique = new Trouble("Trouble du spectre autistique", Categorie_trouble.Neuro_developpementaux);
+        Trouble troubleDuDeficitDeLAttention = new Trouble("Trouble du déficit de l'attention", Categorie_trouble.Cognitifs);
+
+        // Creating an array of troubles
+        Trouble[] troubles = {dysphagie, troubleDuSpectreAutistique, troubleDuDeficitDeLAttention};
+
+        // Creating a Diagnostique instance
+        Diagnostique diagnostique = new Diagnostique(troubles);
+
+        List<BO> bos=new ArrayList<BO>();
+
+
+        BO b =new BO(s,diagnostique,po);
         bos.add(b);
         bos.add(b);
 

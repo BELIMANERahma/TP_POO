@@ -10,6 +10,7 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
     private Type_rendez_vous type;
     private String Observation;
 
+
     public Rendez_vous(LocalDate date, String heure, Type_rendez_vous type) {
         this.date = date;
         this.heure = heure;

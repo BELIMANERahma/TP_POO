@@ -46,10 +46,27 @@ public class BoelementController {
         {
             try
             {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/testes.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/teste.fxml"));
                 Parent root = loader.load();
                 EpreuveController fiche = loader.getController();
                 fiche.setficheData(bo.getEpreuves_cliniques());
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 1000, 670);
+                stage.setScene(scene);
+
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        });
+        troubles.setOnMouseClicked(event ->
+        {
+            try
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/Troubles.fxml"));
+                Parent root = loader.load();
+                TroublesController fiche = loader.getController();
+                fiche.setficheData(bo.getDiagnostique().getTrouble());
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root, 1000, 670);
                 stage.setScene(scene);

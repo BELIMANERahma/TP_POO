@@ -1,9 +1,8 @@
 package Controlleur;
 
-import Model.BO;
-import Model.Epreuve_clinique;
 import Model.Orthophoniste;
 import Model.OrthophonisteSessionManager;
+import Model.Trouble;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,24 +12,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class EpreuveController implements Initializable {
+public class TroublesController implements Initializable {
 
     @FXML
     private Label numfiche;
 
     @FXML
-    private Label numobject;
-
-    @FXML
-    private VBox patientslay;
+    private VBox troubleslay;
 
     @FXML
     private Label username1;
@@ -120,20 +116,19 @@ public class EpreuveController implements Initializable {
         }
     }
 
-    public  void setficheData(Epreuve_clinique[] epr)
+    public void setficheData(Trouble[] trouble)
     {
 
-        for (Epreuve_clinique ep :epr)
+        for(int i=0;i<trouble.length;i++)
         {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/epreuveelemnt.fxml"));
-            try
-            {
-                BorderPane hBox = fxmlLoader.load();
-                epelementController cic = fxmlLoader.getController();
-                cic.setData(ep);
-                patientslay.getChildren().add(hBox);
+            fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/troublelement.fxml"));
+            try {
+                BorderPane hBox=fxmlLoader.load();
+                TroublelementController cic = fxmlLoader.getController();
+                cic.setData(trouble[i]);
+                troubleslay.getChildren().add(hBox);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -141,8 +136,11 @@ public class EpreuveController implements Initializable {
         }
 
 
-
     }
+
+
+
+
 
 
 
