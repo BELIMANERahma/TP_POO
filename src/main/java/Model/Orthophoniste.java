@@ -14,9 +14,12 @@ public class Orthophoniste  implements Serializable {
     private TreeMap<Integer,Dossier> Mes_dossiers;
 
 
+
     public Orthophoniste(Compte compte ) {
+
         this.compte = compte;
         this.Mes_dossiers = new TreeMap<Integer,Dossier >();
+        this.agenda = new Agenda();
         String email = this.compte.getEmail().toLowerCase().replace(" ", "");
         serializeProfile("./src/main/Userinformation/" + email + ".ser");
 
@@ -38,6 +41,10 @@ public class Orthophoniste  implements Serializable {
         this.agenda = agnenda;
     }
 
+    public TreeMap<Integer, Dossier> getMes_dossiers() {
+        return Mes_dossiers;
+    }
+
     public TreeMap< Integer,Dossier > getMes_patients()
     {
         return Mes_dossiers;
@@ -47,7 +54,24 @@ public class Orthophoniste  implements Serializable {
         Mes_dossiers.put(dossier.getNumero(),dossier);
 
     }
+    public void add_rendez_vous(Rendez_vous rd){
 
+       this.agenda.add_rendez_vous(rd);
+
+    }
+    public void add_rendez_vous_patient(int num,Rendez_vous rendez_vous){
+
+        if (Mes_dossiers.containsKey(num)) {
+
+         Dossier dossier = Mes_dossiers.get(num);
+         dossier.add_rendez_vous(rendez_vous);
+         Dossier dossier1 =Mes_dossiers.put(num,dossier);
+
+        } else {
+            System.out.println("La clé '" + num + "' n'est pas présente dans le TreeMap.");
+        }
+
+    }
 
     public void setMes_patients(TreeMap< Integer,Dossier > mes_patients)
 

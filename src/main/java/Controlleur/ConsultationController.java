@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -149,7 +150,15 @@ public class ConsultationController {
         if (date == null) {
            jourrror.setText("La date de consultation ne doit pas être vide.");
             allFieldsValid = false;
+        }else {
+            if (date.isBefore(LocalDate.now())) {
+                // La date est antérieure à aujourd'hui, afficher un message d'erreur
+                jourrror.setText("La date est antérieure à aujourd'hui.");
+                allFieldsValid = false;
+            }
         }
+
+
         if (dureeText.isEmpty()) {
             dureerror.setText("La durée de consultation ne doit pas être vide.");
             allFieldsValid = false;
@@ -159,28 +168,42 @@ public class ConsultationController {
         if (heureText.isEmpty()) {
             houreerror11.setText("L'heure de consultation ne doit pas être vide.");
             allFieldsValid = false;
+        }else {
+            try {
+                LocalTime.parse(heureText); // Essayer de parser l'heure
+
+            } catch (Exception e) {
+                houreerror11.setText("Veuillez entrer une heure valide (HH:mm)");
+                allFieldsValid = false;
+            }
         }
 
         // Si toutes les vérifications passent, procéder à la création du dossier
+        Dossier dossier = new Dossier();
+        int num = dossier.getNumero();
         if (allFieldsValid) {
             Patient patient;
             if (age >= 18) {
-                patient = new Adulte(Nom, Prenom);
+                patient = new Adulte(Nom, Prenom,num);
             } else {
-                patient = new Enfant(Nom, Prenom);
+                patient = new Enfant(Nom, Prenom,num);
             }
+            dossier.setPatient(patient);
+            LocalTime time =LocalTime.parse(heureText);
+            Consultation consultation =new Consultation(date,time,Type_rendez_vous.CONSULTATION,Nom,Prenom,age,dureeText);
 
-            Consultation consultation =new Consultation(date,heureText,Type_rendez_vous.CONSULTATION,Nom,Prenom,age,dureeText);
-            Dossier dossier = new Dossier(patient);
             dossier.add_rendez_vous(consultation);
-            afficherMessageSucces("La consultation est ajouter avec succés");
-
             OrthophonisteSessionManager.getCurrentOrthophonisteName().add_patient(dossier);
             Orthophoniste user =OrthophonisteSessionManager.getCurrentOrthophonisteName();
+            user.getAgenda().add_rendez_vous(consultation);
+            afficherMessageSucces("La consultation est ajouter avec succés");
 
-            String PageRouter ="/com/example/tp_poo/Agenda.fxml";
+
+
             try {
+
                 // Load the desired page
+                String PageRouter ="/com/example/tp_poo/Agenda.fxml";
                 Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
 
                 // You need to set the new page in the current scene or open a new window
@@ -209,6 +232,7 @@ public class ConsultationController {
         ageerror.setText("");
         dureerror.setText("");
         houreerror11.setText("");
+        jourrror.setText("");
     }
     private void afficherMessageSucces(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

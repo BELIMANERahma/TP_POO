@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 public class Dossier implements Serializable {
-    private static int counter = 0;
+    private static int counter ;
 
     private int numero;
     private Patient patient ;
@@ -88,6 +88,8 @@ public class Dossier implements Serializable {
 
 
     public void add_rendez_vous(Rendez_vous rd){
+
         rendez_vous.add(rd);
+
     }
 }

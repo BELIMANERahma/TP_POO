@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -113,7 +114,8 @@ public class PatientController implements Initializable {
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-        List<Patient> patients = null;
+
+       /* List<Patient> patients = null;
         try {
             patients = new ArrayList<>(patientt());
         } catch (IOException e) {
@@ -139,7 +141,7 @@ public class PatientController implements Initializable {
                 throw new RuntimeException(e);
             }
 
-        }
+        }*/
     }
     private List<Patient> patientt() throws IOException, ClassNotFoundException {
 
@@ -154,7 +156,7 @@ public class PatientController implements Initializable {
         patient.setNum_dossier(1);
         patient.setNom("Belimane") ;
         patient.setPrenom("Rahma") ;
-        patient.setDate_naissance("20042903") ;
+        patient.setDate_naissance(LocalDate.parse("2004-29-03")) ;
         patient.setAdresse("Constantine");
         patient.setLieu_naissance("Constantine");
         patient.setClass_etude("1 CP");
@@ -178,7 +180,7 @@ public class PatientController implements Initializable {
         patient1.setNum_dossier(2);
         patient1.setNom("Belimane") ;
         patient1.setPrenom("Rahma") ;
-        patient1.setDate_naissance("20042903") ;
+        patient1.setDate_naissance(LocalDate.parse("20042903")) ;
         patient1.setAdresse("Constantine");
         patient1.setLieu_naissance("Constantine");
         patient1.setDimplome("1 CP");

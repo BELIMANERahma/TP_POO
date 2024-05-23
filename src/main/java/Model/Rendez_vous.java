@@ -2,15 +2,16 @@ package Model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializable {
     private LocalDate date;
-    private String heure;
+    private LocalTime heure;
     private Type_rendez_vous type;
     private String Observation;
 
-    public Rendez_vous(LocalDate date, String heure, Type_rendez_vous type) {
+    public Rendez_vous(LocalDate date, LocalTime heure, Type_rendez_vous type) {
         this.date = date;
         this.heure = heure;
         this.type = type;
@@ -24,7 +25,7 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
     protected Rendez_vous() {
     }
 
-    public Rendez_vous(LocalDate date, String heure, Type_rendez_vous type, String observation) {
+    public Rendez_vous(LocalDate date, LocalTime heure, Type_rendez_vous type, String observation) {
         this.date = date;
         this.heure = heure;
         this.type = type;
@@ -37,7 +38,7 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
         return date;
     }
 
-    public String getHeure() {
+    public LocalTime getHeure() {
         return heure;
     }
 
@@ -53,7 +54,7 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
         this.date = date;
     }
 
-    public void setHeure(String heure) {
+    public void setHeure(LocalTime heure) {
         this.heure = heure;
     }
 
@@ -66,9 +67,17 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
     }
     @Override
     public int compareTo(Rendez_vous other) {
-        return this.date.compareTo(other.getDate());
-    }
-    public boolean equals(Object o) {
+        // Compare les dates en premier
+        int dateComparison = this.date.compareTo(other.getDate());
+
+        if (dateComparison != 0) {
+            // Si les dates sont différentes, retourne le résultat de la comparaison des dates
+            return dateComparison;
+        } else {
+            // Si les dates sont les mêmes, compare les heures
+            return this.heure.compareTo(other.getHeure());
+        }
+    }    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rendez_vous that = (Rendez_vous) o;

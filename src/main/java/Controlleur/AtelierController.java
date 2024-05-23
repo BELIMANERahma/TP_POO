@@ -1,17 +1,14 @@
-package Controlleur; /**
- * Sample Skeleton for 'Suivi.fxml' Controller Class
+/**
+ * Sample Skeleton for 'atelier.fxml' Controller Class
  */
+
+package Controlleur;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Objects;
-import java.util.ResourceBundle;
-
-
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import java.util.*;
 
 import Model.*;
 import javafx.collections.FXCollections;
@@ -26,16 +23,18 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.control.ComboBox;
+import org.controlsfx.control.CheckComboBox;
 
-public class SuiviController  {
-
+public class AtelierController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    @FXML // fx:id="checcombox"
+    private CheckComboBox<String> checcombox; // Value injected by FXMLLoader
 
     @FXML // fx:id="duree"
     private TextField duree; // Value injected by FXMLLoader
@@ -55,11 +54,8 @@ public class SuiviController  {
     @FXML // fx:id="jour_consult"
     private DatePicker jour_consult; // Value injected by FXMLLoader
 
-    @FXML // fx:id="jourrror"
-    private Label jourrror; // Value injected by FXMLLoader
-
-    @FXML // fx:id="num_dossier"
-    private TextField num_dossier; // Value injected by FXMLLoader
+    @FXML // fx:id="jourerror"
+    private Label jourerror; // Value injected by FXMLLoader
 
     @FXML // fx:id="numeroerror"
     private Label numeroerror; // Value injected by FXMLLoader
@@ -70,102 +66,45 @@ public class SuiviController  {
     @FXML // fx:id="retour"
     private Button retour; // Value injected by FXMLLoader
 
-    @FXML // fx:id="type_deroulement"
-    private ComboBox<String> type_deroulement;// Value injected by FXMLLoader
+    @FXML // fx:id="thematiqueerror"
+    private Label thematiqueerror; // Value injected by FXMLLoader
 
-    private Label typeeerror;
+    @FXML // fx:id="theme"
+    private TextField theme; // Value injected by FXMLLoader
 
-    @FXML // fx:id="utilisateur"
-    private Label utilisateur; // Value injected by FXMLLoader
-
-    @FXML
-    private Label typeerror;
-
+    @FXML // fx:id="utilisateur1"
+    private Label utilisateur1; // Value injected by FXMLLoader
 
     @FXML
-    boolean chercher_dossier(KeyEvent event)
-    {
-        numeroerror.setText("");
-        String num = num_dossier.getText();
-        boolean existe = false;
-        int numero=0;
-        if (num.isEmpty()) {
-            numeroerror.setText("Le champ nom ne doit pas être vide.");
+    public void enregistrer(ActionEvent event) {
 
-        }else
-        {
-            try {numero= Integer.parseInt(num);
-               Dossier dossier = OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(numero);
-               if(dossier != null) {
-                   existe = true;
-               }else {
-                   numeroerror.setText("Le numéro de dossier n'existe pas!.");
-               }
-
-            } catch (NumberFormatException e) {
-                numeroerror.setText("Le numéro de dossier doit être un nombre valide.");
-            }
-        }
-        return existe;
-    }
-
-    @FXML
-    void enregistrer(ActionEvent event)
-    {
         resetErrorMessages();
 
         String heureText = heure_consult.getText();
         LocalDate date = jour_consult.getValue();
         String dureeText = duree.getText();
-        String num = num_dossier.getText();
-        String selectedValue = type_deroulement.getValue();
-        Deroulement_seance type;
-        // Convert the selected value to the enum type
+        String thematique = theme.getText();
+
         System.out.println("Date sélectionnée : " + date);
-        Orthophoniste user = OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
         boolean allFieldsValid = true;
 
         // Vérifier que le champ nom n'est pas vide
-        int numero=0;
-        Dossier dossier = null;
-        if (num.isEmpty())
-        {
-            numeroerror.setText("Le champ nom ne doit pas être vide.");
-            allFieldsValid = false;
 
-        }else
-        {
-            try {
-                numero= Integer.parseInt(num);
-                dossier = OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(numero);
-
-                if(dossier == null) {
-                    numeroerror.setText("Le numéro de dossier n'existe pas!.");
-                    allFieldsValid = false;
-
-                }
-
-            } catch (NumberFormatException e) {
-                numeroerror.setText("Le numéro de dossier doit être un nombre valide.");
-                allFieldsValid = false;
-            }
-
-        }
 
         // Vérifier que la date est fournie
         if (date == null) {
-            jourrror.setText("La date ne doit pas être vide.");
+            jourerror.setText("La date ne doit pas être vide.");
             allFieldsValid = false;
-        }else {
+        }else
+        {
+
             if (date.isBefore(LocalDate.now())) {
                 // La date est antérieure à aujourd'hui, afficher un message d'erreur
-                jourrror.setText("La date est antérieure à aujourd'hui.");
+                jourerror.setText("La date est antérieure à aujourd'hui.");
                 allFieldsValid = false;
             }
-
         }
-
 
         // Vérifier que l'heure de consultation est fournie
         if (heureText.isEmpty()) {
@@ -180,33 +119,57 @@ public class SuiviController  {
                 allFieldsValid = false;
             }
         }
+        if (thematique.isEmpty()) {
+            thematiqueerror.setText("La thématique ne doit pas être vide.");
+            allFieldsValid = false;
+        }
+        ObservableList<String> selectedItems = checcombox.getCheckModel().getCheckedItems();
+        if(selectedItems.isEmpty()) {
+            // Aucun élément sélectionné, affiche un message d'erreur
+            numeroerror.setText("Veuillez choisir des numéros de dossiers");
+            allFieldsValid = false;
+            System.out.println(selectedItems);
+        }
 
-        if (selectedValue == null || !(selectedValue.equals("en ligne") || selectedValue.equals("en présentiel"))) {
-            typeerror.setText("Choisissez le type de la séance");
-            allFieldsValid = false;}
+
 
         if (allFieldsValid) {
 
-            if (selectedValue.equals("en ligne") )
-            {
-                type = Deroulement_seance.EN_LIGNE;
-            }else
-            {
-                 type = Deroulement_seance.EN_LIGNE;
+            Orthophoniste user = OrthophonisteSessionManager.getCurrentOrthophonisteName();
+
+            // Initialize a list to hold the Dossier objects
+            List<Dossier> dossiersList = new ArrayList<>();
+
+            // Convert the selected items to integers and retrieve corresponding Dossier objects
+            for (String selectedItem : selectedItems) {
+                try {
+                    int dossierNumber = Integer.parseInt(selectedItem);
+                    Dossier dossier = user.rechercher_patient(dossierNumber);
+                    if (dossier != null) {
+                        dossiersList.add(dossier);
+                    }
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid number format: " + selectedItem);
+                }
             }
-            System.out.println(dureeText);
-            dossier = OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(numero);
-            Suivi suivi = new Suivi(date, LocalTime.parse(heureText), Type_rendez_vous.SUIVI, numero, type, dureeText);
-            user.add_rendez_vous_patient(dossier.getNumero(),suivi);
-            //user.getAgenda().add_rendez_vous(suivi);
-            String PageRouter = "/com/example/tp_poo/Agenda.fxml";
+
+            // Convert the list to an array
+            Dossier[] dossiers = dossiersList.toArray(new Dossier[0]);
+            LocalTime time = LocalTime.parse(heureText);
+
+            Atelier atelier = new Atelier(date, time, Type_rendez_vous.ATELIER, thematique, dossiers, dureeText);
+            //user.getAgenda().add_rendez_vous(atelier);
+
+            for (Dossier dossier : dossiers) {
+                user.add_rendez_vous_patient(dossier.getNumero(), atelier);
+            }
+
+            String pageRouter = "/com/example/tp_poo/Agenda.fxml";
             try {
-
-                Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-                Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Parent nextPage = FXMLLoader.load(getClass().getResource(pageRouter));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(nextPage, 1000, 670);
-                Scene.setScene(scene);
-
+                stage.setScene(scene);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -282,8 +245,10 @@ public class SuiviController  {
         }
     }
 
+
     @FXML
     void retour(ActionEvent event) {
+
         try {
             String PageRouter = "/com/example/tp_poo/Agenda.fxml";
             // Load the desired page
@@ -293,33 +258,48 @@ public class SuiviController  {
             Scene.setScene(scene);
 
         } catch (IOException e) {
+
             e.printStackTrace();
+
         }
 
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        String nom1 =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
-        System.out.println(nom1);
-        String prenom1 =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
-
-        utilisateur.setText(nom1 + " " + prenom1);
-
-        ObservableList<String> options = FXCollections.observableArrayList(
-                "en ligne",
-                "en présentiel"
-        );
-        type_deroulement.getItems().clear();
-
-        // Set the items for the ComboBox
-        type_deroulement.setItems(options);
-        // Set the items for the ComboBox
-        duree.setText("1:00");
-        String nom = OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        String nom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
+        System.out.println(nom);
         String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
-        utilisateur.setText(nom + " " + prenom);
-        boolean add = type_deroulement.getItems().add(String.valueOf(options));
+
+        utilisateur1.setText(nom + " " + prenom);
+
+        TreeMap<Integer,Dossier>  dossiers =  OrthophonisteSessionManager.getCurrentOrthophonisteName().getMes_dossiers();
+
+        final ObservableList<String> strings = FXCollections.observableArrayList();
+        Set<Integer> keys = dossiers.keySet();
+        for (Integer key : keys) {
+            strings.add(key.toString());
+        }
+
+        // Add all items from the observable list to the ComboBox
+        checcombox.getItems().addAll(strings);
+
+       duree.setText("1:00");
+
+        assert checcombox != null : "fx:id=\"checcombox\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert duree != null : "fx:id=\"duree\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert dureerror != null : "fx:id=\"dureerror\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert enregistrer != null : "fx:id=\"enregistrer\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert heure_consult != null : "fx:id=\"heure_consult\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert heureerror != null : "fx:id=\"heureerror\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert jour_consult != null : "fx:id=\"jour_consult\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert jourerror != null : "fx:id=\"jourerror\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert numeroerror != null : "fx:id=\"numeroerror\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert profile != null : "fx:id=\"profile\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert retour != null : "fx:id=\"retour\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert thematiqueerror != null : "fx:id=\"thematiqueerror\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert theme != null : "fx:id=\"theme\" was not injected: check your FXML file 'atelier.fxml'.";
+        assert utilisateur1 != null : "fx:id=\"utilisateur1\" was not injected: check your FXML file 'atelier.fxml'.";
 
     }
     private void afficherMessageErreur(String message) {
@@ -330,11 +310,11 @@ public class SuiviController  {
         alert.showAndWait();
     }
     private void resetErrorMessages() {
-        jourrror.setText("");
+        jourerror.setText("");
         numeroerror.setText("");
         heureerror.setText("");
         dureerror.setText("");
-        typeerror.setText("");
+        thematiqueerror.setText("");
     }
     private void afficherMessageSucces(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
