@@ -28,7 +28,7 @@
                         <Image url="@../../../images/or.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="utilisateur1" prefHeight="15.0" prefWidth="0.0" textAlignment="CENTER" textFill="#f4f4f4">
+                  <Label fx:id="utilisateur1" textAlignment="CENTER" textFill="#f4f4f4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -36,10 +36,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="edit_profile" mnemonicParsing="false" onAction="#profile" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
+                  <Button fx:id="edit_profile" mnemonicParsing="false" onAction="#profile" prefHeight="27.0" prefWidth="88.0" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
