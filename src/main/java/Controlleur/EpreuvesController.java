@@ -30,6 +30,10 @@ public class EpreuvesController {
     void handleRouting(MouseEvent event) {
 
     }
+    @FXML
+    void nextpage(ActionEvent event) {
+
+    }
 
     @FXML
     void profile(ActionEvent event) {

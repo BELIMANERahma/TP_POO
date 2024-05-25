@@ -21,6 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 
@@ -139,8 +141,14 @@ public class BilanController {
 
                 if(size_bilan ==0){
                     BO_1 bilan = new BO_1();
-                    String PageRouter = "/com/example/tp_poo/anamnese.fxml";
+                    String PageRouter = "/com/example/tp_poo/troublebilan.fxml";
                     try {
+                        /*FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/ajoutobjec.fxml"));
+                       AnchorPane hBox = fxmlLoader.load();
+                        ajoutertroubleController cic = fxmlLoader.getController();
+                        cic.setData(listeobject);
+                        listeobject.getChildren().add(hBox);*/
 
                         Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
                         Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -152,7 +160,7 @@ public class BilanController {
                     }
                 }else {
                     BO bilan = new BO();
-                    String PageRouter = "/com/example/tp_poo/epreuves.fxml";
+                    String PageRouter = "/com/example/tp_poo/troublebilan.fxml";
                     try {
                         Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
                         Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
