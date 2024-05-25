@@ -131,33 +131,37 @@ public class BilanController {
             allFieldsValid =false;
         }
         if(allFieldsValid){
+
             Dossier dossier =OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(num_dossier);
-            int size_bilan = dossier.getBilans_orth().size();
+            if(dossier.getBilans_orth()!=null)
+            {
+                int size_bilan = dossier.getBilans_orth().size();
 
-            if(size_bilan ==0){
-                BO_1 bilan = new BO_1();
-                String PageRouter = "/com/example/tp_poo/anamnese.fxml";
-                try {
+                if(size_bilan ==0){
+                    BO_1 bilan = new BO_1();
+                    String PageRouter = "/com/example/tp_poo/anamnese.fxml";
+                    try {
 
-                    Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-                    Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(nextPage, 1000, 670);
-                    Scene.setScene(scene);
+                        Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+                        Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(nextPage, 1000, 670);
+                        Scene.setScene(scene);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }else{
-                BO bilan = new BO();
-                String PageRouter = "/com/example/tp_poo/epreuves.fxml";
-                try {
-                    Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-                    Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(nextPage, 1000, 670);
-                    Scene.setScene(scene);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    BO bilan = new BO();
+                    String PageRouter = "/com/example/tp_poo/epreuves.fxml";
+                    try {
+                        Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+                        Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(nextPage, 1000, 670);
+                        Scene.setScene(scene);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 

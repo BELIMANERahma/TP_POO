@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,6 +32,14 @@ public class PatientController implements Initializable {
     @FXML
     private Label username1;
 
+    @FXML
+    private TextField nombre_adultes;
+
+    @FXML
+    private TextField nombre_enfants;
+
+    @FXML
+    private TextField nombre_totales;
 
     @FXML
     private void handleRouting(MouseEvent event) {
@@ -128,7 +137,18 @@ public class PatientController implements Initializable {
 
         TreeMap<Integer, Dossier> patients = user.getMes_patients();
 
+
+        int adultes=0;
+        int enfants =0;
+
         for (Map.Entry<Integer, Dossier> entry : patients.entrySet()) {
+            if (entry.getValue().getPatient() instanceof Enfant){
+                enfants++;
+
+            }else
+            {
+                adultes++;
+            }
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/elemntpatient.fxml"));
             try {
@@ -139,8 +159,11 @@ public class PatientController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
 
+        }
+        nombre_adultes.setText(String.valueOf(adultes));
+        nombre_enfants.setText(String.valueOf(enfants));
+        nombre_totales.setText(String.valueOf(adultes+enfants));
     }
     /*private List<Patient> patientt() throws IOException, ClassNotFoundException {
 

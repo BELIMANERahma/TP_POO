@@ -62,6 +62,21 @@ public class AgendaligneController {
 
 
     }
+    public  boolean vérifier_information(Patient patient){
+        if (patient instanceof Adulte){
+            if(patient.getLieu_naissance() !=null && patient.getAdresse()!= null && ((Adulte) patient).getDimplome()!= null && ((Adulte) patient).getProfession() != null &&patient.getDate_naissance()!=null && ((Adulte) patient).getNumero_personnel()!= 0){
+
+                return true;
+
+            }
+        }else {
+            if(patient.getLieu_naissance() !=null && patient.getAdresse()!= null && ((Enfant) patient).getClass_etude()!= null && ((Enfant) patient).getNumeroparent() != null &&patient.getDate_naissance()!=null){
+                return true;
+
+            }
+        }
+        return false;
+    }
 
     public void remplir_tableau(Rendez_vous rd, Dossier dossier) {
 
@@ -72,7 +87,7 @@ public class AgendaligneController {
         LocalDate date = rd.getDate();
         jour.setText(date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))); // Format as needed
         String type_rd = rd.getType().toString();
-        if (type_rd.equals("CONSULTATION")) {
+        if (type_rd.equals("CONSULTATION") && !vérifier_information(dossier.getPatient()) ) {
 
             action.setVisible(true);  // Assurez-vous que le bouton est visible pour les consultations
             action.setOnAction(event -> {
