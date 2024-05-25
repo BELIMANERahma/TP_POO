@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.control.ComboBox;
+
 import java.io.Serializable;
 
 public class Objectif  implements Serializable {
@@ -8,7 +10,17 @@ public class Objectif  implements Serializable {
     private int evaluation ;
     private boolean  objectifatteint;
 
+    public Objectif(String nomObjectif, Type_objectif type, int note, boolean atteindre) {
 
+
+        this.nom = nomObjectif;
+        this.type = type;
+        objectifatteint=atteindre;
+        evaluation=note;
+
+
+
+    }
 
 
     public boolean isObjectifatteint() {

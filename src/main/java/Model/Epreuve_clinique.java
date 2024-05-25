@@ -8,6 +8,8 @@ public class Epreuve_clinique  implements Serializable {
     private String[] Observations_cliniques;
     private Test[] tests;
 
+
+
     public Epreuve_clinique(String[] observations_cliniques, Test[] tests)
     {
 

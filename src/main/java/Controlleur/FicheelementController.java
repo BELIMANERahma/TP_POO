@@ -15,12 +15,20 @@ public class FicheelementController {
 
     @FXML
     private Label typeobj;
+    @FXML
+    private Label att;
 
-    public void setData(Fiche_suivi fiche,Objectif obj)
-    {
+    @FXML
+    private Label note;
+    public void setData(Fiche_suivi fiche,Objectif obj) {
         numfiche.setText(String.valueOf(fiche.getNum()));
         objectif.setText(obj.getNom());
         typeobj.setText(String.valueOf(obj.getType()));
+        if (obj.isObjectifatteint()) {
+            att.setText("Oui");
+        } else
+        {       att.setText("Non");}
+        note.setText(String.valueOf(obj.getEvaluation()));
 
     }
 
