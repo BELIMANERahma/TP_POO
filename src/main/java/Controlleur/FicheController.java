@@ -70,7 +70,7 @@ public class FicheController implements Initializable
 
             case "Fiche de suivi":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/FicheDeSuivi.fxml";
+                PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
                 break;
 
             case "Testes":
@@ -129,6 +129,7 @@ public class FicheController implements Initializable
 
         for(int i=0;i<ficheSuivis.size();i++)
         {
+
             for (Objectif objectif : ficheSuivis.get(i).getObjectifs()) {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();

@@ -62,7 +62,7 @@ public class PatientController implements Initializable {
 
             case "Fiche de suivi":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/FicheDeSuivi.fxml";
+                PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
                 break;
 
             case "Testes":
@@ -115,17 +115,17 @@ public class PatientController implements Initializable {
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
+//        List<Patient> patients = null;
+//        try {
+//            patients = new ArrayList<>(patientt());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e)
+//        {
+//            throw new RuntimeException(e);
+//        }
         List<Patient> patients = null;
-        try {
-            patients = new ArrayList<>(patientt());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
-      //  List<Patient> patients = null;
-       // patients = new ArrayList<>(   user.getPatientsList());
+        patients = new ArrayList<>(   user.getPatientsList());
 
         for(int i=0;i<patients.size();i++)
         {
@@ -167,7 +167,7 @@ public class PatientController implements Initializable {
         String observation ="ya pas d observation ";
         Objectif[] objectifs = new Objectif[3];
 
-        // Initialize the array with Objectif objects
+//         Initialize the array with Objectif objects
         objectifs[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
         objectifs[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
         objectifs[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
@@ -180,7 +180,7 @@ public class PatientController implements Initializable {
         List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
         Objectif[] objectif = new Objectif[3];
 
-        // Initialize the array with Objectif objects
+//         Initialize the array with Objectif objects
         objectif[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
         objectif[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
         objectif[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
@@ -268,7 +268,8 @@ public class PatientController implements Initializable {
     }
     private static void serialize(String filepath,Orthophoniste user)
     {
-        try {
+        try
+        {
             if (user != null)
             {
                 FileOutputStream fileOut = new FileOutputStream(filepath);

@@ -48,7 +48,8 @@ public class AgendaController  {
         String PageRouter = "/com/example/tp_poo/DefaultPage.fxml"; // Chemin par défaut
         boolean newPage = false;
 
-        switch (labelText) {
+        switch (labelText)
+        {
             case "Patients":
                 newPage = true;
                 PageRouter = "/com/example/tp_poo/Patients.fxml";
@@ -66,7 +67,7 @@ public class AgendaController  {
 
             case "Fiche de suivi":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/FicheDeSuivi.fxml";
+                PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
                 break;
 
             case "Testes":

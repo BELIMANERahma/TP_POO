@@ -46,9 +46,6 @@
 }
 .btn2:hover{
 
-    -fx-background-color :linear-gradient(to bottom right,  #d2e8fe, #a2e3ff) ;
-    -fx-text-fill : black;
-    -fx-background-radius : 10;
 
 }
 .btn:hover{
@@ -92,6 +89,30 @@
 
 ;
 
+}
+.alert {
+    -fx-background-color: #f0f0f0;
+}
+.alert .header-panel {
+    -fx-background-color: #ffcc00;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+.alert .content {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+.alert .button-bar {
+    -fx-background-color: #d3d3d3;
+}
+.alert .button {
+    -fx-font-size: 14px;
+    -fx-background-color: #ff6600;
+    -fx-text-fill: white;
+}
+.alert .button:hover {
+    -fx-background-color: #ff3300;
 }
 .check-box .box {
 

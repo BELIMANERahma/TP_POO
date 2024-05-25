@@ -91,7 +91,7 @@ public class InfopersonnelleController implements Initializable {
 
             case "Fiche de suivi":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/FicheDeSuivi.fxml";
+                PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
                 break;
 
             case "Testes":
@@ -154,7 +154,6 @@ public class InfopersonnelleController implements Initializable {
             int numparent[]=((Enfant)patient).getNumeroparent();
             //info2.setText(String.valueOf(numparent[0]));
             //info3.setText(String.valueOf(numparent[1]));
-
             profession.setVisible(false);
             diplome.setVisible(false);
             numadulte.setVisible(false);

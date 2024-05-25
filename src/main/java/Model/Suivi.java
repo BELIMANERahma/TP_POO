@@ -7,7 +7,7 @@ import java.time.LocalTime;
 public class Suivi extends Rendez_vous {
     private int numero_dossier;
     private Deroulement_seance type;
-    private Objectif[] objectif_seance;
+    private Fiche_suivi fiche;
     private final String duree = "1:00";
 
 
@@ -15,7 +15,6 @@ public class Suivi extends Rendez_vous {
         super(date, heure, type);
         this.numero_dossier = numero_dossier;
         this.type = type1;
-        this.objectif_seance = objectif_seance;
     }
     public Suivi(LocalDate date) {
         super(date) ;
@@ -27,6 +26,18 @@ public class Suivi extends Rendez_vous {
     public Suivi(LocalDate now1, LocalTime heure, Type_rendez_vous typeRendezVous, String observation, int i, Deroulement_seance deroulementSeance, Objectif[] objectifs, String s) {
     }
 
+    public void setNumero_dossier(int numero_dossier) {
+        this.numero_dossier = numero_dossier;
+    }
+
+    public void setType(Deroulement_seance type) {
+        this.type = type;
+    }
+
+    public void setFiche(Fiche_suivi fiche) {
+        this.fiche = fiche;
+    }
+
     public int getNumero_dossier() {
         return numero_dossier;
     }
@@ -35,8 +46,8 @@ public class Suivi extends Rendez_vous {
         return type;
     }
 
-    public Objectif[] getObjectif_seance() {
-        return objectif_seance;
+    public Fiche_suivi getFiche_seance() {
+        return fiche;
     }
 
     public String getDuree() {

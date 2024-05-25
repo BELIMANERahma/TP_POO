@@ -1,7 +1,5 @@
 package Controlleur;
 
-import Model.BO;
-import Model.Epreuve_clinique;
 import Model.Orthophoniste;
 import Model.OrthophonisteSessionManager;
 import javafx.fxml.FXML;
@@ -10,45 +8,59 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class EpreuveController implements Initializable {
+public class FonctionnaliteFicheController implements Initializable {
 
     @FXML
-    private Label numfiche;
+    private ImageView creerfichesuivi;
 
     @FXML
-    private Label numobject;
+    private Button edit_profile;
 
     @FXML
-    private VBox patientslay;
+    private ImageView evaluerfiche;
 
     @FXML
-    private Label username1;
+    private Label utilisateur1;
+
+    @FXML
+    void creerfichesuivi(MouseEvent event) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/ajoutfiche.fxml"));
+        Parent root = loader.load();
+        ajouterficheController fiche = loader.getController();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1000, 670);
+        stage.setScene(scene);
+
+    }
+
+    @FXML
+    void evaluerfiche(MouseEvent event)
+    {
+
+
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
-
-        username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
-
+        utilisateur1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
     }
 
 
-
-
     @FXML
-
     private void handleRouting(MouseEvent event) {
 
         Label label = (Label) event.getSource();
@@ -105,8 +117,10 @@ public class EpreuveController implements Initializable {
         }
         //  PageRouter = "/com/example/tp_poo/Login.fxml";
 
-        if (newPage) {
-            try {
+        if (newPage)
+        {
+            try
+            {
                 // Load the desired page
                 Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
 
@@ -117,36 +131,7 @@ public class EpreuveController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+         }
     }
-
-    public  void setficheData(Epreuve_clinique[] epr)
-    {
-
-        for (Epreuve_clinique ep :epr)
-        {
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/epreuveelemnt.fxml"));
-            try
-            {
-                BorderPane hBox = fxmlLoader.load();
-                epelementController cic = fxmlLoader.getController();
-                cic.setData(ep);
-                patientslay.getChildren().add(hBox);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-
-
-
-    }
-
-
-
-
-
 
 }

@@ -5,10 +5,34 @@ import java.io.Serializable;
 public class Objectif  implements Serializable {
     private String nom;
     private Type_objectif type;
+    private int evaluation ;
+    private boolean  objectifatteint;
+
+
+
+
+    public boolean isObjectifatteint() {
+        return objectifatteint;
+    }
+
+    public void setObjectifatteint(boolean objectifatteint) {
+        this.objectifatteint = objectifatteint;
+    }
+
+    public int getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(int evaluation) {
+        this.evaluation = evaluation;
+    }
 
     public Objectif(String nom, Type_objectif type) {
         this.nom = nom;
         this.type = type;
+
+        objectifatteint=false;
+        evaluation=0;
     }
 
     public String getNom() {

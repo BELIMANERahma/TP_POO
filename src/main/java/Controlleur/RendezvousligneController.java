@@ -75,7 +75,7 @@ public class RendezvousligneController
             typerend.setText(String.valueOf(rend.getType()));
             observation.setText(rend.getObservation());
             info1.setText(String.valueOf(((Suivi)rend).getType_suivi()));
-            Objectif[] obj =((Suivi)rend).getObjectif_seance();
+            Objectif[] obj =((Suivi)rend).getFiche_seance().getObjectifs();
             info2.setText('-'+obj[0].getNom() +"\n -"+obj[1].getNom() );
 
 

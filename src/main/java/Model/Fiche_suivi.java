@@ -30,7 +30,21 @@ public class Fiche_suivi implements Serializable {
         this.objectifs = objectifs;
     }
 
-    public Objectif[] getObjectifs() {
+    public Objectif[] getObjectifs()
+    {
         return objectifs;
     }
+    public boolean isDone() {
+        if (objectifs != null)
+        {
+            for (Objectif objectif : objectifs) {
+                if (!objectif.isObjectifatteint()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
 }
