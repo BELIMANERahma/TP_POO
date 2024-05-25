@@ -74,7 +74,20 @@ public class AtelierController {
 
     @FXML // fx:id="utilisateur1"
     private Label utilisateur1; // Value injected by FXMLLoader
+    @FXML
+    void profile(ActionEvent event){
 
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     public void enregistrer(ActionEvent event) {
 
@@ -86,6 +99,7 @@ public class AtelierController {
         String thematique = theme.getText();
 
         System.out.println("Date sélectionnée : " + date);
+        Orthophoniste user = OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
         boolean allFieldsValid = true;
 
@@ -112,7 +126,11 @@ public class AtelierController {
             allFieldsValid = false;
         }else {
             try {
-                LocalTime.parse(heureText); // Essayer de parser l'heure
+                LocalTime.parse(heureText);
+                if (user.getAgenda().existe(date, LocalTime.parse(heureText), LocalTime.parse(dureeText))) {
+                    heureerror.setText("Vous avez déja un rendez-vous dans cet heure");
+                    allFieldsValid=false;
+                }// Essayer de parser l'heure
 
             } catch (Exception e) {
                 heureerror.setText("Veuillez entrer une heure valide (HH:mm)");
@@ -131,11 +149,7 @@ public class AtelierController {
             System.out.println(selectedItems);
         }
 
-
-
         if (allFieldsValid) {
-
-            Orthophoniste user = OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
             // Initialize a list to hold the Dossier objects
             List<Dossier> dossiersList = new ArrayList<>();
@@ -158,10 +172,13 @@ public class AtelierController {
             LocalTime time = LocalTime.parse(heureText);
 
             Atelier atelier = new Atelier(date, time, Type_rendez_vous.ATELIER, thematique, dossiers, dureeText);
-            //user.getAgenda().add_rendez_vous(atelier);
+
+            user.getAgenda().add_rendez_vous(atelier);
 
             for (Dossier dossier : dossiers) {
+
                 user.add_rendez_vous_patient(dossier.getNumero(), atelier);
+
             }
 
             String pageRouter = "/com/example/tp_poo/Agenda.fxml";
@@ -198,7 +215,7 @@ public class AtelierController {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -284,7 +301,7 @@ public class AtelierController {
         // Add all items from the observable list to the ComboBox
         checcombox.getItems().addAll(strings);
 
-       duree.setText("1:00");
+       duree.setText("01:00");
 
         assert checcombox != null : "fx:id=\"checcombox\" was not injected: check your FXML file 'atelier.fxml'.";
         assert duree != null : "fx:id=\"duree\" was not injected: check your FXML file 'atelier.fxml'.";
@@ -323,5 +340,6 @@ public class AtelierController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 
 }

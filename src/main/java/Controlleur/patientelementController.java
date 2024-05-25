@@ -53,7 +53,10 @@ public class patientelementController implements Initializable {
         num_dossier.setText(String.valueOf(patient.getNum_dossier()));
         nom.setText(patient.getNom());
         prenom.setText(patient.getPrenom());
-        date.setText(String.valueOf(patient.getDate_naissance()));
+        if(patient.getDate_naissance() != null){
+            date.setText(String.valueOf(patient.getDate_naissance()));
+        }
+
 
         dossier.setOnAction(event -> {
             try {

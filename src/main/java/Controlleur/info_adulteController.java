@@ -162,16 +162,18 @@ public class info_adulteController {
 
             try {
                 // Load the desired page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/Infopersonnelle.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/Dossier.fxml"));
                 Parent root = loader.load();
-                InfopersonnelleController InfoController = loader.getController();
-                InfoController.setInfoData(patient);
+                DossierController dossierctrl = loader.getController();
+                dossierctrl.setDossierData(patient.getNum_dossier());
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root, 1000, 670);
                 stage.setScene(scene);
 
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -225,7 +227,7 @@ public class info_adulteController {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -313,6 +315,20 @@ public class info_adulteController {
         assert telephoneerror != null : "fx:id=\"telephoneerror\" was not injected: check your FXML file 'info_adulte.fxml'.";
         assert utilisateur1 != null : "fx:id=\"utilisateur1\" was not injected: check your FXML file 'info_adulte.fxml'.";
 
+    }
+    @FXML
+    void profile(ActionEvent event){
+
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void setInfoData(Rendez_vous rd, Dossier dossier)
     {

@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,7 +40,20 @@ public class FicheController implements Initializable
     @FXML
     private Label username1;
 
+    @FXML
+    void profile(ActionEvent event){
 
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML
@@ -65,7 +79,7 @@ public class FicheController implements Initializable
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -125,26 +139,31 @@ public class FicheController implements Initializable
     {
 
         List<Fiche_suivi> ficheSuivis = dossier.getFiches_suivi();
+        int numfich=0;
+        int numobj=0;
+      if(ficheSuivis!=null) {
+          for (int i = 0; i < ficheSuivis.size(); i++) {
+              numfich++;
 
+              for (Objectif objectif : ficheSuivis.get(i).getObjectifs()) {
+                  numobj++;
 
-        for(int i=0;i<ficheSuivis.size();i++)
-        {
-            for (Objectif objectif : ficheSuivis.get(i).getObjectifs()) {
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/ficheelement.fxml"));
+                  try {
+                      BorderPane hBox = fxmlLoader.load();
+                      FicheelementController cic = fxmlLoader.getController();
+                      cic.setData(ficheSuivis.get(i), objectif);
+                      patientslay.getChildren().add(hBox);
+                  } catch (IOException e) {
+                      throw new RuntimeException(e);
+                  }
+              }
 
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/ficheelement.fxml"));
-                try {
-                    BorderPane hBox = fxmlLoader.load();
-                    FicheelementController cic = fxmlLoader.getController();
-                    cic.setData(ficheSuivis.get(i),objectif);
-                    patientslay.getChildren().add(hBox);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-        }
-
+          }
+      }
+      numfiche.setText(String.valueOf(numobj));
+      numobject.setText(String.valueOf(numobj));
     }
 
 

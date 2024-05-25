@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +32,20 @@ public class BoController implements Initializable {
 
     @FXML
     private Label username1;
+    @FXML
+    void profile(ActionEvent event){
+
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -68,7 +83,7 @@ public class BoController implements Initializable {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -121,27 +136,28 @@ public class BoController implements Initializable {
    {
 
        List<BO> bos= dossier.getBilans_orth();
-       for (BO bo :bos)
-       {
+       int bilon=0;
+       int epr=0;
+       if(bos != null) {
+           for (BO bo : bos) {
+               bilon++;
+               epr+=bo.getEpreuves_cliniques().length;
 
-           FXMLLoader fxmlLoader = new FXMLLoader();
-           fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/boelement.fxml"));
-           try
-           {
-               BorderPane hBox = fxmlLoader.load();
-               BoelementController cic = fxmlLoader.getController();
-               cic.setData(bo);
-               patientslay.getChildren().add(hBox);
-           } catch (IOException e) {
-               throw new RuntimeException(e);
+               FXMLLoader fxmlLoader = new FXMLLoader();
+               fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/boelement.fxml"));
+               try {
+                   BorderPane hBox = fxmlLoader.load();
+                   BoelementController cic = fxmlLoader.getController();
+                   cic.setData(bo);
+                   patientslay.getChildren().add(hBox);
+               } catch (IOException e) {
+                   throw new RuntimeException(e);
+               }
+
            }
-
        }
-
-
-
-
-
+       numfiche.setText(String.valueOf(bilon));
+       numobject.setText(String.valueOf(epr));
    }
 
 

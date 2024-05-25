@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,6 +34,20 @@ public class RendezvousPatientController implements Initializable {
 
     @FXML
     private Label username1;
+    @FXML
+    void profile(ActionEvent event){
+
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -70,7 +85,7 @@ public class RendezvousPatientController implements Initializable {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -136,10 +151,19 @@ public class RendezvousPatientController implements Initializable {
 //       // Rendez_vous r2 =new Suivi(now1,heure,Type_rendez_vous.SUIVI,observation,1,Deroulement_seance.EN_PRESENTIEL,objectifs,"1h");
 //          rendez_vous.add(r1);
 //        //   rendez_vous.add(r2);
+
         dossier.setRendez_vous(rendez_vous);
+        int suiv =0;
+        int atel =0;
 
             for (Rendez_vous  rend : rendez_vous) {
-                
+                if(rend.getType() == Type_rendez_vous.valueOf("SUIVI")){
+
+                    suiv++;
+                } else if (rend.getType() == Type_rendez_vous.valueOf("ATELIER")) {
+                    atel++;
+                }
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/rendez-vouselement.fxml"));
                 try {
@@ -152,6 +176,9 @@ public class RendezvousPatientController implements Initializable {
                 }
 
             }
+
+            numfiche1.setText(String.valueOf(suiv));
+            numfiche11.setText(String.valueOf(atel));
 
 
     }

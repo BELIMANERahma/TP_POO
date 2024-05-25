@@ -4,6 +4,7 @@ public class OrthophonisteSessionManager
 {
     private  static Orthophoniste currentOrthophoniste;
 
+
     private OrthophonisteSessionManager() {}
 
 

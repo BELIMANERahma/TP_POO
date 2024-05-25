@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,10 +21,7 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.TreeSet;
+import java.util.*;
 
 
 public class PatientController implements Initializable {
@@ -57,7 +55,7 @@ public class PatientController implements Initializable {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -106,7 +104,20 @@ public class PatientController implements Initializable {
             }
 
     }
+    @FXML
+    void profile(ActionEvent event){
 
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -115,35 +126,23 @@ public class PatientController implements Initializable {
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-        List<Patient> patients = null;
-        try {
-            patients = new ArrayList<>(patientt());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
-      //  List<Patient> patients = null;
-       // patients = new ArrayList<>(   user.getPatientsList());
+        TreeMap<Integer, Dossier> patients = user.getMes_patients();
 
-        for(int i=0;i<patients.size();i++)
-        {
-
+        for (Map.Entry<Integer, Dossier> entry : patients.entrySet()) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/elemntpatient.fxml"));
             try {
-                HBox hBox=fxmlLoader.load();
+                HBox hBox = fxmlLoader.load();
                 patientelementController cic = fxmlLoader.getController();
-                cic.setData(patients.get(i));
+                cic.setData(entry.getValue().getPatient());
                 patientslay.getChildren().add(hBox);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         }
+
     }
-    private List<Patient> patientt() throws IOException, ClassNotFoundException {
+    /*private List<Patient> patientt() throws IOException, ClassNotFoundException {
 
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
@@ -287,6 +286,6 @@ public class PatientController implements Initializable {
         {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }

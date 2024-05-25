@@ -12,6 +12,10 @@ public class BO_1 extends BO
         this.prise_en_charge = prise_en_charge;
     }
 
+    public BO_1() {
+
+    }
+
     public Anamnese getAnamnese() {
         return anamnese;
     }

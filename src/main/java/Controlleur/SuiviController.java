@@ -81,7 +81,20 @@ public class SuiviController  {
     @FXML
     private Label typeerror;
 
+    @FXML
+    void profile(ActionEvent event){
 
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     boolean chercher_dossier(KeyEvent event)
     {
@@ -174,6 +187,10 @@ public class SuiviController  {
         }else {
             try {
                 LocalTime.parse(heureText); // Essayer de parser l'heure
+                if (user.getAgenda().existe(date, LocalTime.parse(heureText), LocalTime.parse(dureeText))) {
+                    heureerror.setText("Vous avez déja un rendez-vous dans cet heure");
+                    allFieldsValid =false;
+                }
 
             } catch (Exception e) {
                 heureerror.setText("Veuillez entrer une heure valide (HH:mm)");
@@ -235,7 +252,7 @@ public class SuiviController  {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -305,21 +322,13 @@ public class SuiviController  {
         String prenom1 =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
 
         utilisateur.setText(nom1 + " " + prenom1);
-
-        ObservableList<String> options = FXCollections.observableArrayList(
-                "en ligne",
-                "en présentiel"
-        );
-        type_deroulement.getItems().clear();
-
+        final ObservableList<String> strings = FXCollections.observableArrayList();
+        strings.add("en ligne");
+        strings.add("en présentiel");
+        type_deroulement.getItems().addAll(strings);
         // Set the items for the ComboBox
-        type_deroulement.setItems(options);
-        // Set the items for the ComboBox
-        duree.setText("1:00");
-        String nom = OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getNom();
-        String prenom =OrthophonisteSessionManager.getCurrentOrthophonisteName().getCompte().getPrenom();
-        utilisateur.setText(nom + " " + prenom);
-        boolean add = type_deroulement.getItems().add(String.valueOf(options));
+        duree.setText("01:00");
+
 
     }
     private void afficherMessageErreur(String message) {

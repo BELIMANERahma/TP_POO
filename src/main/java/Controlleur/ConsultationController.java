@@ -90,15 +90,29 @@ public class ConsultationController {
             try {
                 int a  = Integer.parseInt(age);
                 if(a>=18){
-                    duree.setText("1:30");
+                    duree.setText("01:30");
 
                 }else {
-                    duree.setText("2:30");
+                    duree.setText("02:30");
                 }
 
             } catch (NumberFormatException e) {
                 ageerror.setText("L'âge doit être un nombre valide.");
             }
+    }
+    @FXML
+    void profile(ActionEvent event){
+
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void enregistrer(ActionEvent event)
@@ -113,6 +127,7 @@ public class ConsultationController {
         LocalDate date = jour_consult.getValue();
         String dureeText = duree.getText();
         System.out.println("Date sélectionnée : " + date);
+        Orthophoniste user =OrthophonisteSessionManager.getCurrentOrthophonisteName();
 
 
         // Variable pour vérifier si toutes les vérifications passent
@@ -171,6 +186,10 @@ public class ConsultationController {
         }else {
             try {
                 LocalTime.parse(heureText); // Essayer de parser l'heure
+                if (user.getAgenda().existe(date, LocalTime.parse(heureText), LocalTime.parse(dureeText))) {
+                    houreerror11.setText("Vous avez déja un rendez-vous dans cet heure");
+                    allFieldsValid =false;
+                }
 
             } catch (Exception e) {
                 houreerror11.setText("Veuillez entrer une heure valide (HH:mm)");
@@ -179,9 +198,10 @@ public class ConsultationController {
         }
 
         // Si toutes les vérifications passent, procéder à la création du dossier
-        Dossier dossier = new Dossier();
-        int num = dossier.getNumero();
+
         if (allFieldsValid) {
+            Dossier dossier = new Dossier();
+            int num = dossier.getNumero();
             Patient patient;
             if (age >= 18) {
                 patient = new Adulte(Nom, Prenom,num);
@@ -194,7 +214,7 @@ public class ConsultationController {
 
             dossier.add_rendez_vous(consultation);
             OrthophonisteSessionManager.getCurrentOrthophonisteName().add_patient(dossier);
-            Orthophoniste user =OrthophonisteSessionManager.getCurrentOrthophonisteName();
+
             user.getAgenda().add_rendez_vous(consultation);
             afficherMessageSucces("La consultation est ajouter avec succés");
 
@@ -265,7 +285,7 @@ public class ConsultationController {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":

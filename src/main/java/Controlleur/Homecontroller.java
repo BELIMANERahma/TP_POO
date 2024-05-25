@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import Model.Orthophoniste;
 import Model.OrthophonisteSessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,7 +54,7 @@ public class Homecontroller {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -107,7 +108,20 @@ public class Homecontroller {
         utilisateur1.setText(utilisateur.getCompte().getNom() + " " + utilisateur.getCompte().getPrenom());
 
     }
+    @FXML
+    void profile(ActionEvent event){
 
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     public void initialize()
     {

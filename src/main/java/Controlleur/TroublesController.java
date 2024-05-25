@@ -3,6 +3,7 @@ package Controlleur;
 import Model.Orthophoniste;
 import Model.OrthophonisteSessionManager;
 import Model.Trouble;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,6 +40,20 @@ public class TroublesController implements Initializable {
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
     }
+    @FXML
+    void profile(ActionEvent event){
+
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -67,7 +82,7 @@ public class TroublesController implements Initializable {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
