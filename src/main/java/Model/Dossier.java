@@ -16,7 +16,6 @@ public class Dossier implements Serializable {
     private List<BO> Bilans_orth;
     private ArrayList<Fiche_suivi> fiches_suivi;
 
-
     public Patient getPatient()
     {
         return patient;
@@ -40,16 +39,16 @@ public class Dossier implements Serializable {
         numero = counter+1;
         counter++;
         this.rendez_vous = new TreeSet<Rendez_vous>();
-
+        this.Bilans_orth= new ArrayList<BO>();
+        this.fiches_suivi =new ArrayList<Fiche_suivi>();
     }
     public Dossier()
     {
         numero = counter+1;
         counter++;
         this.rendez_vous = new TreeSet<Rendez_vous>();
-        this.fiches_suivi=new ArrayList<>();
-        this.Bilans_orth=new ArrayList<>();
-
+        this.Bilans_orth= new ArrayList<BO>();
+        this.fiches_suivi =new ArrayList<Fiche_suivi>();
 
     }
 
@@ -94,5 +93,8 @@ public class Dossier implements Serializable {
 
         rendez_vous.add(rd);
 
+    }
+    public static void setCounter(int n){
+        counter = n;
     }
 }

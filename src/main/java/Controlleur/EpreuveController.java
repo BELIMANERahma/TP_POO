@@ -4,6 +4,7 @@ import Model.BO;
 import Model.Epreuve_clinique;
 import Model.Orthophoniste;
 import Model.OrthophonisteSessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,6 +43,20 @@ public class EpreuveController implements Initializable {
 
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
+    }
+    @FXML
+    void profile(ActionEvent event){
+
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

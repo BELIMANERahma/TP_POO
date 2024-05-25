@@ -36,7 +36,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="88.0" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#profile" prefHeight="27.0" prefWidth="88.0" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -243,21 +243,36 @@
             </AnchorPane>
             <AnchorPane prefHeight="123.0" prefWidth="765.0">
                <children>
-                  <TextField alignment="CENTER" layoutX="86.0" layoutY="3.0" prefHeight="117.0" prefWidth="150.0" style="-fx-background-color: #036; -fx-text-fill: #fff; -fx-border-color: transparent;" styleClass="textfield" stylesheets="@../../../directory/design.css" text="290">
+                  <TextField fx:id="nombre_adultes" alignment="CENTER" layoutX="96.0" layoutY="25.0" prefHeight="82.0" prefWidth="139.0" style="-fx-background-color: #036; -fx-text-fill: #fff; -fx-border-color: transparent;" styleClass="textfield" stylesheets="@../../../directory/design.css" text="290">
                      <font>
-                        <Font size="51.0" />
+                        <Font size="31.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="305.0" layoutY="3.0" prefHeight="117.0" prefWidth="150.0" style="-fx-background-color: #036; -fx-text-fill: #fff; -fx-border-color: transparent;" styleClass="textfield" stylesheets="@../../../directory/design.css" text="230">
+                  <TextField fx:id="nombre_enfants" alignment="CENTER" layoutX="327.0" layoutY="26.0" prefHeight="82.0" prefWidth="139.0" style="-fx-background-color: #036; -fx-text-fill: #fff; -fx-border-color: transparent;" styleClass="textfield" stylesheets="@../../../directory/design.css" text="290">
                      <font>
-                        <Font size="51.0" />
+                        <Font size="31.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="529.0" layoutY="3.0" prefHeight="117.0" prefWidth="150.0" style="-fx-background-color: #036; -fx-border-color: transparent; -fx-text-fill: #fff;" styleClass="textfield" stylesheets="@../../../directory/design.css" text="230">
+                  <TextField fx:id="nombre_totales" alignment="CENTER" layoutX="545.0" layoutY="26.0" prefHeight="82.0" prefWidth="139.0" style="-fx-background-color: #036; -fx-text-fill: #fff; -fx-border-color: transparent;" styleClass="textfield" stylesheets="@../../../directory/design.css" text="290">
                      <font>
-                        <Font size="51.0" />
+                        <Font size="31.0" />
                      </font>
                   </TextField>
+                  <Label alignment="CENTER" layoutX="67.0" layoutY="-3.0" prefHeight="20.0" prefWidth="202.0" text="Nombre des patients adultes" textFill="#c11313">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="284.0" layoutY="1.0" prefHeight="20.0" prefWidth="227.0" text="Nombre des patients enfants" textFill="#c11313">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="503.0" layoutY="6.0" prefHeight="20.0" prefWidth="227.0" text="Nombre des patients totales" textFill="#c11313">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="451.0" prefWidth="765.0">

@@ -17,4 +17,8 @@ public class Anamnese implements Serializable {
     public void setQuestion(Question_anamnese[] question) {
         this.question = question;
     }
+
+
+
+    
 }

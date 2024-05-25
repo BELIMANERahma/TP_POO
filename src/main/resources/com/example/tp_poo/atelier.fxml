@@ -38,7 +38,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="profile" mnemonicParsing="false" prefHeight="27.0" prefWidth="88.0" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
+                  <Button fx:id="profile" mnemonicParsing="false" onAction="#profile" prefHeight="27.0" prefWidth="88.0" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

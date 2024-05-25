@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,10 +22,7 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.TreeSet;
+import java.util.*;
 
 
 public class PatientController implements Initializable {
@@ -33,6 +32,14 @@ public class PatientController implements Initializable {
     @FXML
     private Label username1;
 
+    @FXML
+    private TextField nombre_adultes;
+
+    @FXML
+    private TextField nombre_enfants;
+
+    @FXML
+    private TextField nombre_totales;
 
     @FXML
     private void handleRouting(MouseEvent event) {
@@ -57,7 +64,7 @@ public class PatientController implements Initializable {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/BO.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
@@ -92,21 +99,34 @@ public class PatientController implements Initializable {
         //  PageRouter = "/com/example/tp_poo/Login.fxml";
 
 
-            try {
-                // Load the desired page
-                Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-                // You need to set the new page in the current scene or open a new window
-                // Example for setting the new page in the current scene:
-                Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(nextPage, 1000, 670);
-                Scene.setScene(scene);
+        try {
+            // Load the desired page
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            // You need to set the new page in the current scene or open a new window
+            // Example for setting the new page in the current scene:
+            Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
+    @FXML
+    void profile(ActionEvent event){
 
+        try {
+            String PageRouter = "/com/example/tp_poo/Profile.fxml";
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -115,35 +135,37 @@ public class PatientController implements Initializable {
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-//        List<Patient> patients = null;
-//        try {
-//            patients = new ArrayList<>(patientt());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } catch (ClassNotFoundException e)
-//        {
-//            throw new RuntimeException(e);
-//        }
-        List<Patient> patients = null;
-        patients = new ArrayList<>(   user.getPatientsList());
+        TreeMap<Integer, Dossier> patients = user.getMes_patients();
 
-        for(int i=0;i<patients.size();i++)
-        {
 
+        int adultes=0;
+        int enfants =0;
+
+        for (Map.Entry<Integer, Dossier> entry : patients.entrySet()) {
+            if (entry.getValue().getPatient() instanceof Enfant){
+                enfants++;
+
+            }else
+            {
+                adultes++;
+            }
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/elemntpatient.fxml"));
             try {
-                HBox hBox=fxmlLoader.load();
+                HBox hBox = fxmlLoader.load();
                 patientelementController cic = fxmlLoader.getController();
-                cic.setData(patients.get(i));
+                cic.setData(entry.getValue().getPatient());
                 patientslay.getChildren().add(hBox);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
         }
+        nombre_adultes.setText(String.valueOf(adultes));
+        nombre_enfants.setText(String.valueOf(enfants));
+        nombre_totales.setText(String.valueOf(adultes+enfants));
     }
-    private List<Patient> patientt() throws IOException, ClassNotFoundException {
+    /*private List<Patient> patientt() throws IOException, ClassNotFoundException {
 
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
@@ -167,7 +189,7 @@ public class PatientController implements Initializable {
         String observation ="ya pas d observation ";
         Objectif[] objectifs = new Objectif[3];
 
-//         Initialize the array with Objectif objects
+        // Initialize the array with Objectif objects
         objectifs[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
         objectifs[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
         objectifs[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
@@ -180,7 +202,7 @@ public class PatientController implements Initializable {
         List<Fiche_suivi> ficheSuivis =new ArrayList<Fiche_suivi>();
         Objectif[] objectif = new Objectif[3];
 
-//         Initialize the array with Objectif objects
+        // Initialize the array with Objectif objects
         objectif[0] = new Objectif("Stay alive until the end", Type_objectif.COURT_TERME);
         objectif[1] = new Objectif("Complete the project", Type_objectif.MOYEN_TERME);
         objectif[2] = new Objectif("Achieve career goals", Type_objectif.LONG_TERME);
@@ -268,8 +290,7 @@ public class PatientController implements Initializable {
     }
     private static void serialize(String filepath,Orthophoniste user)
     {
-        try
-        {
+        try {
             if (user != null)
             {
                 FileOutputStream fileOut = new FileOutputStream(filepath);
@@ -288,6 +309,6 @@ public class PatientController implements Initializable {
         {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }

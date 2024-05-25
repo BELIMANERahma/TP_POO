@@ -36,7 +36,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="edit_profile" mnemonicParsing="false" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
+                  <Button fx:id="edit_profile" mnemonicParsing="false" onAction="#profile" style="-fx-background-radius: 30;" styleClass="btn1" stylesheets="@../../../directory/design.css" text="Edit profile" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

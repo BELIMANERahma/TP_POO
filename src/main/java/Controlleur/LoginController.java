@@ -1,5 +1,6 @@
 package Controlleur;
 
+import Model.Dossier;
 import Model.Orthophoniste;
 import Model.OrthophonisteSessionManager;
 import javafx.event.ActionEvent;
@@ -140,6 +141,7 @@ public class LoginController {
             //out.writeObject(user);
             OrthophonisteSessionManager.setCurrentOrthophonisteName(user);
             Orthophoniste user1=OrthophonisteSessionManager.getCurrentOrthophonisteName();
+            Dossier.setCounter(user1.getMes_dossiers().size());
 
             loadNextPage(user);
         }

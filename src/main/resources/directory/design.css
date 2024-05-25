@@ -2,9 +2,19 @@
 {
 -fx-background-color: white;
 }
+obs
+{
+   -fx-background-color: transparent ;
+}
 .btn1{
 
    -fx-background-color : #ee494b;
+   -fx-text-fill : white;
+   -fx-background-radius : 10;
+
+}
+.info{
+   -fx-background-color : #28a745;
    -fx-text-fill : white;
    -fx-background-radius : 10;
 

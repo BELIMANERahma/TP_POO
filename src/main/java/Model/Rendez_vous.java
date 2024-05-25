@@ -30,8 +30,6 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
         this.heure = heure;
         this.type = type;
         this.Observation = observation;
-
-
     }
 
     public LocalDate getDate() {
@@ -77,11 +75,13 @@ public abstract class Rendez_vous implements Comparable<Rendez_vous>, Serializab
             // Si les dates sont les mêmes, compare les heures
             return this.heure.compareTo(other.getHeure());
         }
-    }    public boolean equals(Object o) {
+    }
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rendez_vous that = (Rendez_vous) o;
-        return Objects.equals(date, that.date);
+        return Objects.equals(date, that.date)&&
+                Objects.equals(heure, that.heure);
     }
     public abstract String getDuree();
 
