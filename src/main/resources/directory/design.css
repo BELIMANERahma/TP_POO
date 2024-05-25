@@ -108,7 +108,7 @@
 }
 .alert .button {
     -fx-font-size: 14px;
-    -fx-background-color: #ff6600;
+    -fx-background-color: #ee494b;
     -fx-text-fill: white;
 }
 .alert .button:hover {

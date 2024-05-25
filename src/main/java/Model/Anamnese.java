@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 
 public class Anamnese implements Serializable {
+
     private Question_anamnese[] question;
 
     public Anamnese(Question_anamnese[] question) {

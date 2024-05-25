@@ -45,8 +45,14 @@ public class FonctionnaliteFicheController implements Initializable {
     }
 
     @FXML
-    void evaluerfiche(MouseEvent event)
-    {
+    void evaluerfiche(MouseEvent event) throws IOException {
+
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/evaluerfiche.fxml"));
+//        Parent root = loader.load();
+//        ajouterficheController fiche = loader.getController();
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene scene = new Scene(root, 1000, 670);
+//        stage.setScene(scene);
 
 
 

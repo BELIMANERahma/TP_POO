@@ -147,31 +147,32 @@ public class ConsultationController {
         }
 
         // Vérifier que la date de consultation est fournie
-        if (date == null) {
+        if (date == null)
+        {
            jourrror.setText("La date de consultation ne doit pas être vide.");
             allFieldsValid = false;
-        }else {
+        }else
+        {
             if (date.isBefore(LocalDate.now())) {
                 // La date est antérieure à aujourd'hui, afficher un message d'erreur
                 jourrror.setText("La date est antérieure à aujourd'hui.");
                 allFieldsValid = false;
             }
         }
-
-
-        if (dureeText.isEmpty()) {
+        if (dureeText.isEmpty())
+        {
             dureerror.setText("La durée de consultation ne doit pas être vide.");
             allFieldsValid = false;
         }
-
         // Vérifier que l'heure de consultation est fournie
-        if (heureText.isEmpty()) {
+        if (heureText.isEmpty())
+        {
             houreerror11.setText("L'heure de consultation ne doit pas être vide.");
             allFieldsValid = false;
-        }else {
+        }else
+        {
             try {
                 LocalTime.parse(heureText); // Essayer de parser l'heure
-
             } catch (Exception e) {
                 houreerror11.setText("Veuillez entrer une heure valide (HH:mm)");
                 allFieldsValid = false;
@@ -219,7 +220,8 @@ public class ConsultationController {
     }
 
 
-    private void afficherMessageErreur(String message) {
+    private void afficherMessageErreur(String message)
+    {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText(null);

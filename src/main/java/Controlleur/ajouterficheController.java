@@ -1,6 +1,7 @@
 package Controlleur;
 
 import Model.*;
+import com.example.tp_poo.tpApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -131,46 +132,60 @@ public class ajouterficheController implements Initializable
 
         if (allFieldsValid)
         {
-            numero= Integer.parseInt(num);
-            dossier = OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(numero);
-             Fiche_suivi last_fiche =dossier.getFiches_suivi().getLast();
-            //le cas win hada patient jdid a revoir
-             // if(last_fiche.isDone())
-             // {
-                  afficherMessageSucces("les objectifs de la derniere fiche de suivi  ce patient sont  atteint vous pouvez les consulter dans le profile dun patient  et egalement creer une nouvelle fiche de suivi ");
+             numero= Integer.parseInt(num);
+             dossier = OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(numero);
+            if(dossier.getFiches_suivi().size()!=0)
+            {
+                Fiche_suivi last_fiche =dossier.getFiches_suivi().getLast();
+                if(last_fiche.isDone())
+                {
+                    afficherMessageSucces("les objectifs de la derniere fiche de suivi  ce patient sont  atteint vous pouvez les consulter dans le profile du patient  et egalement creer une nouvelle fiche de suivi ");
 
-            System.out.println("User chose to continue");
+                    System.out.println("User chose to continue");
+                    creerfiche.setDisable(true);
+                    num_dossier.setDisable(true);
+                    System.out.println(listeobject);
 
-             creerfiche.setDisable(true);
-            num_dossier.setDisable(true);
-            System.out.println(listeobject);
-
-
-            try {
-
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/ajoutobjec.fxml"));
+                    try
+                    {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/ajoutobjec.fxml"));
                         HBox hBox = fxmlLoader.load();
                         ajouterobjectifController cic = fxmlLoader.getController();
                         cic.setData(listeobject);
                         listeobject.getChildren().add(hBox);
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                    } catch (IOException e)
+                    {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else
+                {
+                    afficherMessagesuivi("les objectifs de la derniere fiche de suivi  ce patient ne sont pas atteint vous pouvez l'evaluer dans la page precedente   Est ce que vous etes sure de vouloir creer une nouvelle fiche de suivi ");
+                }
+
+            }else
+            {
+                creerfiche.setDisable(true);
+                num_dossier.setDisable(true);
+                System.out.println(listeobject);
+                try
+                {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/ajoutobjec.fxml"));
+                    HBox hBox = fxmlLoader.load();
+                    ajouterobjectifController cic = fxmlLoader.getController();
+                    cic.setData(listeobject);
+                    listeobject.getChildren().add(hBox);
+
+                } catch (IOException e)
+                {
+                    throw new RuntimeException(e);
+                }
+
+
             }
-
-
-
-
-              //}
-              //else
-              //{
-                 // afficherMessagesuivi("les objectifs de la derniere fiche de suivi  ce patient ne sont pas atteint esq vous etes sure de vouloir creer une nouvelle fiche de suivi ");
-
-
-            //}
-
-
 
         }
     }
@@ -197,7 +212,8 @@ public class ajouterficheController implements Initializable
             System.out.println(typeObjectif);
 
 
-            if (!nomObjectif.isEmpty() && typeObjectif != null) {
+            if (!nomObjectif.isEmpty() && typeObjectif != null)
+            {
                 Type_objectif type = null;
                 switch (typeObjectif) {
                     case "Court Terme":
@@ -229,7 +245,7 @@ public class ajouterficheController implements Initializable
         int numero= Integer.parseInt(num_dossier.getText());
         Dossier dossier = OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(numero);
         dossier.getFiches_suivi().add(ficheSuivi);
-        affichercreatesucces("Creation de la Fiche de suivi de patient "+dossier.getPatient().getNom() +" "+dossier.getPatient().getPrenom()+" qvec succés" );
+        afficherMessageSucces("Creation de la Fiche de suivi de patient "+dossier.getPatient().getNom() +" "+dossier.getPatient().getPrenom()+" qvec succés" );
 
         String PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
         try {
@@ -340,6 +356,27 @@ public class ajouterficheController implements Initializable
         alert.setTitle("Succès");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        DialogPane dialogPane = alert.getDialogPane();
+        // Remove the default icon
+        alert.setGraphic(null);
+        // Optional: apply a custom icon (comment out if you don't want any icon)
+        Image iconImage = new Image(getClass().getResourceAsStream("/images/Dossier/utilisateur.png"));
+        // Create an ImageView for the icon and set its size
+        ImageView customIcon = new ImageView(iconImage);
+        customIcon.setFitWidth(32);  // Set the desired width
+        customIcon.setFitHeight(32); // Set the desired height
+        customIcon.setPreserveRatio(true); // Preserve the aspect ratio
+
+        // Set the custom icon in the alert
+        alert.setGraphic(customIcon);
+
+        // Showing the alert
+        dialogPane.setPrefSize(400, 200); // Set the preferred width and height
+
+
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/directory/design.css").toExternalForm());
+
+
         ButtonType buttonTypeContinue = new ButtonType("Continue");
 
         // Add buttons to the alert
@@ -349,12 +386,6 @@ public class ajouterficheController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == buttonTypeContinue) {
             // Handle the continue action
-
-
-
-
-
-
 
 
 
@@ -406,11 +437,31 @@ public class ajouterficheController implements Initializable
         alert.setTitle("Alerte");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        DialogPane dialogPane = alert.getDialogPane();
+
+        Image iconImage = new Image(getClass().getResourceAsStream("/images/Dossier/utilisateur.png"));
+
+        // Create an ImageView for the icon and set its size
+        ImageView customIcon = new ImageView(iconImage);
+        customIcon.setFitWidth(32);  // Set the desired width
+        customIcon.setFitHeight(32); // Set the desired height
+        customIcon.setPreserveRatio(true); // Preserve the aspect ratio
+
+        // Set the custom icon in the alert
+        alert.setGraphic(customIcon);
+
+        // Showing the alert
+        dialogPane.setPrefSize(400, 200); // Set the preferred width and height
 
 
-        // Define the custom buttons
-        ButtonType buttonTypeContinue = new ButtonType("Continue");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/directory/design.css").toExternalForm());
+
+
+
+
+        ButtonType buttonTypeContinue = new ButtonType("Continue",ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonTypeCancel = new ButtonType("Cancel",ButtonBar.ButtonData.CANCEL_CLOSE);
+
 
         // Add buttons to the alert
         alert.getButtonTypes().setAll(buttonTypeContinue, buttonTypeCancel);
@@ -418,11 +469,48 @@ public class ajouterficheController implements Initializable
         // Show the alert and wait for the user's response
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == buttonTypeContinue) {
-            // Handle the continue action
-            System.out.println("User chose to continue");
+
+            creerfiche.setDisable(true);
+            num_dossier.setDisable(true);
+            System.out.println(listeobject);
+            try
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/ajoutobjec.fxml"));
+                HBox hBox = fxmlLoader.load();
+                ajouterobjectifController cic = fxmlLoader.getController();
+                cic.setData(listeobject);
+                listeobject.getChildren().add(hBox);
+
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
         } else {
-            // Handle the cancel action
-            System.out.println("User chose to cancel");
+
+
+
+            try
+            {
+                String PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
+                // Load the desired page
+                FXMLLoader fxmlLoader = new FXMLLoader(tpApplication.class.getResource("CreerFichesuivi.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 1000, 670);
+                Stage stage = (Stage) enregistrer.getScene().getWindow();
+
+                stage.setResizable(false);
+                stage.setTitle("TP POO!");
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+
+
+
+
         }
     }
 

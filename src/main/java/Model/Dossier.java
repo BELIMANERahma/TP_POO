@@ -47,6 +47,9 @@ public class Dossier implements Serializable {
         numero = counter+1;
         counter++;
         this.rendez_vous = new TreeSet<Rendez_vous>();
+        this.fiches_suivi=new ArrayList<>();
+        this.Bilans_orth=new ArrayList<>();
+
 
     }
 
