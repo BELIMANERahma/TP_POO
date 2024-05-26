@@ -241,7 +241,7 @@
                               <Image url="@../../../images/stylo.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="QCM_QCU" onMouseClicked="#handleRouting2" text="QCM,QCU">
+                        <Label fx:id="QCM_QCU" onMouseClicked="#handleRouting2" prefHeight="30.0" prefWidth="538.0" text="Test Questionnaire (QCM,QCU,Question simple )">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -258,7 +258,7 @@
                               <Image url="@../../../images/stylo.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="SerieExercice" onMouseClicked="#handleRouting2" text="Serie d'exercice">
+                        <Label fx:id="SerieExercice" onMouseClicked="#handleRouting2" text="Test Exercice (Serie d'exercice)">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -268,23 +268,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0">
-                           <image>
-                              <Image url="@../../../images/stylo.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="Rep_libre" onMouseClicked="#handleRouting2" text="Questionnaire á reponses libres">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" />
                </children>
             </VBox>
          </children>
