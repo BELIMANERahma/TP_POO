@@ -46,7 +46,7 @@ public class ajoutertroubleController {
     @FXML // fx:id="typetroubleerreur"
     private Label typetroubleerreur; // Value injected by FXMLLoader
 
-    @FXML // fx:id="listeobject"
+    @FXML
     private VBox listtrouble;
 
 

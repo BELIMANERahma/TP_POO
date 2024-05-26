@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.TypestestesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.TesteController">
    <left>
       <VBox prefHeight="600.0" prefWidth="235.0" styleClass="anchorpane" stylesheets="@../../../directory/design.css" BorderPane.alignment="CENTER">
          <children>
@@ -86,7 +86,7 @@
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" styleClass="selected">
                      <children>
                         <ImageView fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
@@ -105,10 +105,6 @@
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
-                     <styleClass>
-                        <String fx:value="selected" />
-                        <String fx:value="selected-border" />
-                     </styleClass>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" styleClass="selected">
                      <children>
@@ -130,7 +126,7 @@
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" styleClass="selected">
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
@@ -149,6 +145,10 @@
                            </font>
                         </Label>
                      </children>
+                     <styleClass>
+                        <String fx:value="selected" />
+                        <String fx:value="selected-border" />
+                     </styleClass>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" styleClass="selected">
                      <opaqueInsets>
@@ -207,9 +207,9 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="131.0" prefWidth="765.0">
+            <AnchorPane>
                <children>
-                  <Label contentDisplay="CENTER" layoutX="51.0" layoutY="30.0" prefHeight="75.0" prefWidth="500.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text="Choisissez le type de test  :" textFill="#f76e72e5">
+                  <Label contentDisplay="CENTER" layoutX="10.0" prefHeight="75.0" prefWidth="523.0" style="-fx-position-shape: center; -fx-text-fill: #000;" text="Choisissez que voulez-vous faire:" textFill="#f76e72e5">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -222,93 +222,28 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="451.0" prefWidth="765.0">
+            <AnchorPane prefHeight="565.0" prefWidth="765.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="28.0" prefHeight="100.0" prefWidth="590.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/CabinetOrthophonist/src/main/resources/assets/images/stylo.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="AnamneseAdulte" onMouseClicked="#handleRouting2" prefHeight="26.0" prefWidth="390.0" text="Sujet Anamnèse pour les adultes">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="23.0" layoutY="74.0" prefHeight="100.0" prefWidth="502.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/CabinetOrthophonist/src/main/resources/assets/images/stylo.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="AnamneseEnfant" onMouseClicked="#handleRouting2" prefHeight="26.0" prefWidth="377.0" text="Sujet Anamnèse pour les enfants">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="21.0" layoutY="157.0" prefHeight="100.0" prefWidth="414.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/CabinetOrthophonist/src/main/resources/assets/images/stylo.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="QCM_QCU" onMouseClicked="#handleRouting2" prefHeight="26.0" prefWidth="151.0" text="QCM,QCU">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="19.0" layoutY="227.0" prefHeight="100.0" prefWidth="416.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/CabinetOrthophonist/src/main/resources/assets/images/stylo.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="SerieExercice" onMouseClicked="#handleRouting2" prefHeight="26.0" prefWidth="259.0" text="Série d'exercices">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="16.0" layoutY="314.0" prefHeight="100.0" prefWidth="504.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/CabinetOrthophonist/src/main/resources/assets/images/stylo.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="Rep_libre" onMouseClicked="#handleRouting2" text="Questionnaire á reponses libres">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <ImageView fitHeight="150.0" fitWidth="141.0" layoutX="309.0" layoutY="29.0" onMouseClicked="#ajoutertest" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/SideBar/test.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="128.0" fitWidth="123.0" layoutX="312.0" layoutY="276.0" onMouseClicked="#consultertest" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/SideBar/evaluation-2.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="ajoutertest" layoutX="299.0" layoutY="177.0" onMouseClicked="#ajoutertest" text="Ajouter un test">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Consultertest" layoutX="287.0" layoutY="423.0" onMouseClicked="#consultertest" text="Consulter les tests">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
