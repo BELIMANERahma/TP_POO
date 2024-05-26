@@ -51,8 +51,12 @@ public class troublebilanController {
     private Label utilisateur1; // Value injected by FXMLLoader
 
     private  Dossier dossier;
+     private BO bilan;
+
+
     @FXML
     public void enregistrer(ActionEvent event) {
+
         VBox vbox = listtrouble;
 
         // Use ArrayList to temporarily store Objectif objects
@@ -142,5 +146,18 @@ public class troublebilanController {
 
     public void setDossier(Dossier dossier) {
         this.dossier = dossier;
+    }
+
+    public Dossier getDossier() {
+
+        return dossier;
+    }
+
+    public BO getBilan() {
+        return bilan;
+    }
+
+    public void setBilan(BO bilan) {
+        this.bilan = bilan;
     }
 }

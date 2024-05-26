@@ -1,20 +1,23 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Anamnese implements Serializable {
 
-    private Question_anamnese[] question;
+    private List<Question_anamnese> question;
 
-    public Anamnese(Question_anamnese[] question) {
+    public Anamnese(List<Question_anamnese> question) {
         this.question = question;
     }
 
-    public Question_anamnese[] getQuestion() {
+    public List<Question_anamnese>getQuestion() {
         return question;
     }
 
-    public void setQuestion(Question_anamnese[] question) {
+    public void setQuestion(ArrayList<Question_anamnese>question)
+    {
         this.question = question;
     }
 

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.QuestionnaireController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" stylesheets="@../../../directory/design.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.QuestionnaireController">
    <left>
       <VBox prefHeight="600.0" prefWidth="235.0" styleClass="anchorpane" stylesheets="@../../../directory/design.css" BorderPane.alignment="CENTER">
          <children>
@@ -267,18 +267,18 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
-                  <ScrollPane>
+                  <ScrollPane hbarPolicy="ALWAYS" vbarPolicy="ALWAYS">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="663.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="441.0" prefWidth="763.0">
                            <children>
-                              <VBox fx:id="container" prefHeight="431.0" prefWidth="653.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <VBox fx:id="container" layoutX="3.0" layoutY="-1.0" prefHeight="445.0" prefWidth="757.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="-1.0" />
                            </children>
                         </AnchorPane>
                      </content>
                   </ScrollPane>
                   <HBox alignment="CENTER_RIGHT" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #b84775;" text="Retourner" textFill="WHITE">
+                        <Button mnemonicParsing="false" styleClass="btn1" text="Retourner" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -286,7 +286,7 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="enregistrer" mnemonicParsing="false" onAction="#create" style="-fx-background-color: #b84775;" text="Enregistrer" textFill="WHITE">
+                        <Button fx:id="enregistrer" mnemonicParsing="false" onAction="#create" styleClass="btn" text="Enregistrer" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

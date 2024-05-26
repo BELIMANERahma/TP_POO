@@ -56,7 +56,6 @@ public class ajouter_question_enfantController {
 
     List<Question_enfant> anamnèse_enfant_question ;// Value injected by FXMLLoader
 
-//hadi wmb3d nbedelha
 
     @FXML
     public void enregistrer(ActionEvent event) {
@@ -98,7 +97,7 @@ public class ajouter_question_enfantController {
                             type = Categorie_Question_Enfant.valueOf(categ.replace(" ", "_"));
 
                         } catch (IllegalArgumentException e) {
-                            // Handle unexpected type values (optional)
+
                             e.printStackTrace();
                         }
 
@@ -112,9 +111,7 @@ public class ajouter_question_enfantController {
                 }
             }
         }
-
     }
-
     @FXML
     private void handleRouting(MouseEvent event) {
 

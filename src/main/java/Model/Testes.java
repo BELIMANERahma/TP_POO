@@ -35,10 +35,14 @@ public class Testes implements Serializable
     public void setQuestionnaires(ArrayList<QuestionnaireChoix> questionnaires) {
         this.questionnaires = questionnaires;
     }
+    public void addQuestionnaires( QuestionnaireChoix questionnaires) {
+        this.questionnaires.add(questionnaires);
+    }
 
     public void setQuestionnaireLibre(ArrayList<QuestionnaireLibre> questionnaireLibre) {
         this.questionnaireLibre = questionnaireLibre;
     }
+
 
     public void setSerieExercices(ArrayList<Test_exercice> serieExercices) {
         this.serieExercices = serieExercices;

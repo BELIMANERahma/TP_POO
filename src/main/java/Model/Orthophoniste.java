@@ -27,6 +27,14 @@ public class Orthophoniste  implements Serializable {
 
     }
 
+    public Testes getTestes() {
+        return testes;
+    }
+
+    public void setTestes(Testes testes) {
+        this.testes = testes;
+    }
+
     public Compte getCompte() {
         return compte;
     }

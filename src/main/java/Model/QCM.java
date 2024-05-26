@@ -1,29 +1,34 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class QCM extends Question implements Serializable {
-    private  String choix[];
-    private  int nbr_choix;
+    private List<String>choix;
+    //private  int nbr_choix;
     private String [] reponse;
     int nbr_reponce;
 
 
 
-    public QCM (String enonce, int note, String [] reponse, String[] choix) {
+    public QCM (String enonce, int note, String [] reponse, List<String> choix) {
         super(enonce, note);
         this.choix = choix;
-        this.nbr_choix = choix.length;
+
         this.reponse =reponse;
         this.nbr_reponce= reponse.length;
 
     }
 
-    public String[] getChoix() {
+    public QCM() {
+
+    }
+
+    public List<String> getChoix() {
         return choix;
     }
 
-    public void setChoix(String[] choix) {
+    public void setChoix(List<String> choix) {
         this.choix = choix;
     }
 
