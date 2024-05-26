@@ -65,7 +65,7 @@ public class testelemntController
      m.setVisible(false);
      nbv.setVisible(false);
      n.setVisible(false);
-     reponse.setText(q.getReponse());
+     //reponse.setText(q.getReponse());
 
 
 

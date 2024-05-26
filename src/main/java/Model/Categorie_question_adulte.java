@@ -5,7 +5,7 @@ import java.io.Serializable;
 public enum
 Categorie_question_adulte implements Serializable {
 
-        HISTOIRE_MALADIE,
-        SUIVI_MEDICAL
+        Histoire_de_maladie,
+        Suivi_médical
 
 }

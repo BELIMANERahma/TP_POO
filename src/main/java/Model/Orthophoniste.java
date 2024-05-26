@@ -12,6 +12,7 @@ public class Orthophoniste  implements Serializable {
     private Compte compte;
     private Agenda agenda;
     private TreeMap<Integer,Dossier> Mes_dossiers;
+    private Testes testes;
 
 
 
@@ -22,6 +23,7 @@ public class Orthophoniste  implements Serializable {
         this.agenda = new Agenda();
         String email = this.compte.getEmail().toLowerCase().replace(" ", "");
         serializeProfile("./src/main/Userinformation/" + email + ".ser");
+        this.testes =new Testes();
 
     }
 

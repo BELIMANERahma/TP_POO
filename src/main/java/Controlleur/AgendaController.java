@@ -67,7 +67,7 @@ public class AgendaController  {
 
             case "Fiche de suivi":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
+                PageRouter = "/com/example/tp_poo/ajouter_adulte_anam.fxml";
                 break;
 
             case "Testes":

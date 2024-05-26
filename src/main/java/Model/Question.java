@@ -2,13 +2,15 @@ package Model;
 
 import java.io.Serializable;
 
-public class Question implements Serializable {
+public  abstract class Question implements   Serializable {
     private String enonce;
-    private String reponse;
+    private  int note;
 
-    public Question(String enonce, String reponse) {
+    public Question(String enonce, int note) {
+
         this.enonce = enonce;
-        this.reponse = reponse;
+        this.note = note;
+
     }
 
     public String getEnonce() {
@@ -19,11 +21,11 @@ public class Question implements Serializable {
         this.enonce = enonce;
     }
 
-    public String getReponse() {
-        return reponse;
+    public int getNote() {
+        return note;
     }
 
-    public void setReponse(String reponse) {
-        this.reponse = reponse;
+    public void setNote(int note) {
+        this.note = note;
     }
 }

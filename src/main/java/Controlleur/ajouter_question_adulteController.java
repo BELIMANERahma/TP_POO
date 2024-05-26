@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'ajouter_enfant_anam.fxml' Controller Class
+ * Sample Skeleton for 'ajouter_adulte_anam.fxml' Controller Class
  */
 
 package Controlleur;
@@ -27,7 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ajouter_question_enfantController {
+public class ajouter_question_adulteController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -52,9 +52,7 @@ public class ajouter_question_enfantController {
 
     private BO bilan;
     private Dossier dossier;
-
-
-    List<Question_enfant> anamnèse_enfant_question ;// Value injected by FXMLLoader
+    List<Question_adulte> anamnèse_adulte_question ;// Value injected by FXMLLoader
 
 //hadi wmb3d nbedelha
 
@@ -64,7 +62,7 @@ public class ajouter_question_enfantController {
         VBox vbox = listquestions;
 
         // Use ArrayList to temporarily store Objectif objects
-        List<Question_enfant> questions= new ArrayList<>();
+        List<Question_adulte> questions= new ArrayList<>();
 
         for (Node node : vbox.getChildren()) {
             if (node instanceof HBox) {
@@ -91,11 +89,11 @@ public class ajouter_question_enfantController {
                     System.out.println(categ);
 
                     if (!nom.isEmpty() && categ != null) {
-                        Categorie_Question_Enfant type = null;
+                        Categorie_question_adulte type = null;
 
                         try {
 
-                            type = Categorie_Question_Enfant.valueOf(categ.replace(" ", "_"));
+                            type = Categorie_question_adulte.valueOf(categ.replace(" ", "_"));
 
                         } catch (IllegalArgumentException e) {
                             // Handle unexpected type values (optional)
@@ -104,8 +102,7 @@ public class ajouter_question_enfantController {
 
                         if (type != null) {
 
-
-                            Question_enfant quest =new Question_enfant(nom,type);
+                            Question_adulte quest =new Question_adulte(nom,type);
                             questions.add(quest);
                         }
                     }
@@ -186,19 +183,18 @@ public class ajouter_question_enfantController {
 
     @FXML
     void retour(ActionEvent event) {
-       String PageRouter = "/com/example/tp_poo/ajouter_enfant_anam.fxml";
+        String PageRouter = "/com/example/tp_poo/ajouter_enfant_anam.fxml";
 
-       try {
+        try {
 
-        Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-        Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(nextPage, 1000, 670);
-        Scene.setScene(scene);
+            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
+            Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
 
         } catch (IOException e) {
-        e.printStackTrace();
-         }
-
+            e.printStackTrace();
+        }
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -208,8 +204,8 @@ public class ajouter_question_enfantController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/anam_enfant_elemnt.fxml"));
             HBox hBox = fxmlLoader.load();
-           anam_enfant_elemntController cic = fxmlLoader.getController();
-            cic.setData_enfant(listquestions);
+            anam_enfant_elemntController cic = fxmlLoader.getController();
+            cic.setData_adulte(listquestions);
             listquestions.getChildren().add(hBox);
 
         } catch (IOException e)
@@ -224,9 +220,9 @@ public class ajouter_question_enfantController {
 
     }
 
-    public List<Question_enfant> getlist_questions() {
+    public List<Question_adulte> getlist_questions() {
 
-        return anamnèse_enfant_question;
+        return anamnèse_adulte_question;
 
     }
 
