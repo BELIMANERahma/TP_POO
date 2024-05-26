@@ -1,12 +1,7 @@
-/**
- * Sample Skeleton for 'Testes.fxml' Controller Class
- */
-
 package Controlleur;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import Model.Orthophoniste;
+import Model.OrthophonisteSessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,65 +12,25 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class TesteController {
+import java.io.IOException;
+import java.util.Objects;
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
-    @FXML // fx:id="Consultertest"
-    private Label Consultertest; // Value injected by FXMLLoader
-
-    @FXML // fx:id="ajoutertest"
-    private Label ajoutertest; // Value injected by FXMLLoader
-
-    @FXML // fx:id="username1"
-    private Label username1; // Value injected by FXMLLoader
-    @FXML
-    public void ajoutertest(MouseEvent event)
-    {
-        try {
-           /* AnamneseAdulteController.ajouter = true;
-            AnamneseEnfantController.ajouter = true;
-            QuestionnaireController.ajouter = true;
-            QuestionnaireLibreController.ajouter = true;
-            SerieExercicesController.ajouter = true;*/
-            String PageRouter = "testtype.fxml";
-            Parent nextPage = FXMLLoader.load(getClass().getResource("/com/example/tp_poo/testtype.fxml"));
-
-            Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
-            Scene.setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+public class TypetestController {
 
     @FXML
-    public void consultertest(MouseEvent event)
-    {
-        try {
-            /*AnamneseAdulteController.ajouter = false;
-            AnamneseEnfantController.ajouter = false;
-            QuestionnaireController.ajouter = false;
-            QuestionnaireLibreController.ajouter = false;
-            SerieExercicesController.ajouter = false;*/
-            String PageRouter = "testexist.fxml";
-            Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-
-            Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
-            Scene.setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private Label QCM_QCU;
 
     @FXML
+    private Label Rep_libre;
+
+    @FXML
+    private Label SerieExercice;
+
+    @FXML
+    private Label username1;
+
+    @FXML
+
     private void handleRouting(MouseEvent event) {
 
         Label label = (Label) event.getSource();
@@ -117,8 +72,12 @@ public class TesteController {
                 break;
 
             case "Se déconnecter":
+                Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+                String username =user.getCompte().getEmail();
+                String filepath="./src/main/Userinformation/" + username + ".ser";
+                Orthophoniste.serialize(filepath,user);
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/Logout.fxml";
+                PageRouter = "/com/example/tp_poo/Login.fxml";
                 break;
 
             default:
@@ -133,6 +92,71 @@ public class TesteController {
                 // Load the desired page
                 Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
 
+                Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
+                Scene.setScene(scene);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    @FXML
+    void retour(ActionEvent event)
+    {
+        try {
+            String PageRouter = "/com/example/tp_poo/Patients.fxml";
+            // Load the desired page
+            Parent nextPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(PageRouter)));
+            Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
+            Scene.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleRouting2(MouseEvent event) {
+
+        Label label = (Label) event.getSource();
+        String labelText = label.getText();
+        String PageRouter = "/com/example/tp_poo/Testes.fxml"; // Chemin par défaut
+
+
+        boolean newPage = false;
+
+        switch (labelText) {
+
+
+            case "QCM,QCU":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/CreerQuestionnaire.fxml";
+                break;
+
+            case "Serie d'exercices":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/CreerExercice.fxml";
+                break;
+
+            case "Questionnaire á reponses libres":
+                newPage = true;
+                PageRouter = "/com/example/tp_poo/CreerRepLibres.fxml";
+                break;
+
+            default:
+                newPage = true;
+                PageRouter = "CreerRepLibres.fxml";
+                break;
+        }
+
+
+        if (newPage) {
+            try {
+                // Load the desired page
+                System.out.println("hehehehehe");
+                Parent nextPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(PageRouter)));
                 Stage Scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 javafx.scene.Scene scene = new Scene(nextPage, 1000, 670);
                 Scene.setScene(scene);
@@ -157,13 +181,4 @@ public class TesteController {
             e.printStackTrace();
         }
     }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert Consultertest != null : "fx:id=\"Consultertest\" was not injected: check your FXML file 'Testes.fxml'.";
-        assert ajoutertest != null : "fx:id=\"ajoutertest\" was not injected: check your FXML file 'Testes.fxml'.";
-        assert username1 != null : "fx:id=\"username1\" was not injected: check your FXML file 'Testes.fxml'.";
-
-    }
-
 }

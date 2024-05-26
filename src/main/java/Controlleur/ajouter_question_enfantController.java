@@ -98,7 +98,7 @@ public class ajouter_question_enfantController {
                         if (type != null) {
 
                             Trouble trouble = new Trouble(nomtrouble,type);
-                            TroubleList.add(trouble);
+                            //TroubleList.add(trouble);
                         }
                     }
                 }
