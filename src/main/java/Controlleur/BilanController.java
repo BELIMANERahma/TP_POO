@@ -46,6 +46,8 @@ public class BilanController {
     @FXML // fx:id="patienterror"
     private Label patienterror; // Value injected by FXMLLoader
     Map<String, Integer> dossierNumberMap;
+    private Dossier dossier;
+    private BO bilan;
     @FXML
     private void handleRouting(MouseEvent event) {
 
@@ -145,6 +147,29 @@ public class BilanController {
                     if (dossier.getPatient() instanceof Adulte) {
 
                          PageRouter = "/com/example/tp_poo/ajouter_adulte_anam.fxml";
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/ajouter_adulte_anam.fxml"));
+
+                        try {
+
+                            Parent root = loader.load();
+
+                            // Access the controller instance
+                            ajouter_question_adulteController controller = loader.getController();
+
+                            // Set the BO and Dossier objects
+                            controller.setBilan(bilan);
+                            controller.setDossier(dossier);
+
+                            // Create a new scene with the loaded page
+                            Scene scene = new Scene(root, 1000, 670);
+
+                            // Get the current stage and set the new scene
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }else{
                          PageRouter = "/com/example/tp_poo/ajouter_enfant_anam.fxml";
                     }
@@ -159,15 +184,25 @@ public class BilanController {
                         e.printStackTrace();
                     }
                 }else {
-                    //BO bilan = new BO();
-                    String PageRouter = "/com/example/tp_poo/troublebilan.fxml";
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/troublebilan.fxml"));
 
                     try {
-                        Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
-                        Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        Scene scene = new Scene(nextPage, 1000, 670);
-                        Scene.setScene(scene);
+                        Parent root = loader.load();
 
+                        // Access the controller instance
+                        troublebilanController controller = loader.getController();
+
+                        // Set the BO and Dossier objects
+                        controller.setBilan(bilan);
+                        controller.setDossier(dossier);
+
+                        // Create a new scene with the loaded page
+                        Scene scene = new Scene(root, 1000, 670);
+
+                        // Get the current stage and set the new scene
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -208,4 +243,19 @@ public class BilanController {
 
     }
 
+    public Dossier getDossier() {
+        return dossier;
+    }
+
+    public void setDossier(Dossier dossier) {
+        this.dossier = dossier;
+    }
+
+    public BO getBilan() {
+        return bilan;
+    }
+
+    public void setBilan(BO bilan) {
+        this.bilan = bilan;
+    }
 }

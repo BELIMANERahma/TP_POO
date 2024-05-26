@@ -55,7 +55,6 @@ public class ajouter_question_adulteController {
     List<Question_adulte> anamnèse_adulte_question ;// Value injected by FXMLLoader
 
 //hadi wmb3d nbedelha
-
     @FXML
     public void enregistrer(ActionEvent event) {
 
@@ -115,11 +114,15 @@ public class ajouter_question_adulteController {
         bilan.setAnamnese(anamnese); // Affecter l'anamnèse au dossier
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/troublebilan.fxml"));
 
-        Parent root;
         try {
-            root = loader.load();
-            // Get the controller of the next page if needed
-            // NextPageController controller = loader.getController();
+            Parent root = loader.load();
+
+            // Access the controller instance
+            troublebilanController controller = loader.getController();
+
+            // Set the BO and Dossier objects
+            controller.setBilan(bilan);
+            controller.setDossier(dossier);
 
             // Create a new scene with the loaded page
             Scene scene = new Scene(root);
@@ -252,8 +255,8 @@ public class ajouter_question_adulteController {
         return bilan;
     }
 
-    public void setBilan(BO_1 bilan) {
-        this.bilan = bilan;
+    public void setBilan(BO bilan) {
+        this.bilan = (BO_1) bilan;
     }
 
     public Dossier getDossier() {
