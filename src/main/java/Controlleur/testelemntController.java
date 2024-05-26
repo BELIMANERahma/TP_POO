@@ -49,7 +49,7 @@ public class testelemntController
         reponse.setVisible(false);
         rpview.setVisible(false);
         consigne.setText(ex.getConsign());
-        mat.setText(ex.getMateriel()[0]);
+        mat.setText(ex.getMateriel());
         nb.setText(String.valueOf(ex.getNbr_repeter()));
         note.setText(String.valueOf(ex.getNote()));
 

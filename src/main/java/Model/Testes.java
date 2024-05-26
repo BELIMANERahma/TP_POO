@@ -10,13 +10,28 @@ public class Testes implements Serializable
     private ArrayList<QuestionnaireLibre> questionnaireLibre;
     private ArrayList<Test_exercice> serieExercices;
 
-    public void Tests(ArrayList<QuestionnaireChoix> questionnaires, ArrayList<QuestionnaireLibre> questionnaireLibre, ArrayList<Test_exercice> serieExercices) {
+
+    public Testes() {
+        this.questionnaires = new ArrayList<>();
+        this.questionnaireLibre = new ArrayList<>();
+        this.serieExercices = new ArrayList<>();
+
+    }
+
+    public  Testes(ArrayList<QuestionnaireChoix> questionnaires, ArrayList<QuestionnaireLibre> questionnaireLibre, ArrayList<Test_exercice> serieExercices) {
         this.questionnaires = questionnaires;
         this.questionnaireLibre = questionnaireLibre;
         this.serieExercices = serieExercices;
     }
 
-
+    public Test_exercice getbyTitleSerieExercices(String title) {
+        for (Test_exercice anamnese : serieExercices) {
+            if (Objects.equals(anamnese.getTitre(), title)) {
+                return anamnese;
+            }
+        }
+        return null;
+    }
 
 
 

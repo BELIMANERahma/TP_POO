@@ -122,9 +122,9 @@ public class TypetestController {
 
         Label label = (Label) event.getSource();
         String labelText = label.getText();
+
+
         String PageRouter = "/com/example/tp_poo/Testes.fxml"; // Chemin par défaut
-
-
         boolean newPage = false;
 
         switch (labelText) {
@@ -147,10 +147,10 @@ public class TypetestController {
 
             default:
                 newPage = true;
-                PageRouter = "CreerRepLibres.fxml";
+                PageRouter = "/com/example/tp_poo/CreerExercice.fxml";
                 break;
         }
-
+        //  PageRouter = "/com/example/tp_poo/Login.fxml";
 
         if (newPage) {
             try {
@@ -181,4 +181,5 @@ public class TypetestController {
             e.printStackTrace();
         }
     }
+
 }
