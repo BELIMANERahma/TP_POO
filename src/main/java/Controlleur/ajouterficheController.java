@@ -486,9 +486,8 @@ public class ajouterficheController implements Initializable
             {
                 throw new RuntimeException(e);
             }
-        } else {
-
-
+        } else
+         {
 
             try
             {
@@ -508,10 +507,7 @@ public class ajouterficheController implements Initializable
                 throw new RuntimeException(e);
             }
 
-
-
-
-        }
+         }
     }
 
 

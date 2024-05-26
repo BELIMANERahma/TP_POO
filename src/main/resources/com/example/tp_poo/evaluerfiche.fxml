@@ -245,7 +245,7 @@
                                                     <children>
                                                         <HBox prefHeight="363.0" prefWidth="764.0" style="-fx-background-color: transparent;">
                                                             <children>
-                                                                <ScrollPane prefHeight="338.0" prefWidth="764.0" style="-fx-background-color: transparent;">
+                                                                <ScrollPane hbarPolicy="NEVER" prefHeight="338.0" prefWidth="764.0" style="-fx-background-color: transparent;" styleClass="scroll-bar">
                                                                     <content>
                                                                         <VBox fx:id="listeobject" style="-fx-background-color: transparent;" />
                                                                     </content>
@@ -275,7 +275,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Label>
-                                    <ComboBox fx:id="type_objectif" layoutX="410.0" layoutY="75.0" prefHeight="30.0" prefWidth="298.0" promptText="Le rendez-vous" style="-fx-border-color: transparent; -fx-background-color: white;" styleClass="white-background" stylesheets="@../../../directory/design.css">
+                                    <ComboBox fx:id="rend" layoutX="410.0" layoutY="75.0" prefHeight="30.0" prefWidth="298.0" promptText="Le rendez-vous" style="-fx-border-color: transparent; -fx-background-color: white;" styleClass="white-background" stylesheets="@../../../directory/design.css">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>

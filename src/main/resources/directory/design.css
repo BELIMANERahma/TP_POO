@@ -13,6 +13,11 @@ obs
    -fx-background-radius : 10;
 
 }
+
+.image-view {
+    -fx-fit-width: 52;
+    -fx-fit-to-height:41;
+}
 .info{
    -fx-background-color : #28a745;
    -fx-text-fill : white;

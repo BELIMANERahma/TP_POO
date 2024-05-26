@@ -4,19 +4,22 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Suivi extends Rendez_vous {
+public class Suivi extends Rendez_vous
+{
     private int numero_dossier;
     private Deroulement_seance type;
     private Fiche_suivi fiche;
     private final String duree = "1:00";
 
 
-    public Suivi(LocalDate date, LocalTime heure, Type_rendez_vous type, int numero_dossier, Deroulement_seance type1, String duree) {
+    public Suivi(LocalDate date, LocalTime heure, Type_rendez_vous type, int numero_dossier, Deroulement_seance type1, String duree)
+    {
         super(date, heure, type);
         this.numero_dossier = numero_dossier;
         this.type = type1;
     }
-    public Suivi(LocalDate date) {
+    public Suivi(LocalDate date)
+    {
         super(date) ;
     }
     public Suivi() {

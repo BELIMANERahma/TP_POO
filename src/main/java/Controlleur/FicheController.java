@@ -143,7 +143,7 @@ public class FicheController implements Initializable
         int numobj=0;
         if(ficheSuivis!=null) {
             for (int i = 0; i < ficheSuivis.size(); i++) {
-                numfich++;
+               // numfich++;
 
                 for (Objectif objectif : ficheSuivis.get(i).getObjectifs()) {
                     numobj++;
@@ -162,7 +162,7 @@ public class FicheController implements Initializable
 
             }
         }
-        numfiche.setText(String.valueOf(numobj));
+        numfiche.setText(String.valueOf(ficheSuivis.size()));
         numobject.setText(String.valueOf(numobj));
     }
 

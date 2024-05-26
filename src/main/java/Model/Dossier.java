@@ -1,11 +1,9 @@
 package Model;
 
-import jdk.jfr.Label;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeSet;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Dossier implements Serializable {
     private static int counter ;
@@ -21,7 +19,8 @@ public class Dossier implements Serializable {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
+    public void setPatient(Patient patient)
+    {
         this.patient = patient;
     }
 
@@ -87,7 +86,9 @@ public class Dossier implements Serializable {
 
 
 
-
+    public static String rendezVousToString(Rendez_vous rv) {
+        return String.format("%s %s %s", rv.getDate(), rv.getHeure(), rv.getType());
+    }
 
     public void add_rendez_vous(Rendez_vous rd){
 
@@ -97,4 +98,30 @@ public class Dossier implements Serializable {
     public static void setCounter(int n){
         counter = n;
     }
+
+    public static TreeSet<Rendez_vous> filterRendezVous(Set<Rendez_vous> rendezVousSet) {
+        LocalDate today = LocalDate.now();
+
+        Comparator<Rendez_vous> comparator = (rendezVousSet instanceof TreeSet) ?
+                (Comparator<Rendez_vous>) ((TreeSet<Rendez_vous>) rendezVousSet).comparator() : Comparator.naturalOrder();
+
+        return rendezVousSet.stream()
+                .filter(rv -> rv instanceof Suivi )
+                .filter(rv -> !rv.getDate().isBefore(today))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(comparator)));
+    }
+
+    public boolean containsRendezVous(Rendez_vous rendezVous) {
+        return rendez_vous.contains(rendezVous);
+    }
+    public Rendez_vous findRendezVous(Rendez_vous rendezVous) {
+        for (Rendez_vous rv : rendez_vous) {
+            if (rv.equals(rendezVous)) {
+                return rv;
+            }
+        }
+        return null;
+    }
+
+
 }
