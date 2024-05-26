@@ -133,8 +133,8 @@ public class TroublesController implements Initializable {
 
     public void setficheData(Trouble[] trouble)
     {
-
-        for(int i=0;i<trouble.length;i++)
+int i;
+        for( i=0;i<trouble.length;i++)
         {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -149,7 +149,7 @@ public class TroublesController implements Initializable {
             }
 
         }
-
+this.numfiche.setText(String.valueOf(i));
 
     }
 

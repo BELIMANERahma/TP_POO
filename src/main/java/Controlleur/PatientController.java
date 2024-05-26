@@ -212,7 +212,7 @@ public class PatientController implements Initializable {
             try {
                 HBox hBox = fxmlLoader.load();
                 patientelementController cic = fxmlLoader.getController();
-                entry.getValue().setBilans_orth(bos);
+                //entry.getValue().setBilans_orth(bos);
                 cic.setData(entry.getValue().getPatient());
                 patientslay.getChildren().add(hBox);
             } catch (IOException e) {

@@ -62,12 +62,12 @@ public class AgendaController  {
 
             case "BO":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/CreerQuestionnaire.fxml";
+                PageRouter = "/com/example/tp_poo/Bilan.fxml";
                 break;
 
             case "Fiche de suivi":
                 newPage = true;
-                PageRouter = "/com/example/tp_poo/ajouter_adulte_anam.fxml";
+                PageRouter = "/com/example/tp_poo/CreerFichesuivi.fxml";
                 break;
 
             case "Testes":

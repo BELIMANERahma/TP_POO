@@ -274,6 +274,14 @@ public class SerieExercicesController implements Initializable {
                 // Create a Test_exercice object and add it to the list (adjust as needed)
                 Exercice testExercice = new Exercice(consigne, materiel, Integer.parseInt(nombreDeFois));
                 testList.add(testExercice);
+                Test_exercice et =new Test_exercice("titre",5,testList);
+                Test[] t = new  Test[4];
+                t[0]=et;
+
+                Epreuve_clinique eh =new Epreuve_clinique(new String[]{"nnnn", "my observation"},t);
+                Epreuve_clinique[]  rr= new Epreuve_clinique[2];
+                rr[0]=eh;
+                //OrthophonisteSessionManager.getCurrentOrthophonisteName().rechercher_patient(1).getBilans_orth().get(1).setEpreuves_cliniques(rr);
 
 
             }
