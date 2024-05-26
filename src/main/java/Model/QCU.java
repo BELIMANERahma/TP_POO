@@ -1,27 +1,32 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class QCU extends Question  implements Serializable {
-    private  String choix[];
-    private  int nbr_choix;
-    private String  reponse;
+    private  List<String> choix;
+
+  private String  reponse;
 
 
-    public QCU(String enonce,int note, String reponse, String[] choix) {
+    public QCU(String enonce,int note, String reponse, List<String> choix) {
 
         super(enonce, note);
         this.choix = choix;
-        this.nbr_choix = choix.length;
+       // this.nbr_choix = choix.length;
         this.reponse =reponse;
 
     }
 
-    public String[] getChoix() {
+    public QCU() {
+        super();
+    }
+
+    public List<String> getChoix() {
         return choix;
     }
 
-    public void setChoix(String[] choix) {
+    public void setChoix(List<String> choix) {
         this.choix = choix;
     }
 

@@ -159,8 +159,9 @@ public class BilanController {
                         e.printStackTrace();
                     }
                 }else {
-                    BO bilan = new BO();
+                    //BO bilan = new BO();
                     String PageRouter = "/com/example/tp_poo/troublebilan.fxml";
+
                     try {
                         Parent nextPage = FXMLLoader.load(getClass().getResource(PageRouter));
                         Stage Scene = (Stage) ((Node) event.getSource()).getScene().getWindow();

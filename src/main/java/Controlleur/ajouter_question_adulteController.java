@@ -50,7 +50,7 @@ public class ajouter_question_adulteController {
     @FXML // fx:id="utilisateur1"
     private Label utilisateur1;
 
-    private BO bilan;
+    private BO_1 bilan;
     private Dossier dossier;
     List<Question_adulte> anamnèse_adulte_question ;// Value injected by FXMLLoader
 
@@ -62,7 +62,7 @@ public class ajouter_question_adulteController {
         VBox vbox = listquestions;
 
         // Use ArrayList to temporarily store Objectif objects
-        List<Question_adulte> questions= new ArrayList<>();
+        List<Question_anamnese> questions= new ArrayList<>();
 
         for (Node node : vbox.getChildren()) {
             if (node instanceof HBox) {
@@ -109,8 +109,30 @@ public class ajouter_question_adulteController {
                 }
             }
         }
+        Anamnese anamnese =new Anamnese(questions);
+        //anamnèse_adulte_question =(Question_adulte) questions; // Mettre à jour la liste d'anamnèse adulte
+        bilan=new BO_1();
+        bilan.setAnamnese(anamnese); // Affecter l'anamnèse au dossier
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/troublebilan.fxml"));
 
+        Parent root;
+        try {
+            root = loader.load();
+            // Get the controller of the next page if needed
+            // NextPageController controller = loader.getController();
+
+            // Create a new scene with the loaded page
+            Scene scene = new Scene(root);
+
+            // Get the current stage and set the new scene
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void handleRouting(MouseEvent event) {
@@ -230,7 +252,7 @@ public class ajouter_question_adulteController {
         return bilan;
     }
 
-    public void setBilan(BO bilan) {
+    public void setBilan(BO_1 bilan) {
         this.bilan = bilan;
     }
 
@@ -241,4 +263,5 @@ public class ajouter_question_adulteController {
     public void setDossier(Dossier dossier) {
         this.dossier = dossier;
     }
+
 }

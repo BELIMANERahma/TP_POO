@@ -12,6 +12,10 @@ public class question_libre extends Question  implements Serializable {
         this.reponse = reponse;
     }
 
+    public question_libre() {
+
+    }
+
 
     public String getReponse() {
         return reponse;

@@ -140,6 +140,8 @@ public class anam_enfant_elemntController {
     }
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+
+
         assert ajouterquestion != null : "fx:id=\"ajouterquestion\" was not injected: check your FXML file 'anam_enfant_elemnt.fxml'.";
         assert categorie != null : "fx:id=\"categorie\" was not injected: check your FXML file 'anam_enfant_elemnt.fxml'.";
         assert categorieerror != null : "fx:id=\"categorieerror\" was not injected: check your FXML file 'anam_enfant_elemnt.fxml'.";

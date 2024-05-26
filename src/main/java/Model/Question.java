@@ -13,6 +13,10 @@ public  abstract class Question implements   Serializable {
 
     }
 
+    public Question() {
+
+    }
+
     public String getEnonce() {
         return enonce;
     }
