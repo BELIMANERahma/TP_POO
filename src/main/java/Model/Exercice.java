@@ -14,6 +14,11 @@ public class Exercice  implements Serializable {
         this.nbr_repeter=nb;
     }
 
+    public Exercice(String consign, String matteriel) {
+
+
+    }
+
     public String getConsign() {
         return consign;
     }

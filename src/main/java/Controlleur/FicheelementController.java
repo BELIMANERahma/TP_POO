@@ -21,7 +21,7 @@ public class FicheelementController {
     @FXML
     private Label note;
     public void setData(Fiche_suivi fiche,Objectif obj) {
-        numfiche.setText(String.valueOf(fiche.getNum()));
+       // numfiche.setText(String.valueOf(fiche.getNum()));
         objectif.setText(obj.getNom());
         typeobj.setText(String.valueOf(obj.getType()));
         if (obj.isObjectifatteint()) {

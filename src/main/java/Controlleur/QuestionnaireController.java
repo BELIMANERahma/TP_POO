@@ -89,6 +89,7 @@ public class QuestionnaireController implements Initializable {
 
     private void loadQuestionView(int i) {
 
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/QCM_QCU.fxml"));
         try {
             VBox questionView = loader.load();

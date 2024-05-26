@@ -130,12 +130,12 @@ public class TypetestController {
         switch (labelText) {
 
 
-            case "QCM,QCU":
+            case "Test Questionnaire (QCM,QCU,Question simple )":
                 newPage = true;
                 PageRouter = "/com/example/tp_poo/CreerQuestionnaire.fxml";
                 break;
 
-            case "Serie d'exercices":
+            case "Test Exercice (Serie d'exercice)":
                 newPage = true;
                 PageRouter = "/com/example/tp_poo/CreerExercice.fxml";
                 break;

@@ -43,7 +43,7 @@ public class Agenda  implements Serializable {
                 System.out.println("Heure de début du rendez-vous existant: " + rvHeureDebut);
                 System.out.println("Heure de fin du rendez-vous existant: " + rvHeureFin);
 
-                if ((heure.isAfter(rvHeureDebut) && heureFin.isBefore(rvHeureFin)) ||  // Cas 1: Nouveau rendez-vous est entièrement contenu dans un rendez-vous existant
+                if ((heure.isAfter(rvHeureDebut) && heure.isBefore(rvHeureFin)) ||  // Cas 1: Nouveau rendez-vous est entièrement contenu dans un rendez-vous existant
                         (heure.equals(rvHeureDebut))) {
                     return true;
                 }

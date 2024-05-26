@@ -137,9 +137,67 @@ public class PatientController implements Initializable {
 
         TreeMap<Integer, Dossier> patients = user.getMes_patients();
 
+        Projet_therapeu po =new Projet_therapeu("description du projet dorthophoniste ");
+        String[] observations = {
+                "Patient is experiencing mild headaches.",
+                "No signs of fever.",
+                "Blood pressure is within normal range."
+        };
+
+        // Create some example questions for the written test
+        Question[] questions = new Question[]{
+                new question_libre("What is the capital of France?",1, "Paris"),
+                new question_libre("Explain the process of photosynthesis.", 2,"Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll."),
+                new question_libre("What is the chemical symbol for water?",3, "H2O")
+        };
+
+        Exercice exo1=         new Exercice("Do 10 push-ups.", "Matteriel",4);
+        Exercice exo2=         new Exercice("Run for 5 minutes.", "Running shoes",5);
+
+        // Create a written test with these questions
+        Test_questions writtenTest = new Test_questions("General Knowledge Test", 100, questions);
+        ArrayList<Exercice> n = new ArrayList<>();
+        n.add(exo1);
+        n.add(exo2);
+
+
+
+        // Create an exercise test with these exercises
+        Test_exercice exerciseTest = new Test_exercice("Physical Fitness Test", 50, n);
+
+        // Create an array of tests (in this case, just one written test)
+        Test[] tests = new Test[]{writtenTest,writtenTest,exerciseTest,writtenTest,writtenTest,writtenTest,writtenTest,writtenTest};
+
+        // Create the Epreuve_clinique instance with the observations and the test
+        Epreuve_clinique epreuve = new Epreuve_clinique(observations, tests);
+        Epreuve_clinique[] s = new Epreuve_clinique[]{epreuve,epreuve};
+
+
+        Trouble dysphagie = new Trouble("Dysphagie", Categorie_trouble.Deglutition);
+        Trouble troubleDuSpectreAutistique = new Trouble("Trouble du spectre autistique", Categorie_trouble.Neuro_developpementaux);
+        Trouble troubleDuDeficitDeLAttention = new Trouble("Trouble du déficit de l'attention", Categorie_trouble.Cognitifs);
+
+        // Creating an array of troubles
+        Trouble[] troubles = {dysphagie, troubleDuSpectreAutistique, troubleDuDeficitDeLAttention};
+
+        // Creating a Diagnostique instance
+        Diagnostique diagnostique = new Diagnostique(troubles);
+
+        List<BO> bos=new ArrayList<BO>();
+
+
+        BO b =new BO(s,diagnostique,po);
+        bos.add(b);
+        bos.add(b);
+
+
 
         int adultes=0;
         int enfants =0;
+
+
+
+
 
         for (Map.Entry<Integer, Dossier> entry : patients.entrySet()) {
             if (entry.getValue().getPatient() instanceof Enfant){
@@ -154,6 +212,7 @@ public class PatientController implements Initializable {
             try {
                 HBox hBox = fxmlLoader.load();
                 patientelementController cic = fxmlLoader.getController();
+                entry.getValue().setBilans_orth(bos);
                 cic.setData(entry.getValue().getPatient());
                 patientslay.getChildren().add(hBox);
             } catch (IOException e) {
@@ -165,15 +224,14 @@ public class PatientController implements Initializable {
         nombre_enfants.setText(String.valueOf(enfants));
         nombre_totales.setText(String.valueOf(adultes+enfants));
     }
-    /*private List<Patient> patientt() throws IOException, ClassNotFoundException {
+    public void  patientt() throws IOException, ClassNotFoundException {
 
         Orthophoniste user=OrthophonisteSessionManager.getCurrentOrthophonisteName();
         username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
 
-        List<Patient> ls = new ArrayList<>();
         Enfant patient = new Enfant();
         Adulte patient1=new Adulte();
-        patient.setNum_dossier(1);
+        patient.setNum_dossier(11);
         patient.setNom("Belimane") ;
         patient.setPrenom("Rahma") ;
         LocalDate now = LocalDate.now();
@@ -222,21 +280,24 @@ public class PatientController implements Initializable {
 
         // Create some example questions for the written test
         Question[] questions = new Question[]{
-                new Question("What is the capital of France?", "Paris"),
-                new Question("Explain the process of photosynthesis.", "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll."),
-                new Question("What is the chemical symbol for water?", "H2O")
+                new question_libre("What is the capital of France?",1, "Paris"),
+                new question_libre("Explain the process of photosynthesis.", 2,"Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll."),
+                new question_libre("What is the chemical symbol for water?",3, "H2O")
         };
-        Exercice[] exercices = new Exercice[]{
-                new Exercice("Do 10 push-ups.", new String[]{"Mat", "Water bottle"}),
-                new Exercice("Run for 5 minutes.", new String[]{"Running shoes"})
-        };
+
+       Exercice exo1=         new Exercice("Do 10 push-ups.", "Matteriel",4);
+       Exercice exo2=         new Exercice("Run for 5 minutes.", "Running shoes",5);
+
         // Create a written test with these questions
         Test_questions writtenTest = new Test_questions("General Knowledge Test", 100, questions);
-        exercices[0].setNbr_repeter(3);  // Repeat 3 times
-        exercices[1].setNbr_repeter(1);  // Repeat 1 time
+       ArrayList<Exercice> e = new ArrayList<>();
+       e.add(exo1);
+       e.add(exo2);
+
+
 
         // Create an exercise test with these exercises
-        Test_exercice exerciseTest = new Test_exercice("Physical Fitness Test", 50, exercices);
+        Test_exercice exerciseTest = new Test_exercice("Physical Fitness Test", 50, e);
 
         // Create an array of tests (in this case, just one written test)
         Test[] tests = new Test[]{writtenTest,writtenTest,exerciseTest,writtenTest,writtenTest,writtenTest,writtenTest,writtenTest};
@@ -266,10 +327,9 @@ public class PatientController implements Initializable {
 
         Dossier dossier = new Dossier(rendez_vous,bos, (ArrayList<Fiche_suivi>) ficheSuivis,patient);
         user.add_patient(dossier);
-        ls.add(patient);
 
 
-        patient1.setNum_dossier(2);
+        patient1.setNum_dossier(12);
         patient1.setNom("Belimane") ;
         patient1.setPrenom("Rahma") ;
         patient1.setDate_naissance(now) ;
@@ -281,12 +341,10 @@ public class PatientController implements Initializable {
 
         Dossier dossier2 =  new Dossier(rendez_vous,bos, (ArrayList<Fiche_suivi>) ficheSuivis,patient1);
         user.add_patient(dossier2);
-        ls.add(patient1);
         //   String email = user.getCompte().getEmail().toLowerCase().replace(" ", "");
         //  serialize("./src/main/Userinformation/" + email + ".ser",user);
 
 
-        return ls;
     }
     private static void serialize(String filepath,Orthophoniste user)
     {
@@ -309,6 +367,6 @@ public class PatientController implements Initializable {
         {
             e.printStackTrace();
         }
-    }*/
+    }
 
 }

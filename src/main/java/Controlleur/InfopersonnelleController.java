@@ -168,8 +168,8 @@ public class InfopersonnelleController implements Initializable {
             adressepatient.setText(((Enfant)patient).getAdresse());
             info1.setText(((Enfant)patient).getClass_etude());
             int numparent[]=((Enfant)patient).getNumeroparent();
-            //info2.setText(String.valueOf(numparent[0]));
-            //info3.setText(String.valueOf(numparent[1]));
+            info2.setText(String.valueOf(numparent[0]));
+            info3.setText(String.valueOf(numparent[1]));
             profession.setVisible(false);
             diplome.setVisible(false);
             numadulte.setVisible(false);

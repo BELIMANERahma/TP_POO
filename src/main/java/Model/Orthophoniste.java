@@ -14,14 +14,7 @@ public class Orthophoniste  implements Serializable {
     private TreeMap<Integer,Dossier> Mes_dossiers;
     private Testes testes;
 
-    public Testes getTestes() {
-        return testes;
-    }
 
-    public void setTestes(Testes testes)
-    {
-        this.testes = testes;
-    }
 
     public Orthophoniste(Compte compte ) {
 
