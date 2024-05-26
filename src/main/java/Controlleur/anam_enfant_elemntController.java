@@ -46,6 +46,7 @@ public class anam_enfant_elemntController {
     private Label questionerror; // Value injected by FXMLLoader
     @FXML
     private VBox listquestion;
+    private  boolean enfant ;
     @FXML
     void ajouterobjectif(ActionEvent event) {
 
@@ -105,7 +106,9 @@ public class anam_enfant_elemntController {
         return !hasEmptyFields; // Return true only if all fields are filled
     }
 
-    public void setData(VBox listquestions) {
+    public void setData_enfant(VBox listquestions) {
+
+        this.enfant =true;
         ObservableList<String> options = FXCollections.observableArrayList(
                " Strecture familiale",
                 "Antecedents familiaux",
@@ -120,6 +123,21 @@ public class anam_enfant_elemntController {
         categorie.setItems(options);
         this.listquestion = listquestions;
     }
+    public void setData_adulte(VBox listquestions) {
+        this.enfant =false;
+
+
+        ObservableList<String> options = FXCollections.observableArrayList(
+                "Histoire_de_maladie",
+                "Suivi_médical"
+        );
+
+        categorie.getItems().clear();
+        // Set the items for the ComboBox
+        categorie.setItems(options);
+        this.listquestion = listquestions;
+
+    }
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert ajouterquestion != null : "fx:id=\"ajouterquestion\" was not injected: check your FXML file 'anam_enfant_elemnt.fxml'.";
@@ -130,15 +148,27 @@ public class anam_enfant_elemntController {
 
     }
     private void addNewHBox() {
+        if (enfant == true) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/anam_enfant_elemnt.fxml"));
+                HBox newHBox = fxmlLoader.load();
+                anam_enfant_elemntController controller = fxmlLoader.getController();
+                controller.setData_enfant(listquestion); // Set the VBox in the new controller instance
+                listquestion.getChildren().add(newHBox);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/anam_enfant_elemnt.fxml"));
+                HBox newHBox = fxmlLoader.load();
+                anam_enfant_elemntController controller = fxmlLoader.getController();
+                controller.setData_adulte(listquestion); // Set the VBox in the new controller instance
+                listquestion.getChildren().add(newHBox);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/anam_enfant_elemnt.fxml"));
-            HBox newHBox = fxmlLoader.load();
-            anam_enfant_elemntController controller = fxmlLoader.getController();
-            controller.setData(listquestion); // Set the VBox in the new controller instance
-            listquestion.getChildren().add(newHBox);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

@@ -1,7 +1,9 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 
 public    class  Patient implements Serializable {
 
@@ -35,6 +37,22 @@ public    class  Patient implements Serializable {
         this.lieu_naissance = lieu_naissance;
         this.Adresse = adresse;
 
+    }
+
+
+    public int calcul_age() {
+        LocalDate birthDate =this.date_naissance;
+        if (birthDate == null) {
+            throw new IllegalArgumentException("La date de naissance ne peut pas être nulle");
+        }
+
+        LocalDate currentDate = LocalDate.now();
+
+        if (birthDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("La date de naissance ne peut pas être dans le futur");
+        }
+
+        return Period.between(birthDate, currentDate).getYears();
     }
 
     public Patient()
