@@ -1,6 +1,8 @@
 package Model;
 
-public class QuestionnaireChoix {
+import java.io.Serializable;
+
+public class QuestionnaireChoix  implements Serializable {
     private String titre;
     private Question[] questions;
     private int nbr_qiuetions ;

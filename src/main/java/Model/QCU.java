@@ -1,6 +1,8 @@
 package Model;
 
-public class QCU extends Question{
+import java.io.Serializable;
+
+public class QCU extends Question  implements Serializable {
     private  String choix[];
     private  int nbr_choix;
     private String  reponse;
