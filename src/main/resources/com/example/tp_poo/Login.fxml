@@ -9,7 +9,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" stylesheets="@../../../directory/design.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.LoginController">
    <children>
@@ -24,6 +26,11 @@
                               <Image url="@../../../images/6490281-removebg-preview.png" />
                            </image>
                         </ImageView>
+                        <Label layoutX="67.0" layoutY="82.0" prefHeight="88.0" prefWidth="265.0" text="My Cabinet D'Orthophonie " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <TextField fx:id="login_username" alignment="CENTER" layoutX="474.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="430.0" promptText="Email">
@@ -60,6 +67,15 @@
                      </cursor></Button>
                   <Label fx:id="usernameErrorMessage" layoutX="481.0" layoutY="281.0" prefHeight="14.0" prefWidth="406.0" textFill="RED" />
                   <Label fx:id="PasswordErrorMessage" layoutX="486.0" layoutY="361.0" prefHeight="14.0" prefWidth="406.0" textFill="RED" />
+                  <HBox layoutX="448.0" layoutY="86.0" prefHeight="100.0" prefWidth="482.0">
+                     <children>
+                        <Label prefHeight="98.0" prefWidth="482.0" text="        Bienvenu Dans Votre Cabinet d'Orthophonie ">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </children>
