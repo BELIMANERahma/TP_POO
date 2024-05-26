@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Dossier implements Serializable {
+
     private static int counter ;
 
     private int numero;

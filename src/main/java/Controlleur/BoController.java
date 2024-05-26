@@ -141,6 +141,7 @@ public class BoController implements Initializable {
        if(bos != null) {
            for (BO bo : bos) {
                bilon++;
+
                epr+=bo.getEpreuves_cliniques().length;
 
                FXMLLoader fxmlLoader = new FXMLLoader();

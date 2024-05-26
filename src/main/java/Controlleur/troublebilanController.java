@@ -107,6 +107,31 @@ public class troublebilanController {
                 }
             }
         }
+        Trouble[] troubleArray = TroubleList.toArray(new Trouble[TroubleList.size()]);
+        Diagnostique diagnostique =new Diagnostique(troubleArray);
+        this.bilan.setDiagnostique(diagnostique);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tp_poo/Projettherapeutique.fxml"));
+        try {
+            Parent root = loader.load();
+
+            // Access the controller instance
+           Projet_therapeutiqueController controller = loader.getController();
+
+            // Set the BO and Dossier objects
+            controller.setBilan(bilan);
+            controller.setDossier(dossier);
+
+            // Create a new scene with the loaded page
+            Scene scene = new Scene(root);
+
+            // Get the current stage and set the new scene
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

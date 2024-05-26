@@ -10,6 +10,9 @@ public class BO  implements Serializable
 
     public BO()
     {
+
+
+        this.epreuves_cliniques =new Epreuve_clinique[4];
     }
 
     public BO(Epreuve_clinique[] epreuves_cliniques, Diagnostique diagnostique, Projet_therapeu projet) {
