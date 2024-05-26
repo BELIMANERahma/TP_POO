@@ -195,7 +195,6 @@ public class ajouterficheController implements Initializable
 
         // Use ArrayList to temporarily store Objectif objects
         List<Objectif> objectifsList = new ArrayList<>();
-        System.out.println("hehehehehehhehehhehehehehhehehehe");
 
         for (int i = 0; i < vbox.getChildren().size(); i++)
         {

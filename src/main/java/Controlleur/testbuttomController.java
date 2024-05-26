@@ -42,14 +42,14 @@ public class testbuttomController {
         if (test instanceof Test_exercice)
         {
             listeq.setVisible(false);
-            for (int i = 0; i < ((Test_exercice) test).getListe_excercice().length; i++) {
+            for (int i = 0; i < ((Test_exercice) test).getListe_excercice().size(); i++) {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/example/tp_poo/testelemnt.fxml"));
                 try {
                     HBox hBox = fxmlLoader.load();
                     testelemntController cic = fxmlLoader.getController();
-                    cic.setData(((Test_exercice) test).getListe_excercice()[i]);
+                    cic.setData(((Test_exercice) test).getListe_excercice().get(i));
                     testelay.getChildren().add(hBox);
                 } catch (IOException e) {
                     throw new RuntimeException(e);

@@ -7,6 +7,9 @@ public  abstract class Test implements Serializable {
     private int capacite;
     private String compte_rendu;
 
+    public Test() {
+    }
+
     public Test(String nom, int capacite) {
         this.nom = nom;
         this.capacite = capacite;

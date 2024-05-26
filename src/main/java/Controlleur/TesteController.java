@@ -7,9 +7,13 @@ package Controlleur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Model.Orthophoniste;
+import Model.OrthophonisteSessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class TesteController {
+public class TesteController implements Initializable {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -158,6 +162,8 @@ public class TesteController {
         }
     }
 
+
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert Consultertest != null : "fx:id=\"Consultertest\" was not injected: check your FXML file 'Testes.fxml'.";
@@ -166,4 +172,12 @@ public class TesteController {
 
     }
 
+       @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        Orthophoniste user= OrthophonisteSessionManager.getCurrentOrthophonisteName();
+
+        username1.setText(user.getCompte().getNom() + " " + user.getCompte().getPrenom());
+
+    }
 }

@@ -14,7 +14,14 @@ public class Orthophoniste  implements Serializable {
     private TreeMap<Integer,Dossier> Mes_dossiers;
     private Testes testes;
 
+    public Testes getTestes() {
+        return testes;
+    }
 
+    public void setTestes(Testes testes)
+    {
+        this.testes = testes;
+    }
 
     public Orthophoniste(Compte compte ) {
 
@@ -22,8 +29,9 @@ public class Orthophoniste  implements Serializable {
         this.Mes_dossiers = new TreeMap<Integer,Dossier >();
         this.agenda = new Agenda();
         String email = this.compte.getEmail().toLowerCase().replace(" ", "");
-        serializeProfile("./src/main/Userinformation/" + email + ".ser");
         this.testes =new Testes();
+
+        serializeProfile("./src/main/Userinformation/" + email + ".ser");
 
     }
 

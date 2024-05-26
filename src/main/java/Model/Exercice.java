@@ -5,12 +5,13 @@ import java.io.Serializable;
 public class Exercice  implements Serializable {
     private String consign;
     private int nbr_repeter;
-    private String[] materiel;
+    private String materiel;
     private int note=0;
 
-    public Exercice(String consign, String[] materiel) {
+    public Exercice(String consign, String materiel,int nb) {
         this.consign = consign;
         this.materiel = materiel;
+        this.nbr_repeter=nb;
     }
 
     public String getConsign() {
@@ -29,11 +30,11 @@ public class Exercice  implements Serializable {
         this.nbr_repeter = nbr_repeter;
     }
 
-    public String[] getMateriel() {
+    public String getMateriel() {
         return materiel;
     }
 
-    public void setMateriel(String[] materiel) {
+    public void setMateriel(String materiel) {
         this.materiel = materiel;
     }
 
